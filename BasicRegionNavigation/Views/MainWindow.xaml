@@ -9,7 +9,7 @@
 
     <!--<DockPanel LastChildFill="True">-->
 
-    <Grid ShowGridLines="True">
+    <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />

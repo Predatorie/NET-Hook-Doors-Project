@@ -6,8 +6,15 @@
              BorderThickness="3"
              HorizontalAlignment="Center"
              VerticalAlignment="Center"
+             Height="650"
+             Width="600"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-        <Label Height="50" Content="ArchView" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <Label 
+            Height="50" 
+            Content="Arch View Loaded" 
+            FontSize="32" 
+            VerticalAlignment="Center" 
+            HorizontalAlignment="Center" />
     </Grid>
 </UserControl>
