@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AB8B448C-DD74-4D60-A041-3E5D03A32180}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ModuleDoors</RootNamespace>
+    <AssemblyName>ModuleDoors</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=1.4.0.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.4.0\lib\net45\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Unity.6.3.0\lib\net45\Prism.Unity.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ModuleDoorModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ViewModels\ArchViewViewModel.cs" />
+    <Compile Include="ViewModels\CathedralViewViewModel.cs" />
+    <Compile Include="ViewModels\LeftCathedralViewviewModel.cs" />
+    <Compile Include="ViewModels\LeftRomanViewViewModel.cs" />
+    <Compile Include="ViewModels\NotchViewViewModel.cs" />
+    <Compile Include="ViewModels\RaisedPanelRCenturyViewViewModel.cs" />
+    <Compile Include="ViewModels\RaisedPanelRClassicViewViewModel.cs" />
+    <Compile Include="ViewModels\RaisedPanelREuro08ViewViewModel.cs" />
+    <Compile Include="ViewModels\RaisedPanelRShakerViewViewModel.cs" />
+    <Compile Include="ViewModels\RectangularViewViewModel.cs" />
+    <Compile Include="ViewModels\RightCathedralViewViewModel.cs" />
+    <Compile Include="ViewModels\RightRomanViewViewModel.cs" />
+    <Compile Include="ViewModels\RomanViewViewModel.cs" />
+    <Compile Include="ViewModels\ShakerCenturyViewViewModel.cs" />
+    <Compile Include="ViewModels\ShakerCountryViewViewModel.cs" />
+    <Compile Include="ViewModels\ShakerEleganceViewViewModel.cs" />
+    <Compile Include="ViewModels\ShakerEuro05ViewViewModel.cs" />
+    <Compile Include="ViewModels\ShakerExoticViewViewModel.cs" />
+    <Compile Include="ViewModels\ShakerFinestViewViewModel.cs" />
+    <Compile Include="ViewModels\ShakerViewViewModel.cs" />
+    <Compile Include="ViewModels\SimpleRectangleViewViewModel.cs" />
+    <Compile Include="Views\ArchView.xaml.cs">
+      <DependentUpon>ArchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CathedralView.xaml.cs">
+      <DependentUpon>CathedralView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LeftCathedralView.xaml.cs">
+      <DependentUpon>LeftCathedralView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LeftRomanView.xaml.cs">
+      <DependentUpon>LeftRomanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotchView.xaml.cs">
+      <DependentUpon>NotchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaisedPanelRCenturyView.xaml.cs">
+      <DependentUpon>RaisedPanelRCenturyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaisedPanelRClassicView.xaml.cs">
+      <DependentUpon>RaisedPanelRClassicView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaisedPanelREuro08View.xaml.cs">
+      <DependentUpon>RaisedPanelREuro08View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaisedPanelRShakerView.xaml.cs">
+      <DependentUpon>RaisedPanelRShakerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RectangularView.xaml.cs">
+      <DependentUpon>RectangularView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RightCathedralView.xaml.cs">
+      <DependentUpon>RightCathedralView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RightRomanView.xaml.cs">
+      <DependentUpon>RightRomanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RomanView.xaml.cs">
+      <DependentUpon>RomanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShakerCenturyView.xaml.cs">
+      <DependentUpon>ShakerCenturyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShakerCountryView.xaml.cs">
+      <DependentUpon>ShakerCountryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShakerEleganceView.xaml.cs">
+      <DependentUpon>ShakerEleganceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShakerEuro05View.xaml.cs">
+      <DependentUpon>ShakerEuro05View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShakerExoticView.xaml.cs">
+      <DependentUpon>ShakerExoticView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShakerFinestView.xaml.cs">
+      <DependentUpon>ShakerFinestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShakerView.xaml.cs">
+      <DependentUpon>ShakerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimpleRectangleView.xaml.cs">
+      <DependentUpon>SimpleRectangleView.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\ArchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CathedralView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LeftCathedralView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LeftRomanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaisedPanelRCenturyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaisedPanelRClassicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaisedPanelREuro08View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaisedPanelRShakerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RectangularView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RightCathedralView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RightRomanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RomanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShakerCenturyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShakerCountryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShakerEleganceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShakerEuro05View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShakerExoticView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShakerFinestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShakerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SimpleRectangleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

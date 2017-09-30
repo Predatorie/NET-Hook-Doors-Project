@@ -1,0 +1,9 @@
+﻿<UserControl x:Class="ModuleDoors.Views.SimpleRectangleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <Label Height="50" Content="SimpleRectangleView" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Center" />
+    </Grid>
+</UserControl>

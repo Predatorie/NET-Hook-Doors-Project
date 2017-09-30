@@ -1,0 +1,41 @@
+﻿###############################################################################
+# NETHook function table			
+###############################################################################
+#
+# Name		: MDFDoors.ft
+# NETHook 	: MDFDoors.dll
+# Date		: 9/30/2017
+# Author	: mick.george@mastercam.com
+# Notes		: 
+# Language	: C#
+#
+###############################################################################
+
+
+######################
+# ASSIGN A UNIQUE NAME
+######################
+APPLICATION "__MDFDoors__"
+
+######################
+# NETHook LOCATION
+######################
+#
+# Update paths below to match your install path and project name.
+FUNC_DLL   "CHOOKS\MDF\MDFDoors.dll"
+RES_DLL    "SAME"
+dnRES_NAME "MDFDoors.FunctionTable.Resource"
+CATEGORY   "MDF Doors"
+
+##############################################################################
+# Public functions here
+##############################################################################
+#
+# The main system entry point defined in NethookMain.cs
+FUNCTION NET "Run"
+    dnSPNG "Run16"
+    dnLPNG "Run24"
+    dnTIP  "RunTip"
+END_FUNCTION
+
+# EOF
