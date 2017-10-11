@@ -4,6 +4,10 @@
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-        <Label Height="50" Content="ShakerEleganceView" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <Image 
+            Source="../Assets/Doors/SquareStyle/elegance.png"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+        />
     </Grid>
 </UserControl>

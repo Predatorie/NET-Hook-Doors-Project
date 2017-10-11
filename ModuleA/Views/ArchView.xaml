@@ -1,20 +1,13 @@
 ﻿<UserControl x:Class="ModuleDoors.Views.ArchView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:prism="http://prismlibrary.com/"       
-             BorderBrush="Red"
-             BorderThickness="3"
+             xmlns:prism="http://prismlibrary.com/"
              HorizontalAlignment="Center"
-             VerticalAlignment="Center"
+             VerticalAlignment="Center"             
              Height="650"
              Width="600"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-        <Label 
-            Height="50" 
-            Content="Arch View Loaded" 
-            FontSize="32" 
-            VerticalAlignment="Center" 
-            HorizontalAlignment="Center" />
+        
     </Grid>
 </UserControl>
