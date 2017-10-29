@@ -4,6 +4,7 @@
 
 namespace MDFDoors.ViewModels
 {
+    using Factories;
     using Prism.Commands;
     using Prism.Mvvm;
     using Prism.Regions;
@@ -12,16 +13,27 @@ namespace MDFDoors.ViewModels
     {
         private readonly IRegionManager regionManager;
 
+        private readonly INavigationParametersFactory navigationParamsFactory;
+
         private string title = "MDF Doors";
 
-        public MainWindowViewModel(IRegionManager regionManager)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainWindowViewModel"/> class.
+        /// 
+        /// </summary>
+        /// <param name="regionManager">The IRegionManager singleton</param>
+        /// <param name="navigationParametersFactory">The INavigationParametersFactory singleton</param>
+        public MainWindowViewModel(
+            IRegionManager regionManager,
+            INavigationParametersFactory navigationParametersFactory)
         {
             this.regionManager = regionManager;
+            this.navigationParamsFactory = navigationParametersFactory;
 
-            this.NavigateCommand = new DelegateCommand<string>(this.Navigate);
+            this.NavigateCommand = new DelegateCommand<object>(this.Navigate);
         }
 
-        public DelegateCommand<string> NavigateCommand { get; private set; }
+        public DelegateCommand<object> NavigateCommand { get; private set; }
 
         public string Title
         {
@@ -29,12 +41,12 @@ namespace MDFDoors.ViewModels
             set => this.SetProperty(ref this.title, value);
         }
 
-        private void Navigate(string navigatePath)
+        private void Navigate(object door)
         {
-            if (navigatePath != null)
-            {
-                this.regionManager.RequestNavigate("ContentRegion", navigatePath);
-            }
+            var style = (DoorStyles)door;
+            var view = this.navigationParamsFactory.View(style);
+            var navigationParams = this.navigationParamsFactory.Create(style);
+            this.regionManager.RequestNavigate("ContentRegion", view, navigationParams);
         }
     }
 }

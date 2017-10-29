@@ -6,9 +6,9 @@ namespace ModuleDoors.ViewModels
 {
     using Prism.Mvvm;
 
-    public class RaisedPanelRShakerViewViewModel : BindableBase
+    public class RaisedPanelRShakerViewModel : BindableBase
     {
-        public RaisedPanelRShakerViewViewModel()
+        public RaisedPanelRShakerViewModel()
         {
 
         }

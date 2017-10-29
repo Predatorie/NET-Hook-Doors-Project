@@ -17,7 +17,7 @@ namespace MDFDoors
         /// <param name="param">System parameter.</param>
         /// <returns>A <c>MCamReturn</c> return type representing the outcome of your NetHook application.</returns>
         public override MCamReturn Run(int param)
-        {
+        {            
             var b = new Bootstrapper();
             b.Run();
 

@@ -1,4 +1,4 @@
-﻿// <copyright file="CathedralViewViewModel.cs" company="Mick George @Osoy">
+﻿// <copyright file="RightCathedralViewViewModel.cs" company="Mick George @Osoy">
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
@@ -6,7 +6,7 @@ namespace ModuleDoors.ViewModels
 {
     using Prism.Mvvm;
 
-    public class CathedralViewViewModel : BindableBase
+    public class RightCathedralViewModel : BindableBase
     {
         
     }

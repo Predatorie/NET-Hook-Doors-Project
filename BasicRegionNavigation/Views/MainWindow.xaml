@@ -4,6 +4,7 @@
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:mdfDoors="clr-namespace:MDFDoors"
         Topmost="True"
         WindowState="Normal"       
         ResizeMode="CanResizeWithGrip"              
@@ -28,53 +29,54 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-
-        <StackPanel 
-            CanVerticallyScroll="True"
-            Grid.Column="0" 
-            Grid.Row="0" 
-            Grid.RowSpan="2"  
+        <ScrollViewer HorizontalScrollBarVisibility="Visible"
+                      Grid.Column="0" 
+                      Grid.Row="0" 
+                      Grid.RowSpan="2"  
+                      >
+            <StackPanel 
+            CanVerticallyScroll="True"                        
             Orientation="Vertical" 
             DockPanel.Dock="Left" 
             Margin="5" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Top">
 
-            <StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Center" >
-                <!--Mastercam Styles-->
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="ArchView" Margin="5">Arch</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="CathedralView" Margin="5">Cathedral</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="LeftCathedralView" Margin="5">Left Cathedral</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="LeftRomanView" Margin="5">Left Roman</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="NotchView" Margin="5">Notch</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RectangularView" Margin="5">Rectangular</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RightCathedralView" Margin="5">Right Cathedral</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RightRomanView" Margin="5">Right Roman</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RomanView" Margin="5">Roman</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="SimpleRectangleView" Margin="5">Simple Rectangle</Button>
-            </StackPanel >
+                <!--<StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Center" >
+                    --><!--Mastercam Styles--><!--
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="ArchView" Margin="5">Arch</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="CathedralView" Margin="5">Cathedral</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="LeftCathedralView" Margin="5">Left Cathedral</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="LeftRomanView" Margin="5">Left Roman</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="NotchView" Margin="5">Notch</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RectangularView" Margin="5">Rectangular</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RightCathedralView" Margin="5">Right Cathedral</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RightRomanView" Margin="5">Right Roman</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RomanView" Margin="5">Roman</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="SimpleRectangleView" Margin="5">Simple Rectangle</Button>
+                </StackPanel >-->
 
-            <StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Center">
-                <!--Shake Styles-->
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="ShakerCenturyView" Margin="5">Shaker Century</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="ShakerCountryView" Margin="5">Shaker Country</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="ShakerEleganceView" Margin="5">Shaker Elegance</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="ShakerEuro05View" Margin="5">Shaker Euro-05</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="ShakerExoticView" Margin="5">Shaker Exotic</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="ShakerFinestView" Margin="5">Shaker Finest</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="ShakerView" Margin="5">Shaker</Button>
+                <StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Center">
+                    <!--Shake Styles-->
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{x:Static mdfDoors:DoorStyles.ShakerCentury}" Margin="5">Shaker Century</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{x:Static mdfDoors:DoorStyles.ShakerCountry}" Margin="5">Shaker Country</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{x:Static mdfDoors:DoorStyles.ShakerElegance}" Margin="5">Shaker Elegance</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{x:Static mdfDoors:DoorStyles.ShakerEuro05}" Margin="5">Shaker Euro-05</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{x:Static mdfDoors:DoorStyles.ShakerExotic}" Margin="5">Shaker Exotic</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{x:Static mdfDoors:DoorStyles.ShakerFinest}" Margin="5">Shaker Finest</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{x:Static mdfDoors:DoorStyles.Shaker}" Margin="5">Shaker</Button>
+                </StackPanel>
+
+                <!--<StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Center">
+                    --><!--Raised Panel Styles--><!--
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RaisedPanelRCenturyView" Margin="5">Raised Panel R-Century</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RaisedPanelRClassicView" Margin="5">Raised Panel R-Classic</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RaisedPanelREuro08View" Margin="5">RaisedPanel R-Euro-08</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RaisedPanelRShakerView" Margin="5">Raised Panel R-Shaker</Button>
+                </StackPanel>-->
+
             </StackPanel>
-
-            <StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Center">
-                <!--Raised Panel Styles-->
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RaisedPanelRCenturyView" Margin="5">Raised Panel R-Century</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RaisedPanelRClassicView" Margin="5">Raised Panel R-Classic</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RaisedPanelREuro08View" Margin="5">RaisedPanel R-Euro-08</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RaisedPanelRShakerView" Margin="5">Raised Panel R-Shaker</Button>
-            </StackPanel>
-
-        </StackPanel>
-
+        </ScrollViewer>
         <ContentControl Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" prism:RegionManager.RegionName="ContentRegion" Margin="5" BorderBrush="Red" BorderThickness="3" />
 
         <StackPanel 

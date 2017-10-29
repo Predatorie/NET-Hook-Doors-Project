@@ -6,9 +6,9 @@ namespace ModuleDoors.ViewModels
 {
     using Prism.Mvvm;
 
-    public class ShakerExoticViewViewModel : BindableBase
+    public class ShakerExoticViewModel : BindableBase
     {
-        public ShakerExoticViewViewModel()
+        public ShakerExoticViewModel()
         {
 
         }

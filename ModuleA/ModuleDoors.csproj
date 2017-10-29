@@ -113,27 +113,27 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ViewModels\ArchViewViewModel.cs" />
-    <Compile Include="ViewModels\CathedralViewViewModel.cs" />
-    <Compile Include="ViewModels\LeftCathedralViewviewModel.cs" />
-    <Compile Include="ViewModels\LeftRomanViewViewModel.cs" />
-    <Compile Include="ViewModels\NotchViewViewModel.cs" />
-    <Compile Include="ViewModels\RaisedPanelRCenturyViewViewModel.cs" />
-    <Compile Include="ViewModels\RaisedPanelRClassicViewViewModel.cs" />
-    <Compile Include="ViewModels\RaisedPanelREuro08ViewViewModel.cs" />
-    <Compile Include="ViewModels\RaisedPanelRShakerViewViewModel.cs" />
-    <Compile Include="ViewModels\RectangularViewViewModel.cs" />
-    <Compile Include="ViewModels\RightCathedralViewViewModel.cs" />
-    <Compile Include="ViewModels\RightRomanViewViewModel.cs" />
-    <Compile Include="ViewModels\RomanViewViewModel.cs" />
-    <Compile Include="ViewModels\ShakerCenturyViewViewModel.cs" />
-    <Compile Include="ViewModels\ShakerCountryViewViewModel.cs" />
-    <Compile Include="ViewModels\ShakerEleganceViewViewModel.cs" />
-    <Compile Include="ViewModels\ShakerEuro05ViewViewModel.cs" />
-    <Compile Include="ViewModels\ShakerExoticViewViewModel.cs" />
-    <Compile Include="ViewModels\ShakerFinestViewViewModel.cs" />
-    <Compile Include="ViewModels\ShakerViewViewModel.cs" />
-    <Compile Include="ViewModels\SimpleRectangleViewViewModel.cs" />
+    <Compile Include="ViewModels\ArchViewModel.cs" />
+    <Compile Include="ViewModels\CathedralViewModel.cs" />
+    <Compile Include="ViewModels\LeftCathedralViewModel.cs" />
+    <Compile Include="ViewModels\LeftRomanViewModel.cs" />
+    <Compile Include="ViewModels\NotchViewModel.cs" />
+    <Compile Include="ViewModels\RaisedPanelRCenturyViewModel.cs" />
+    <Compile Include="ViewModels\RaisedPanelRClassicViewModel.cs" />
+    <Compile Include="ViewModels\RaisedPanelREuro08ViewModel.cs" />
+    <Compile Include="ViewModels\RaisedPanelRShakerViewModel.cs" />
+    <Compile Include="ViewModels\RectangularViewModel.cs" />
+    <Compile Include="ViewModels\RightCathedralViewModel.cs" />
+    <Compile Include="ViewModels\RightRomanViewModel.cs" />
+    <Compile Include="ViewModels\RomanViewModel.cs" />
+    <Compile Include="ViewModels\ShakerCenturyViewModel.cs" />
+    <Compile Include="ViewModels\ShakerCountryViewModel.cs" />
+    <Compile Include="ViewModels\ShakerEleganceViewModel.cs" />
+    <Compile Include="ViewModels\ShakerEuro05ViewModel.cs" />
+    <Compile Include="ViewModels\ShakerExoticViewModel.cs" />
+    <Compile Include="ViewModels\ShakerFinestViewModel.cs" />
+    <Compile Include="ViewModels\ShakerViewModel.cs" />
+    <Compile Include="ViewModels\SimpleRectangleViewModel.cs" />
     <Compile Include="Views\ArchView.xaml.cs">
       <DependentUpon>ArchView.xaml</DependentUpon>
     </Compile>
@@ -308,8 +308,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy "$(ProjectDir)$(OutDir)$(TargetName).dll" "D:\Program Files\Mcam2018\chooks\MDF"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

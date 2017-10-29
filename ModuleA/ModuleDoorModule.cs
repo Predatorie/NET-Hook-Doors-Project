@@ -17,10 +17,7 @@ namespace ModuleDoors
         /// Initializes a new instance of the <see cref="ModuleDoorModule"/> class.
         /// </summary>
         /// <param name="container">The IUnityContainer instance</param>
-        public ModuleDoorModule(IUnityContainer container)
-        {
-            this.container = container;
-        }
+        public ModuleDoorModule(IUnityContainer container) => this.container = container;
 
         /// <summary>
         /// Register our types

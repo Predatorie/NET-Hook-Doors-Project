@@ -6,9 +6,9 @@ namespace ModuleDoors.ViewModels
 {
     using Prism.Mvvm;
 
-    public class RaisedPanelRClassicViewViewModel : BindableBase
+    public class RaisedPanelRClassicViewModel : BindableBase
     {
-        public RaisedPanelRClassicViewViewModel()
+        public RaisedPanelRClassicViewModel()
         {
 
         }

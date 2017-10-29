@@ -2,6 +2,8 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
+using MDFDoors.Factories;
+
 namespace MDFDoors
 {
     using System.Windows;
@@ -26,6 +28,14 @@ namespace MDFDoors
         {
             var catalog = (ModuleCatalog)this.ModuleCatalog;
             catalog.AddModule(typeof(ModuleDoorModule));
+        }
+
+        protected override void ConfigureContainer()
+        {
+            base.ConfigureContainer();
+
+            this.Container.RegisterType<INavigationParametersFactory,
+                NavigationParametersFactory>(new ContainerControlledLifetimeManager());
         }
     }
 }
