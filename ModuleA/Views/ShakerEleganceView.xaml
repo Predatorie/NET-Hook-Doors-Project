@@ -10,19 +10,19 @@
     </UserControl.Resources>
 
     <GroupBox Header="{Binding DoorType}" Margin="5" >
-    <Grid>
+        <Grid>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        
-        <Grid.RowDefinitions>
-            <RowDefinition Height="500" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
-        <Image 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Image 
             Grid.Column="0"
             Grid.Row="0"
             Grid.RowSpan="2"
@@ -31,49 +31,83 @@
             VerticalAlignment="Center"
         />
 
-        <GroupBox 
-            Header="Door Dimensions"
+            <GroupBox Header="Level Number"
+                Grid.Column="1"
+                Grid.Row="0"
+                Margin="5"
+            >
+
+                <Grid
+                    x:Name="DoorLevels"
+                    Margin="2"
+                    ShowGridLines="false"  
+                    >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="150" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+
+                    <Label Margin="2" Grid.Column="0" Grid.Row="0" Content="Outer:" />
+                    <Label Margin="2" Grid.Column="0" Grid.Row="1" Content="Inner:" />
+                    <Label Margin="2" Grid.Column="0" Grid.Row="2" Content="Grooves:" />
+
+                    <controls:NumericUpDown Value="{Binding OuterLevelNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Interval="1" Margin="2" Minimum="1" HasDecimals="False" Grid.Column="1" Grid.Row="0" x:Name="Outer" />
+                    <controls:NumericUpDown Value="{Binding InnerLevelNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Interval="1" Margin="2" Minimum="1" HasDecimals="False" Grid.Column="1" Grid.Row="1" x:Name="Inner" />
+                    <controls:NumericUpDown Value="{Binding GrooveLevelNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Interval="1" Margin="2" Minimum="1" HasDecimals="False" Grid.Column="1" Grid.Row="2" x:Name="Groove" />
+
+                </Grid>
+
+            </GroupBox>
+
+            <GroupBox Header="Door Dimensions"
             Grid.Column="1"
-            Grid.Row="0"
+            Grid.Row="1"
             Margin="5"
             >
-        
-        <Grid
+
+                <Grid
             x:Name="DoorSizePanel"            
             Margin="2"
             ShowGridLines="false"            
             >
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="150" />
-            </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="150" />
+                    </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-                <RowDefinition Height="25" />
-                <RowDefinition Height="25" />
-                <RowDefinition Height="25" />
-                <RowDefinition Height="25" />
-                <RowDefinition Height="25" />
-            </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" Grid.Row="0" Content="A:" />
-            <Label Grid.Column="0" Grid.Row="1" Content="B:" />
-            <Label Grid.Column="0" Grid.Row="2" Content="C:" />
-            <Label Grid.Column="0" Grid.Row="3" Content="D:" />
-            <Label Grid.Column="0" Grid.Row="4" Content="E:" />
-            <Label Grid.Column="0" Grid.Row="5" Content="F:" />
+                    <Label Margin="2" Grid.Column="0" Grid.Row="0" Content="A:" />
+                    <Label Margin="2" Grid.Column="0" Grid.Row="1" Content="B:" />
+                    <Label Margin="2" Grid.Column="0" Grid.Row="2" Content="C:" />
+                    <Label Margin="2" Grid.Column="0" Grid.Row="3" Content="D:" />
+                    <Label Margin="2" Grid.Column="0" Grid.Row="4" Content="E:" />
+                    <Label Margin="2" Grid.Column="0" Grid.Row="5" Content="F:" />
 
-            <TextBox Grid.Column="1" Grid.Row="0" x:Name="ADimension" controls:TextBoxHelper.Watermark="Door Height"  />
-            <TextBox Grid.Column="1" Grid.Row="1" x:Name="BDimension" controls:TextBoxHelper.Watermark="Door Width"  />
-            <TextBox Grid.Column="1" Grid.Row="2" x:Name="CDimension" controls:TextBoxHelper.Watermark="Top Rail Width"  />
-            <TextBox Grid.Column="1" Grid.Row="3" x:Name="DDimension" controls:TextBoxHelper.Watermark="Bottom Rail Width" />
-            <TextBox Grid.Column="1" Grid.Row="4" x:Name="EDimension" controls:TextBoxHelper.Watermark="Left Stile Width" />
-            <TextBox Grid.Column="1" Grid.Row="5" x:Name="FDimension" controls:TextBoxHelper.Watermark="Right Stile Width" />
+                    <TextBox Margin="2" Grid.Column="1" Grid.Row="0" x:Name="ADimension" controls:TextBoxHelper.Watermark="Door Height"  />
+                    <TextBox Margin="2" Grid.Column="1" Grid.Row="1" x:Name="BDimension" controls:TextBoxHelper.Watermark="Door Width"  />
+                    <TextBox Margin="2" Grid.Column="1" Grid.Row="2" x:Name="CDimension" controls:TextBoxHelper.Watermark="Top Rail Width"  />
+                    <TextBox Margin="2" Grid.Column="1" Grid.Row="3" x:Name="DDimension" controls:TextBoxHelper.Watermark="Bottom Rail Width" />
+                    <TextBox Margin="2" Grid.Column="1" Grid.Row="4" x:Name="EDimension" controls:TextBoxHelper.Watermark="Left Stile Width" />
+                    <TextBox Margin="2" Grid.Column="1" Grid.Row="5" x:Name="FDimension" controls:TextBoxHelper.Watermark="Right Stile Width" />
+                </Grid>
+            </GroupBox>
         </Grid>
-        </GroupBox>
-    </Grid>
-        
+
     </GroupBox>
 </UserControl>

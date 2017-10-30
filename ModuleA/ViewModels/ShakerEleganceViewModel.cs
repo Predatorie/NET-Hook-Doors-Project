@@ -15,8 +15,27 @@ namespace ModuleDoors.ViewModels
         /// </summary>
         private string doorType;
 
+        /// <summary>
+        /// Backing field for the OuterLevelNumber
+        /// </summary>
+        private int outerLevelNumber;
+
+        /// <summary>
+        /// Backing field for the InnerLevelNumber
+        /// </summary>
+        private int innerLevelNumber;
+
+        /// <summary>
+        /// Backing field for the GrooveLevelNumber
+        /// </summary>
+        private int grooveLevelNumber;
+
         public ShakerEleganceViewModel()
-        {           
+        {   
+            // Initial setup
+            this.OuterLevelNumber = 1;
+            this.InnerLevelNumber = 10;
+            this.GrooveLevelNumber = 20;
         }
 
         /// <summary>
@@ -26,6 +45,24 @@ namespace ModuleDoors.ViewModels
         {
             get => this.doorType;
             set => this.SetProperty(ref this.doorType, value);
+        }
+
+        public int OuterLevelNumber
+        {
+            get => this.outerLevelNumber;
+            set => this.SetProperty(ref this.outerLevelNumber, value);
+        }
+
+        public int InnerLevelNumber
+        {
+            get => this.innerLevelNumber;
+            set => this.SetProperty(ref this.innerLevelNumber, value);
+        }
+
+        public int GrooveLevelNumber
+        {
+            get => this.grooveLevelNumber;
+            set => this.SetProperty(ref this.grooveLevelNumber, value);
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
