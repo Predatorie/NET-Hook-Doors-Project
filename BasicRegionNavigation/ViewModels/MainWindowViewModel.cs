@@ -31,14 +31,22 @@ namespace MDFDoors.ViewModels
             this.navigationParamsFactory = navigationParametersFactory;
 
             this.NavigateCommand = new DelegateCommand<object>(this.Navigate);
+            this.FlyOutCommand = new DelegateCommand(this.FlyOut);
         }
 
         public DelegateCommand<object> NavigateCommand { get; private set; }
+
+        public DelegateCommand FlyOutCommand { get; private set; }
 
         public string Title
         {
             get => this.title;
             set => this.SetProperty(ref this.title, value);
+        }
+
+        private void FlyOut()
+        {
+
         }
 
         private void Navigate(object door)

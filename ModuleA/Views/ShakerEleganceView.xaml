@@ -7,6 +7,14 @@
 
     <UserControl.Resources>
         <ResourceDictionary Source="../MDFDoorsResource.xaml" />
+
+        <!--<ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+                <ResourceDictionary Source="../MDFDoorsResource.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>-->
+
     </UserControl.Resources>
 
     <GroupBox Header="{Binding DoorType}" Margin="5" >
@@ -31,38 +39,64 @@
             VerticalAlignment="Center"
         />
 
-            <GroupBox Header="Level Number"
+            <GroupBox Header="Level Properties"
                 Grid.Column="1"
                 Grid.Row="0"
                 Margin="5"
             >
 
-                <Grid
-                    x:Name="DoorLevels"
+                <StackPanel Orientation="Horizontal">
+
+                    <Grid
+                    x:Name="DoorLevelNumbers"
                     Margin="2"
                     ShowGridLines="false"  
                     >
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="150" />
-                    </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="35" />
-                        <RowDefinition Height="35" />
-                        <RowDefinition Height="35" />
-                    </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                        </Grid.RowDefinitions>
 
-                    <Label Margin="2" Grid.Column="0" Grid.Row="0" Content="Outer:" />
-                    <Label Margin="2" Grid.Column="0" Grid.Row="1" Content="Inner:" />
-                    <Label Margin="2" Grid.Column="0" Grid.Row="2" Content="Grooves:" />
+                        <Label Margin="2" Grid.Column="0" Grid.Row="0" Content="Outer:" />
+                        <Label Margin="2" Grid.Column="0" Grid.Row="1" Content="Inner:" />
+                        <Label Margin="2" Grid.Column="0" Grid.Row="2" Content="Grooves:" />
 
-                    <controls:NumericUpDown Value="{Binding OuterLevelNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Interval="1" Margin="2" Minimum="1" HasDecimals="False" Grid.Column="1" Grid.Row="0" x:Name="Outer" />
-                    <controls:NumericUpDown Value="{Binding InnerLevelNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Interval="1" Margin="2" Minimum="1" HasDecimals="False" Grid.Column="1" Grid.Row="1" x:Name="Inner" />
-                    <controls:NumericUpDown Value="{Binding GrooveLevelNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Interval="1" Margin="2" Minimum="1" HasDecimals="False" Grid.Column="1" Grid.Row="2" x:Name="Groove" />
+                        <controls:NumericUpDown Value="{Binding OuterLevelNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Interval="1" Margin="2" Minimum="1" HasDecimals="False" Grid.Column="1" Grid.Row="0" x:Name="Outer" />
+                        <controls:NumericUpDown Value="{Binding InnerLevelNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Interval="1" Margin="2" Minimum="1" HasDecimals="False" Grid.Column="1" Grid.Row="1" x:Name="Inner" />
+                        <controls:NumericUpDown Value="{Binding GrooveLevelNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Interval="1" Margin="2" Minimum="1" HasDecimals="False" Grid.Column="1" Grid.Row="2" x:Name="Groove" />
 
-                </Grid>
+                    </Grid>
+
+                    <Grid
+                        x:Name="DoorLevelNames"
+                        Margin="2"
+                        ShowGridLines="false"  
+                    >
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                        </Grid.RowDefinitions>
+
+                        <TextBox Text="{Binding OuterLevelName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" controls:TextBoxHelper.ClearTextButton="True" controls:TextBoxHelper.Watermark="Level Name"  Margin="2" Grid.Column="0" Grid.Row="0"/>
+                        <TextBox Text="{Binding InnerLevelName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" controls:TextBoxHelper.ClearTextButton="True" controls:TextBoxHelper.Watermark="Level Name"  Margin="2" Grid.Column="0" Grid.Row="1"/>
+                        <TextBox Text="{Binding GrooveLevelName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" controls:TextBoxHelper.ClearTextButton="True" controls:TextBoxHelper.Watermark="Level Name"  Margin="2" Grid.Column="0" Grid.Row="2" />
+
+                    </Grid>
+
+                </StackPanel>
 
             </GroupBox>
 
@@ -99,12 +133,12 @@
                     <Label Margin="2" Grid.Column="0" Grid.Row="4" Content="E:" />
                     <Label Margin="2" Grid.Column="0" Grid.Row="5" Content="F:" />
 
-                    <TextBox Margin="2" Grid.Column="1" Grid.Row="0" x:Name="ADimension" controls:TextBoxHelper.Watermark="Door Height"  />
-                    <TextBox Margin="2" Grid.Column="1" Grid.Row="1" x:Name="BDimension" controls:TextBoxHelper.Watermark="Door Width"  />
-                    <TextBox Margin="2" Grid.Column="1" Grid.Row="2" x:Name="CDimension" controls:TextBoxHelper.Watermark="Top Rail Width"  />
-                    <TextBox Margin="2" Grid.Column="1" Grid.Row="3" x:Name="DDimension" controls:TextBoxHelper.Watermark="Bottom Rail Width" />
-                    <TextBox Margin="2" Grid.Column="1" Grid.Row="4" x:Name="EDimension" controls:TextBoxHelper.Watermark="Left Stile Width" />
-                    <TextBox Margin="2" Grid.Column="1" Grid.Row="5" x:Name="FDimension" controls:TextBoxHelper.Watermark="Right Stile Width" />
+                    <controls:NumericUpDown Value="{Binding Width, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="0" x:Name="ADimension" controls:TextBoxHelper.Watermark="Door Height"  />
+                    <controls:NumericUpDown Value="{Binding Height, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="1" x:Name="BDimension" controls:TextBoxHelper.Watermark="Door Width"  />
+                    <controls:NumericUpDown Value="{Binding TopRailWidth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="2" x:Name="CDimension" controls:TextBoxHelper.Watermark="Top Rail Width"  />
+                    <controls:NumericUpDown Value="{Binding BottomRailWidth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="3" x:Name="DDimension" controls:TextBoxHelper.Watermark="Bottom Rail Width" />
+                    <controls:NumericUpDown Value="{Binding LeftStileWidth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="4" x:Name="EDimension" controls:TextBoxHelper.Watermark="Left Stile Width" />
+                    <controls:NumericUpDown Value="{Binding RightSideWidth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="5" x:Name="FDimension" controls:TextBoxHelper.Watermark="Right Stile Width" />
                 </Grid>
             </GroupBox>
         </Grid>

@@ -13,7 +13,29 @@
     <!--Set the Application ResourceDictionary-->
     <controls:MetroWindow.Resources>
         <ResourceDictionary Source="../MDFDoorsResource.xaml" />
+        <!--<ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+                <ResourceDictionary Source="../MDFDoorsResource.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>-->
     </controls:MetroWindow.Resources>
+
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
+            <Button Content="Settings" Command="{Binding FlyOutCommand}" />
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
+
+    <controls:MetroWindow.Flyouts>
+        <controls:FlyoutsControl>
+            <controls:Flyout Header="Settings" Position="Right" Width="300">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="TODO: Default Values" />
+                </StackPanel>
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+    </controls:MetroWindow.Flyouts>
 
     <!--<DockPanel LastChildFill="True">-->
 
@@ -43,7 +65,9 @@
             VerticalAlignment="Top">
 
                 <!--<StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Center" >
-                    --><!--Mastercam Styles--><!--
+                    -->
+                <!--Mastercam Styles-->
+                <!--
                     <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="ArchView" Margin="5">Arch</Button>
                     <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="CathedralView" Margin="5">Cathedral</Button>
                     <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="LeftCathedralView" Margin="5">Left Cathedral</Button>
@@ -68,7 +92,9 @@
                 </StackPanel>
 
                 <!--<StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Center">
-                    --><!--Raised Panel Styles--><!--
+                    -->
+                <!--Raised Panel Styles-->
+                <!--
                     <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RaisedPanelRCenturyView" Margin="5">Raised Panel R-Century</Button>
                     <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RaisedPanelRClassicView" Margin="5">Raised Panel R-Classic</Button>
                     <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="RaisedPanelREuro08View" Margin="5">RaisedPanel R-Euro-08</Button>
