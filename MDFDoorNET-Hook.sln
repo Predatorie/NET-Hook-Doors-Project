@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDFDoors", "BasicRegionNavigation\MDFDoors.csproj", "{99C9E82C-C594-446D-AA59-8FFBC43AD226}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDFDoors", "MDFDoor\MDFDoors.csproj", "{99C9E82C-C594-446D-AA59-8FFBC43AD226}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleDoors", "ModuleA\ModuleDoors.csproj", "{AB8B448C-DD74-4D60-A041-3E5D03A32180}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleDoors", "MDFDoorModule\ModuleDoors.csproj", "{AB8B448C-DD74-4D60-A041-3E5D03A32180}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

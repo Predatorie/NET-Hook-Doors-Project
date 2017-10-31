@@ -1,15 +1,19 @@
-﻿using System.Reflection;
+﻿// <copyright file="AssemblyInfo.cs" company="Mick George @Osoy">
+// Copyright (c) Mick George @Osoy. All rights reserved.
+// </copyright>
+
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ModuleDoors")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("MDFDoor")]
+[assembly: AssemblyDescription("A Mastercam 2018 NET-Hook Addin")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ModuleDoors")]
+[assembly: AssemblyProduct("MDFDoor")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -50,4 +54,3 @@ using System.Windows;
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-
