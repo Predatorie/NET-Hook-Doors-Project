@@ -128,6 +128,8 @@
     </Page>
     <Compile Include="ApplicationEnums.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controller\DoorController.cs" />
+    <Compile Include="Controller\IDoorController.cs" />
     <Compile Include="Factories\NavigationParametersFactory.cs" />
     <Compile Include="FunctionTable\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -136,6 +138,9 @@
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="Factories\INavigationParametersFactory.cs" />
+    <Compile Include="Regions.cs" />
+    <Compile Include="Services\DefaultsManager.cs" />
+    <Compile Include="Services\IDefaultsManager.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -186,9 +191,7 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Entypo.ttf" />
     <None Include="Resources\run16.png" />

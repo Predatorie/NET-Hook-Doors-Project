@@ -2,11 +2,12 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-using MDFDoors.Factories;
-
 namespace MDFDoors
 {
     using System.Windows;
+    using Controller;
+    using Factories;
+    using Services;
     using Microsoft.Practices.Unity;
     using ModuleDoors;
     using Prism.Modularity;
@@ -36,6 +37,14 @@ namespace MDFDoors
 
             this.Container.RegisterType<INavigationParametersFactory,
                 NavigationParametersFactory>(new ContainerControlledLifetimeManager());
+
+            // Creates the door style
+            this.Container.RegisterType<IDoorController,
+                DoorController>(new ContainerControlledLifetimeManager());
+
+            // Manages default settings for each door style relative to level properties
+            this.Container.RegisterType<IDefaultsManager,
+                DefaultsManager>(new ContainerControlledLifetimeManager());
         }
     }
 }

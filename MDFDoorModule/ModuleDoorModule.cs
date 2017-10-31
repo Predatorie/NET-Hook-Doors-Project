@@ -5,19 +5,43 @@
 namespace ModuleDoors
 {
     using Microsoft.Practices.Unity;
-    using Views;
     using Prism.Modularity;
+    using Prism.Regions;
     using Prism.Unity;
+    using Views;
 
     public class ModuleDoorModule : IModule
     {
+        #region Fields
+
+        /// <summary>
+        /// The region manager.
+        /// </summary>
+        private readonly IRegionManager regionManager;
+
+        /// <summary>
+        /// The unity container
+        /// </summary>
         private readonly IUnityContainer container;
+
+        #endregion
+
+        #region Construction
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ModuleDoorModule"/> class.
         /// </summary>
         /// <param name="container">The IUnityContainer instance</param>
-        public ModuleDoorModule(IUnityContainer container) => this.container = container;
+        /// <param name="regionManager">The IRegionManager instance</param>
+        public ModuleDoorModule(IUnityContainer container, IRegionManager regionManager)
+        {
+            this.container = container;
+            this.regionManager = regionManager;
+        }
+
+        #endregion
+
+        #region Public Methods
 
         /// <summary>
         /// Register our types
@@ -50,6 +74,11 @@ namespace ModuleDoors
             this.container.RegisterTypeForNavigation<RaisedPanelRClassicView>();
             this.container.RegisterTypeForNavigation<RaisedPanelREuro08View>();
             this.container.RegisterTypeForNavigation<RaisedPanelRShakerView>();
+
+            // Anything placed in a region in this manner will not be added to the navigation journal.            
+            this.regionManager.RegisterViewWithRegion(Regions.SettingsRegion, typeof(SettingsView));
         }
+
+        #endregion
     }
 }

@@ -4,41 +4,52 @@
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                      xmlns:mdfDoors="clr-namespace:MDFDoors"
+        xmlns:mdfDoors="clr-namespace:MDFDoors"
+        xmlns:dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+        dialogs:DialogParticipation.Register ="{Binding}"                      
         Topmost="True"
-        WindowState="Normal"       
-        ResizeMode="CanResizeWithGrip"              
-        Title="{Binding Title}" MinHeight="900" MinWidth="1250">
+        WindowState="Normal"   
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResizeWithGrip"     
+        RightWindowCommandsOverlayBehavior="HiddenTitleBar"
+        Unloaded="MainWindow_OnUnloaded"                      
+        Title="{Binding Title}" 
+        MinHeight="900" 
+        MinWidth="1250">
 
     <!--Set the Application ResourceDictionary-->
     <controls:MetroWindow.Resources>
         <ResourceDictionary Source="../MDFDoorsResource.xaml" />
-        <!--<ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Icons.xaml" />
-                <ResourceDictionary Source="../MDFDoorsResource.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>-->
     </controls:MetroWindow.Resources>
 
     <controls:MetroWindow.RightWindowCommands>
         <controls:WindowCommands>
-            <Button Content="Settings" Command="{Binding FlyOutCommand}" />
+            <Button Content="Settings" 
+                    Command="{Binding SettingsCommand}"
+                    CommandParameter="{Binding  ElementName=SettingsFlyout}"/>
         </controls:WindowCommands>
     </controls:MetroWindow.RightWindowCommands>
 
     <controls:MetroWindow.Flyouts>
-        <controls:FlyoutsControl>
-            <controls:Flyout Header="Settings" Position="Right" Width="300">
-                <StackPanel Orientation="Vertical">
-                    <Label Content="TODO: Default Values" />
-                </StackPanel>
+        <controls:FlyoutsControl x:Name="FlyoutControl">
+            <controls:Flyout x:Name="SettingsFlyout" 
+                             AreAnimationsEnabled="True " 
+                             IsModal="False"
+                             CloseButtonIsCancel="True"
+                             Header="Settings"
+                             Position="Right"
+                             IsPinned="False"
+                             AnimateOnPositionChange="True"
+                             CloseButtonVisibility="Visible"
+                             TitleVisibility="Visible"
+                             AnimateOpacity="False"
+                             Width="500" 
+                             Theme="Adapt">
+                <ItemsControl Name="SettingsRegion" 
+                              prism:RegionManager.RegionName="SettingsRegion" />
             </controls:Flyout>
         </controls:FlyoutsControl>
     </controls:MetroWindow.Flyouts>
-
-    <!--<DockPanel LastChildFill="True">-->
-
 
     <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
@@ -51,6 +62,8 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
+
+        <!-- TODO: Add region for this menu -->
         <ScrollViewer HorizontalScrollBarVisibility="Visible"
                       Grid.Column="0" 
                       Grid.Row="0" 
@@ -103,8 +116,18 @@
 
             </StackPanel>
         </ScrollViewer>
-        <ContentControl Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" prism:RegionManager.RegionName="ContentRegion" Margin="5" BorderBrush="Red" BorderThickness="3" />
 
+        <!--Displays a view representing a door style-->
+        <ContentControl 
+            Grid.Column="1" 
+            Grid.Row="0" 
+            Grid.RowSpan="2" 
+            prism:RegionManager.RegionName="ContentRegion" 
+            Margin="5" 
+            BorderBrush="Red" 
+            BorderThickness="3" />
+
+        <!--TODO: Add region for this group of controls-->
         <StackPanel 
             DockPanel.Dock="Right" 
             Grid.Column="2" 

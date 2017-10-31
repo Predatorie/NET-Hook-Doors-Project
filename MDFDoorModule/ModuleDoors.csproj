@@ -113,6 +113,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Regions.cs" />
     <Compile Include="ViewModels\ArchViewModel.cs" />
     <Compile Include="ViewModels\CathedralViewModel.cs" />
     <Compile Include="ViewModels\LeftCathedralViewModel.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="ViewModels\RightCathedralViewModel.cs" />
     <Compile Include="ViewModels\RightRomanViewModel.cs" />
     <Compile Include="ViewModels\RomanViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ShakerCenturyViewModel.cs" />
     <Compile Include="ViewModels\ShakerCountryViewModel.cs" />
     <Compile Include="ViewModels\ShakerEleganceViewModel.cs" />
@@ -172,6 +174,9 @@
     </Compile>
     <Compile Include="Views\RomanView.xaml.cs">
       <DependentUpon>RomanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShakerCenturyView.xaml.cs">
       <DependentUpon>ShakerCenturyView.xaml</DependentUpon>
@@ -276,6 +281,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RomanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
