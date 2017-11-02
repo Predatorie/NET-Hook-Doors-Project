@@ -1,4 +1,4 @@
-﻿// <copyright file="ShakerFinestViewViewModel.cs" company="Mick George @Osoy">
+﻿// <copyright file="ShakerFinestViewModel.cs" company="Mick George @Osoy">
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
@@ -10,7 +10,6 @@ namespace ModuleDoors.ViewModels
     {
         public ShakerFinestViewModel()
         {
-
         }
     }
 }

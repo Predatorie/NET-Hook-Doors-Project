@@ -2,14 +2,13 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-using MahApps.Metro.Controls;
-
 namespace MDFDoors.ViewModels
 {
-    using Factories;
-    using Prism.Commands;
-    using Prism.Mvvm;
-    using Prism.Regions;
+	using Factories;
+	using MahApps.Metro.Controls;
+	using Prism.Commands;
+	using Prism.Mvvm;
+	using Prism.Regions;
 
     public class MainWindowViewModel : BindableBase
     {

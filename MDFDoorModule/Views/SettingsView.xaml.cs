@@ -1,15 +1,14 @@
-﻿using System.Windows.Controls;
+﻿// <copyright file="SettingsView.xaml.cs" company="Mick George @Osoy">
+// Copyright (c) Mick George @Osoy. All rights reserved.
+// </copyright>
 
 namespace ModuleDoors.Views
 {
-    /// <summary>
+	/// <summary>
     /// Interaction logic for SettingsView
     /// </summary>
-    public partial class SettingsView : UserControl
+    public partial class SettingsView
     {
-        public SettingsView()
-        {
-            InitializeComponent();
-        }
-    }
+		public SettingsView() => this.InitializeComponent();
+	}
 }

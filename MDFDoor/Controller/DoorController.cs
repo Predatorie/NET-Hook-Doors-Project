@@ -4,8 +4,7 @@
 
 namespace MDFDoors.Controller
 {
-    public class DoorController : IDoorController
-    {
-        
-    }
+	public class DoorController : IDoorController
+	{
+	}
 }

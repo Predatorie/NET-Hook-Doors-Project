@@ -1,4 +1,4 @@
-﻿// <copyright file="MainWindowViewModel.cs" company="Mick George @Osoy">
+﻿// <copyright file="INavigationParametersFactory.cs" company="Mick George @Osoy">
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
