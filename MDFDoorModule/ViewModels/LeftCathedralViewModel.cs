@@ -1,13 +1,12 @@
-﻿// <copyright file="LeftCathedralViewviewModel.cs" company="Mick George @Osoy">
+﻿// <copyright file="LeftCathedralViewModel.cs" company="Mick George @Osoy">
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
 namespace ModuleDoors.ViewModels
 {
-    using Prism.Mvvm;
+	using Prism.Mvvm;
 
-    public class LeftCathedralViewModel : BindableBase
-    {
-        
-    }
+	public class LeftCathedralViewModel : BindableBase
+	{
+	}
 }

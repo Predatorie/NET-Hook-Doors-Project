@@ -1,4 +1,4 @@
-﻿// <copyright file="ShakerCountryViewViewModel.cs" company="Mick George @Osoy">
+﻿// <copyright file="ShakerCountryViewModel.cs" company="Mick George @Osoy">
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
@@ -10,7 +10,6 @@ namespace ModuleDoors.ViewModels
     {
         public ShakerCountryViewModel()
         {
-
         }
     }
 }

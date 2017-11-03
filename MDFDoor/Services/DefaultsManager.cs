@@ -5,7 +5,6 @@
 namespace MDFDoors.Services
 {
     public class DefaultsManager : IDefaultsManager
-    {
-        
+    {        
     }
 }

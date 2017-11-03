@@ -1,4 +1,4 @@
-﻿// <copyright file="ShakerEuro05ViewViewModel.cs" company="Mick George @Osoy">
+﻿// <copyright file="ShakerEuro05ViewModel.cs" company="Mick George @Osoy">
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
@@ -10,7 +10,6 @@ namespace ModuleDoors.ViewModels
     {
         public ShakerEuro05ViewModel()
         {
-
         }
     }
 }

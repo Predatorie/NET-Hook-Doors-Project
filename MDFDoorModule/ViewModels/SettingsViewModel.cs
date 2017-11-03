@@ -10,7 +10,6 @@ namespace ModuleDoors.ViewModels
     {
         public SettingsViewModel()
         {
-
         }
     }
 }
