@@ -4,10 +4,16 @@
 
 namespace ModuleDoors
 {
+    /// <summary> A regions. </summary>
     public static class Regions
     {
+        /// <summary> The settings region. </summary>
         public const string SettingsRegion = "SettingsRegion";
 
+        /// <summary> The content region. </summary>
         public const string ContentRegion = "ContentRegion";
-    }
+
+	    /// <summary> The door types menu region. </summary>
+	    public const string DoorTypesMenuRegion = "DoorTypesMenuRegion";
+	}
 }

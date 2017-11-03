@@ -1,0 +1,6 @@
+﻿
+Excel File located  => C:\Users\Public\Documents\shared Mcam2018\router\Template
+
+Add option for multiple copies
+Spacing X distance and Y distance
+Copy method X steps Y steps
