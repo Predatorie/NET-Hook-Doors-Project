@@ -5,10 +5,18 @@
 namespace ModuleDoors.ViewModels
 {
     using Models;
+    using Services;
     using Prism.Regions;
 
     public class LeftCathedralViewModel : BaseDoor, INavigationAware
     {
+        private readonly IDoorPropertyManager defaultsManager;
+
+        public LeftCathedralViewModel(IDoorPropertyManager defaultsManager)
+        {
+            this.defaultsManager = defaultsManager;
+        }
+
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
         }

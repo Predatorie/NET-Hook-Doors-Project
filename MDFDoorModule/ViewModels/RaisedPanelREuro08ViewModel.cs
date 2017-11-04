@@ -5,12 +5,16 @@
 namespace ModuleDoors.ViewModels
 {
     using Models;
+    using Services;
     using Prism.Regions;
 
     public class RaisedPanelREuro08ViewModel : BaseDoor, INavigationAware
     {
-        public RaisedPanelREuro08ViewModel()
+        private readonly IDoorPropertyManager defaultsManager;
+
+        public RaisedPanelREuro08ViewModel(IDoorPropertyManager defaultsManager)
         {
+            this.defaultsManager = defaultsManager;
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)

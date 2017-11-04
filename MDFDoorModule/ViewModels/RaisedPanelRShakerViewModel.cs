@@ -5,12 +5,16 @@
 namespace ModuleDoors.ViewModels
 {
     using Models;
+    using Services;
     using Prism.Regions;
 
     public class RaisedPanelRShakerViewModel : BaseDoor, INavigationAware
     {
-        public RaisedPanelRShakerViewModel()
+        private readonly IDoorPropertyManager defaultsManager;
+
+        public RaisedPanelRShakerViewModel(IDoorPropertyManager defaultsManager)
         {
+            this.defaultsManager = defaultsManager;
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)

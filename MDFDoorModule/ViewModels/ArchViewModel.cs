@@ -5,10 +5,18 @@
 namespace ModuleDoors.ViewModels
 {
     using Models;
+    using Services;
     using Prism.Regions;
 
     public class ArchViewModel : BaseDoor, INavigationAware
     {
+        private readonly IDoorPropertyManager defaultsManager;
+
+        public ArchViewModel(IDoorPropertyManager defaultsManager)
+        {
+            this.defaultsManager = defaultsManager;
+        }
+
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
         }

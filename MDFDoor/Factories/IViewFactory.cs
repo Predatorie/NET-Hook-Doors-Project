@@ -4,6 +4,8 @@
 
 namespace MDFDoors.Factories
 {
+    using ModuleDoors;
+
 	public interface IViewFactory
 	{
 		/// <summary> Get a View. </summary>

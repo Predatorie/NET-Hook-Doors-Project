@@ -5,12 +5,16 @@
 namespace ModuleDoors.ViewModels
 {
     using Models;
+    using Services;
     using Prism.Regions;
 
     public class ShakerViewModel : BaseDoor, INavigationAware
     {
-        public ShakerViewModel()
+        private readonly IDoorPropertyManager defaultsManager;
+
+        public ShakerViewModel(IDoorPropertyManager defaultsManager)
         {
+            this.defaultsManager = defaultsManager;
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)

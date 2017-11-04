@@ -17,7 +17,7 @@
 
     </UserControl.Resources>
 
-    <GroupBox Header="{Binding DoorType}" Margin="5" >
+    <GroupBox Header="{Binding DoorTypeLabel}" Margin="5" >
         <Grid>
 
             <Grid.ColumnDefinitions>

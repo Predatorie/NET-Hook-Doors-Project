@@ -10,7 +10,7 @@ namespace MDFDoors.ViewModels
     public class SettingsViewModel : BindableBase
     {
         /// <summary>   Manager for defaults. </summary>
-        private readonly IDefaultsManager defaultsManager;
+        private readonly IDoorPropertyManager defaultsManager;
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Constructor. </summary>
@@ -20,7 +20,7 @@ namespace MDFDoors.ViewModels
         /// <param name="defaultsManager">  Manager for defaults. </param>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public SettingsViewModel(IDefaultsManager defaultsManager)
+        public SettingsViewModel(IDoorPropertyManager defaultsManager)
         {
             // Used to set default settings
             this.defaultsManager = defaultsManager;

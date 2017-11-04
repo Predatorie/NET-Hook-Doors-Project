@@ -97,9 +97,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEnums.cs" />
     <Compile Include="DoorNames.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\BaseDoor.cs" />
+    <Compile Include="Models\ShakerElegance.cs" />
     <Compile Include="ModuleDoorModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -115,8 +117,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Regions.cs" />
-    <Compile Include="Services\DefaultsManager.cs" />
-    <Compile Include="Services\IDefaultsManager.cs" />
+    <Compile Include="Services\DoorPropertyManager.cs" />
+    <Compile Include="Services\IDoorPropertyManager.cs" />
     <Compile Include="ViewModels\ArchViewModel.cs" />
     <Compile Include="ViewModels\CathedralViewModel.cs" />
     <Compile Include="ViewModels\LeftCathedralViewModel.cs" />
@@ -206,6 +208,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -137,7 +137,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="ApplicationEnums.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controller\DoorController.cs" />
     <Compile Include="Controller\IDoorController.cs" />

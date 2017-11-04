@@ -4,7 +4,12 @@
 
 namespace ModuleDoors.Services
 {
-    public interface IDefaultsManager
-    {        
+    using Models;
+
+    public interface IDoorPropertyManager
+    {
+        ShakerElegance ShakerElegance { get; set; }
+
+        // void Save(DoorStyles door);
     }
 }

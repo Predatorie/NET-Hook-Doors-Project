@@ -67,8 +67,8 @@ namespace MDFDoors
 				DoorController>(new ContainerControlledLifetimeManager());
 
 			// Manages default settings for each door style relative to level properties
-			this.Container.RegisterType<IDefaultsManager,
-				DefaultsManager>(new ContainerControlledLifetimeManager());
+			this.Container.RegisterType<IDoorPropertyManager,
+				DoorPropertyManager>(new ContainerControlledLifetimeManager());
 		}
 
 		/// <summary>
