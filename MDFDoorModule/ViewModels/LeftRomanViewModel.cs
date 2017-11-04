@@ -4,9 +4,19 @@
 
 namespace ModuleDoors.ViewModels
 {
-    using Prism.Mvvm;
+    using Models;
+    using Prism.Regions;
 
-    public class LeftRomanViewModel : BindableBase
-    {        
+    public class LeftRomanViewModel : BaseDoor, INavigationAware
+    {
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext) => true;
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+        }
     }
 }

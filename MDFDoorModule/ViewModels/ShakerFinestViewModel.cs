@@ -4,11 +4,22 @@
 
 namespace ModuleDoors.ViewModels
 {
-    using Prism.Mvvm;
+    using Models;
+    using Prism.Regions;
 
-    public class ShakerFinestViewModel : BindableBase
+    public class ShakerFinestViewModel : BaseDoor, INavigationAware
     {
         public ShakerFinestViewModel()
+        {
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext) => true;
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
         {
         }
     }

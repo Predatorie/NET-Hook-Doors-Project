@@ -2,7 +2,7 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-namespace ModuleDoors.Views
+namespace MDFDoors.Views
 {
 	/// <summary>
     /// Interaction logic for SettingsView

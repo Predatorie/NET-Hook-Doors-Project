@@ -4,11 +4,22 @@
 
 namespace ModuleDoors.ViewModels
 {
-    using Prism.Mvvm;
+    using Models;
+    using Prism.Regions;
 
-    public class RaisedPanelRCenturyViewModel : BindableBase
+    public class RaisedPanelRCenturyViewModel : BaseDoor, INavigationAware
     {
         public RaisedPanelRCenturyViewModel()
+        {
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext) => true;
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
         {
         }
     }

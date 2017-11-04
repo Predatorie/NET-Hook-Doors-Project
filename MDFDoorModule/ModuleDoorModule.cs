@@ -7,8 +7,6 @@ namespace ModuleDoors
     using Microsoft.Practices.Unity;
     using Prism.Modularity;
     using Prism.Regions;
-    using Prism.Unity;
-    using Views;
 
     public class ModuleDoorModule : IModule
     {
@@ -41,44 +39,15 @@ namespace ModuleDoors
 
         #endregion
 
-        #region Public Methods
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Initializes this object. </summary>
+        ///
+        /// <remarks>   Mick George, 11/3/2017. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        /// <summary>
-        /// Register our types
-        /// </summary>
         public void Initialize()
         {
-            // Mastercam Styles
-            this.container.RegisterTypeForNavigation<ArchView>();
-            this.container.RegisterTypeForNavigation<CathedralView>();
-            this.container.RegisterTypeForNavigation<LeftCathedralView>();
-            this.container.RegisterTypeForNavigation<LeftRomanView>();
-            this.container.RegisterTypeForNavigation<RightCathedralView>();
-            this.container.RegisterTypeForNavigation<RightRomanView>();
-            this.container.RegisterTypeForNavigation<RomanView>();
-            this.container.RegisterTypeForNavigation<NotchView>();
-            this.container.RegisterTypeForNavigation<RectangularView>();
-            this.container.RegisterTypeForNavigation<SimpleRectangleView>();
-
-            // Shaker Styles
-            this.container.RegisterTypeForNavigation<ShakerCenturyView>();
-            this.container.RegisterTypeForNavigation<ShakerCountryView>();
-            this.container.RegisterTypeForNavigation<ShakerEleganceView>();
-            this.container.RegisterTypeForNavigation<ShakerEuro05View>();
-            this.container.RegisterTypeForNavigation<ShakerExoticView>();
-            this.container.RegisterTypeForNavigation<ShakerFinestView>();
-            this.container.RegisterTypeForNavigation<ShakerView>();
-
-            // Raised Panel Styles
-            this.container.RegisterTypeForNavigation<RaisedPanelRCenturyView>();
-            this.container.RegisterTypeForNavigation<RaisedPanelRClassicView>();
-            this.container.RegisterTypeForNavigation<RaisedPanelREuro08View>();
-            this.container.RegisterTypeForNavigation<RaisedPanelRShakerView>();
-
-            // Anything placed in a region in this manner will not be added to the navigation journal.            
-            this.regionManager.RegisterViewWithRegion(Regions.SettingsRegion, typeof(SettingsView));
+            // TODO: Add anything we need
         }
-
-        #endregion
     }
 }

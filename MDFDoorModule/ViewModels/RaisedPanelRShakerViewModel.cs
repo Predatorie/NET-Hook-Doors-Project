@@ -4,11 +4,22 @@
 
 namespace ModuleDoors.ViewModels
 {
-    using Prism.Mvvm;
+    using Models;
+    using Prism.Regions;
 
-    public class RaisedPanelRShakerViewModel : BindableBase
+    public class RaisedPanelRShakerViewModel : BaseDoor, INavigationAware
     {
         public RaisedPanelRShakerViewModel()
+        {
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext) => true;
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
         {
         }
     }

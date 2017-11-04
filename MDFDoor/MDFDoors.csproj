@@ -78,7 +78,7 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
     <Reference Include="NETHook3_0">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Mcam2018\NETHook3_0.dll</HintPath>
+      <HintPath>D:\Program Files\Mcam2018\NETHook3_0.dll</HintPath>
     </Reference>
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
@@ -110,6 +110,13 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\SettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Resource Include="MDFDoorsResource.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -152,10 +159,9 @@
     <Compile Include="Factories\INavigationParametersFactory.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\ResultOfT.cs" />
-    <Compile Include="Services\DefaultsManager.cs" />
-    <Compile Include="Services\IDefaultsManager.cs" />
     <Compile Include="ViewModels\DoorStylesMenuViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\DoorStylesMenuView.xaml.cs">
       <DependentUpon>DoorStylesMenuView.xaml</DependentUpon>
     </Compile>
@@ -229,9 +235,12 @@
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)$(OutDir)$(TargetName).dll" "C:\Program Files\Mcam2018\chooks\MDF"</PostBuildEvent>
+    <PostBuildEvent>copy "$(ProjectDir)$(OutDir)$(TargetName).dll" "D:\Program Files\Mcam2018\chooks\MDF"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

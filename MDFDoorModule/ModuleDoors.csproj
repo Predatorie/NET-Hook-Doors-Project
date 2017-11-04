@@ -97,7 +97,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoorNames.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Models\BaseDoor.cs" />
     <Compile Include="ModuleDoorModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -113,6 +115,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Regions.cs" />
+    <Compile Include="Services\DefaultsManager.cs" />
+    <Compile Include="Services\IDefaultsManager.cs" />
     <Compile Include="ViewModels\ArchViewModel.cs" />
     <Compile Include="ViewModels\CathedralViewModel.cs" />
     <Compile Include="ViewModels\LeftCathedralViewModel.cs" />
@@ -126,7 +130,6 @@
     <Compile Include="ViewModels\RightCathedralViewModel.cs" />
     <Compile Include="ViewModels\RightRomanViewModel.cs" />
     <Compile Include="ViewModels\RomanViewModel.cs" />
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ShakerCenturyViewModel.cs" />
     <Compile Include="ViewModels\ShakerCountryViewModel.cs" />
     <Compile Include="ViewModels\ShakerEleganceViewModel.cs" />
@@ -135,6 +138,7 @@
     <Compile Include="ViewModels\ShakerFinestViewModel.cs" />
     <Compile Include="ViewModels\ShakerViewModel.cs" />
     <Compile Include="ViewModels\SimpleRectangleViewModel.cs" />
+    <Compile Include="ViewNames.cs" />
     <Compile Include="Views\ArchView.xaml.cs">
       <DependentUpon>ArchView.xaml</DependentUpon>
     </Compile>
@@ -173,9 +177,6 @@
     </Compile>
     <Compile Include="Views\RomanView.xaml.cs">
       <DependentUpon>RomanView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SettingsView.xaml.cs">
-      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShakerCenturyView.xaml.cs">
       <DependentUpon>ShakerCenturyView.xaml</DependentUpon>
@@ -283,10 +284,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SettingsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\ShakerCenturyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -331,7 +328,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)$(OutDir)$(TargetName).dll" "C:\Program Files\Mcam2018\chooks\MDF"</PostBuildEvent>
+    <PostBuildEvent>copy "$(ProjectDir)$(OutDir)$(TargetName).dll" "D:\Program Files\Mcam2018\chooks\MDF"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

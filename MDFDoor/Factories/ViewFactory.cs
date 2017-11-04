@@ -15,20 +15,17 @@ namespace MDFDoors.Factories
 		/// <summary> The container. </summary>
 		private readonly IUnityContainer container;
 
-		/// <summary> Initializes a new instance of the MDFDoors.Factories.ViewFactory class. </summary>
-		///
-		/// <param name="container"> The container. </param>
-		public ViewFactory(IUnityContainer container)
-		{
-			this.container = container;
-		}
+        /// <summary> Initializes a new instance of the MDFDoors.Factories.ViewFactory class. </summary>
+        ///
+        /// <param name="container"> The container. </param>
+        public ViewFactory(IUnityContainer container) => this.container = container;
 
-		/// <summary> Get the View from the Door Style Type. </summary>
-		///
-		/// <param name="door"> The door style view to resolve. </param>
-		///
-		/// <returns> A view </returns>
-		public object View(DoorStyles door)
+        /// <summary> Get the View from the Door Style Type. </summary>
+        ///
+        /// <param name="door"> The door style view to resolve. </param>
+        ///
+        /// <returns> A view </returns>
+        public object View(DoorStyles door)
 		{
 			switch (door)
 			{

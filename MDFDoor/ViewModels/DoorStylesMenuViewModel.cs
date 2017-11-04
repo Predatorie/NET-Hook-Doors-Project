@@ -4,101 +4,116 @@
 
 namespace MDFDoors.ViewModels
 {
-	using MDFDoors.Factories;
+    using Factories;
+    using ModuleDoors;
+    using Prism.Commands;
+    using Prism.Mvvm;
+    using Prism.Regions;
 
-	using Prism.Commands;
-	using Prism.Mvvm;
-	using Prism.Regions;
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>   A ViewModel for the door styles menu. </summary>
+    ///
+    /// <remarks>   Mick George, 11/3/2017. </remarks>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	/// <summary> A ViewModel for the door styles menu. </summary>
-	public class DoorStylesMenuViewModel : BindableBase
-	{
-		#region Private Fields
+    public class DoorStylesMenuViewModel : BindableBase
+    {
+        #region Private Fields
 
-		/// <summary>
-		/// Backing field for the Region Manager
-		/// </summary>
-		private readonly IRegionManager regionManager;
+        /// <summary>
+        /// Backing field for the Region Manager
+        /// </summary>
+        private readonly IRegionManager regionManager;
 
-		/// <summary> The view factory. </summary>
-		private readonly IViewFactory viewFactory;
+        /// <summary> The view factory. </summary>
+        private readonly IViewFactory viewFactory;
 
-		/// <summary>
-		/// Backing field for the Navigation Parameters Factory
-		/// </summary>
-		private readonly INavigationParametersFactory navigationParamsFactory;
+        /// <summary>
+        /// Backing field for the Navigation Parameters Factory
+        /// </summary>
+        private readonly INavigationParametersFactory navigationParamsFactory;
 
-		#endregion
+        #endregion
 
-		#region Construction
+        #region Construction
 
-		/// <summary> Initializes a new instance of the MDFDoors.ViewModels.DoorStylesMenuViewModel class. </summary>
-		///
-		/// <param name="navigationParametersFactory"> The navigation parameters factory. </param>
-		/// <param name="regionManager">			   Backing field for the Region Manager. </param>
-		/// <param name="viewFactory">				   The IViewFactory. </param>
-		public DoorStylesMenuViewModel(
-			INavigationParametersFactory navigationParametersFactory,
-			IRegionManager regionManager,
-			IViewFactory viewFactory)
-		{
-			this.navigationParamsFactory = navigationParametersFactory;
-			this.regionManager = regionManager;
-			this.viewFactory = viewFactory;
-			this.NavigateCommand = new DelegateCommand<object>(this.Navigate);
-		}
+        /// <summary> Initializes a new instance of the MDFDoors.ViewModels.DoorStylesMenuViewModel class. </summary>
+        ///
+        /// <param name="navigationParametersFactory"> The navigation parameters factory. </param>
+        /// <param name="regionManager">			   Backing field for the Region Manager. </param>
+        /// <param name="viewFactory">				   The IViewFactory. </param>
+        public DoorStylesMenuViewModel(
+            INavigationParametersFactory navigationParametersFactory,
+            IRegionManager regionManager,
+            IViewFactory viewFactory)
+        {
+            this.navigationParamsFactory = navigationParametersFactory;
+            this.regionManager = regionManager;
+            this.viewFactory = viewFactory;
+            this.NavigateCommand = new DelegateCommand<object>(this.Navigate);
 
-		#endregion
+            this.AddViewsToRegion();
+        }
 
-		#region Public Commands
+        #endregion
 
-		/// <summary>
-		/// The Navigate Command
-		/// </summary>
-		public DelegateCommand<object> NavigateCommand { get; private set; }
+        #region Public Commands
 
-		#endregion
+        /// <summary>
+        /// The Navigate Command
+        /// </summary>
+        public DelegateCommand<object> NavigateCommand { get; private set; }
 
-		#region Private Methods
+        #endregion
 
-		/// <summary> Navigates the given style. </summary>
-		///
-		/// <param name="style"> The style. </param>
-		private void Navigate(object style)
-		{
-			var door = (DoorStyles)style;
-			var viewName = this.navigationParamsFactory.View(door);
-			var navigationParams = this.navigationParamsFactory.Create(door);
+        #region Private Methods
 
-			// TODO: Check is the view is already added to the region manager before
-			// TODO: requesting a new one
+        /// <summary> Navigates the given style. </summary>
+        ///
+        /// <param name="style"> The style. </param>
+        private void Navigate(object style)
+        {
+            var door = (DoorStyles)style;
+            var viewName = this.navigationParamsFactory.View(door);
+            var navigationParams = this.navigationParamsFactory.Create(door);
 
-			var view = this.viewFactory.View(door);
+            this.regionManager.Regions[Regions.ContentRegion].RequestNavigate(viewName, this.NavigationCompleted, navigationParams);
+        }
 
-			// TODO: Refactor this check as its not applicable now
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Navigation completed. </summary>
+        ///
+        /// <remarks>   Mick George, 11/3/2017. </remarks>
+        ///
+        /// <param name="result">   The result. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			////var contentRegion = this.regionManager.Regions[Regions.ContentRegion];
+        private void NavigationCompleted(NavigationResult result)
+        {
+            if (result.Error != null)
+            {
+                // TODO: Error occured...
+            }
+        }
 
-			////// Remove all views for now (look to activate/deactivate)
-			////var activeViews = contentRegion.ActiveViews;
-			////foreach (var activeView in activeViews)
-			////{
-			////	contentRegion.Deactivate(activeView);
-			////}
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Adds views to region. </summary>
+        ///
+        /// <remarks>   Mick George, 11/3/2017. </remarks>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			////var viewExists = contentRegion.Views.FirstOrDefault(v => v.Equals(view));
-			////if (viewExists == null)
-			////{
-			////	// Add the view to display it, we need to do this if our MainView is Model (which it is)
-			////	var scopedRegionManager = this.regionManager.Regions[Regions.ContentRegion].Add(view, viewName, true);
-			////	scopedRegionManager.RequestNavigate(Regions.ContentRegion, viewName, navigationParams);
-			////}
-			////else
-			////{
-			////	contentRegion.Activate(view);
-			////}
-		}
+        private void AddViewsToRegion()
+        {
+            var contentRegion = this.regionManager.Regions[Regions.ContentRegion];
+            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerCentury), ViewNames.ShakerCentury, true);
+            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerCountry), ViewNames.ShakerCountry, true);
+            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerElegance), ViewNames.ShakerElegance, true);
+            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerEuro05), ViewNames.ShakerEuro05, true);
+            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerExotic), ViewNames.ShakerExotic, true);
+            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerFinest), ViewNames.ShakerFinest, true);
+            contentRegion.Add(this.viewFactory.View(DoorStyles.Shaker), ViewNames.Shaker, true);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

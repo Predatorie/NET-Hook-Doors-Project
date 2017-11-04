@@ -2,7 +2,7 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-namespace MDFDoors.Services
+namespace ModuleDoors.Services
 {
     public class DefaultsManager : IDefaultsManager
     {        

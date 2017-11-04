@@ -4,7 +4,6 @@
 
 namespace MDFDoors.Factories
 {
-    using System;
     using Prism.Regions;
 
     public interface INavigationParametersFactory

@@ -4,9 +4,19 @@
 
 namespace ModuleDoors.ViewModels
 {
-    using Prism.Mvvm;
+    using Models;
+    using Prism.Regions;
 
-    public class RightCathedralViewModel : BindableBase
-    {        
+    public class RightCathedralViewModel : BaseDoor, INavigationAware
+    {
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext) => true;
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+        }
     }
 }

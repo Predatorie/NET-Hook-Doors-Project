@@ -6,7 +6,7 @@ namespace MDFDoors.ViewModels
 {
 	using MahApps.Metro.Controls;
 
-	using MDFDoors.Localization;
+	using Localization;
 
 	using Prism.Commands;
 	using Prism.Mvvm;

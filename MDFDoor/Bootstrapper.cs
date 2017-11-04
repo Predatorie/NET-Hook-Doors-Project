@@ -4,24 +4,21 @@
 
 namespace MDFDoors
 {
-	using System.Windows;
-	using Controller;
-	using Factories;
+    using System.Windows;
+    using Controller;
+    using Factories;
+    using Microsoft.Practices.Unity;
+    using ModuleDoors;
+    using ModuleDoors.Services;
+    using Prism.Modularity;
+    using Prism.Regions;
+    using Prism.Unity;
+    using Views;
 
-	using MDFDoors.Views;
-
-	using Microsoft.Practices.Unity;
-	using ModuleDoors;
-
-	using Prism.Modularity;
-	using Prism.Regions;
-	using Prism.Unity;
-	using Services;
-
-	internal class Bootstrapper : UnityBootstrapper
+    internal class Bootstrapper : UnityBootstrapper
 	{
 		/// <summary> The window. </summary>
-		private Views.MainWindow window;
+		private MainWindow window;
 
 		/// <summary> Creates the shell or main window of the application. </summary>
 		///
@@ -59,7 +56,10 @@ namespace MDFDoors
 		{
 			base.ConfigureContainer();
 
-			this.Container.RegisterType<INavigationParametersFactory,
+		   this.Container.RegisterType<IViewFactory,
+		        ViewFactory>(new ContainerControlledLifetimeManager());
+
+            this.Container.RegisterType<INavigationParametersFactory,
 				NavigationParametersFactory>(new ContainerControlledLifetimeManager());
 
 			// Creates the door style
@@ -82,8 +82,9 @@ namespace MDFDoors
 			// Anything placed in a region in this manner will not be added to the navigation journal.            
 			var regionManager = this.Container.Resolve<IRegionManager>();
 			regionManager.RegisterViewWithRegion(Regions.DoorTypesMenuRegion, typeof(DoorStylesMenuView));
+		    regionManager.RegisterViewWithRegion(Regions.SettingsRegion, typeof(SettingsView));
 
-			return base.ConfigureRegionAdapterMappings();
+            return base.ConfigureRegionAdapterMappings();
 		}
 	}
 }

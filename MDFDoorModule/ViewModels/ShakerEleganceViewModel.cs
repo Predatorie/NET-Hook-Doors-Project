@@ -5,42 +5,16 @@
 namespace ModuleDoors.ViewModels
 {
     using System.Linq;
-    using Prism.Mvvm;
+    using Models;
+    using Services;
     using Prism.Regions;
 
-    public class ShakerEleganceViewModel : BindableBase, INavigationAware
+    public class ShakerEleganceViewModel : BaseDoor, INavigationAware
     {
         #region Fields
 
-        /// <summary>
-        /// Backing field for the DoorType
-        /// </summary>
-        private string doorType;
-
-        /// <summary>
-        /// Backing field for the OuterLevelNumber
-        /// </summary>
-        private int outerLevelNumber;
-
-        /// <summary>
-        /// Backing field for the InnerLevelNumber
-        /// </summary>
-        private int innerLevelNumber;
-
-        /// <summary>
-        /// Backing field for the GrooveLevelNumber
-        /// </summary>
-        private int grooveLevelNumber;
-
-        /// <summary>
-        /// Backing field for the A Dimension
-        /// </summary>
-        private double a;
-
-        /// <summary>
-        /// Backing field for the B Dimension
-        /// </summary>
-        private double b;
+        /// <summary>   Manager for defaults. </summary>
+        private readonly IDefaultsManager defaultsManager;
 
         /// <summary>
         /// Backing field for the C Dimension
@@ -62,21 +36,6 @@ namespace ModuleDoors.ViewModels
         /// </summary>
         private double f;
 
-        /// <summary>
-        /// Backing field for the Outside Level Name
-        /// </summary>
-        private string outside;
-
-        /// <summary>
-        /// Backing field for the Inside Level Name
-        /// </summary>
-        private string inside;
-
-        /// <summary>
-        /// Backing field for the Groove Level Name
-        /// </summary>
-        private string groove;
-
         #endregion
 
         #region Construction
@@ -85,8 +44,10 @@ namespace ModuleDoors.ViewModels
         /// Initializes a new instance of the <see cref="ShakerEleganceViewModel"/> class.
         /// 
         /// </summary>
-        public ShakerEleganceViewModel()
+        public ShakerEleganceViewModel(IDefaultsManager defaultsManager)
         {
+            this.defaultsManager = defaultsManager;
+
             // TODO: Temp Initial setup
 
             // Dimensions
@@ -112,45 +73,6 @@ namespace ModuleDoors.ViewModels
 
         #region Public Properties
 
-        /// <summary>
-        /// Gets or sets the DoorType property
-        /// </summary>
-        public string DoorType
-        {
-            get => this.doorType;
-            set => this.SetProperty(ref this.doorType, value);
-        }
-
-        public int OuterLevelNumber
-        {
-            get => this.outerLevelNumber;
-            set => this.SetProperty(ref this.outerLevelNumber, value);
-        }
-
-        public int InnerLevelNumber
-        {
-            get => this.innerLevelNumber;
-            set => this.SetProperty(ref this.innerLevelNumber, value);
-        }
-
-        public int GrooveLevelNumber
-        {
-            get => this.grooveLevelNumber;
-            set => this.SetProperty(ref this.grooveLevelNumber, value);
-        }
-
-        public double Width
-        {
-            get => this.a;
-            set => this.SetProperty(ref this.a, value);
-        }
-
-        public double Height
-        {
-            get => this.b;
-            set => this.SetProperty(ref this.b, value);
-        }
-
         public double TopRailWidth
         {
             get => this.c;
@@ -174,41 +96,43 @@ namespace ModuleDoors.ViewModels
             get => this.f;
             set => this.SetProperty(ref this.f, value);
         }
-
-        public string OuterLevelName
-        {
-            get => this.outside;
-            set => this.SetProperty(ref this.outside, value);
-        }
-
-        public string InnerLevelName
-        {
-            get => this.inside;
-            set => this.SetProperty(ref this.inside, value);
-        }
-
-        public string GrooveLevelName
-        {
-            get => this.groove;
-            set => this.SetProperty(ref this.groove, value);
-        }
-
+       
         #endregion
 
         #region Public Methods
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Executes the navigated to action. </summary>
+        /// <param name="navigationContext">    Context for the navigation. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
+            // TODO: Get defaults for this door
+            
+            // Read params passed
             if (navigationContext.Parameters.Any())
             {
                 this.DoorType = navigationContext.Parameters["Name"].ToString();
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Query if 'navigationContext' is navigation target. </summary>
+        /// <param name="navigationContext">    Context for the navigation. </param>
+        /// <returns>   True if navigation target, false if not. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public bool IsNavigationTarget(NavigationContext navigationContext) => true;
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Executes the navigated from action. </summary>
+        /// <param name="navigationContext">    Context for the navigation. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
+            // TODO: Any clean up
         }
 
         #endregion

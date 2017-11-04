@@ -4,11 +4,22 @@
 
 namespace ModuleDoors.ViewModels
 {
-    using Prism.Mvvm;
+    using Models;
+    using Prism.Regions;
 
-    public class ShakerViewModel : BindableBase
+    public class ShakerViewModel : BaseDoor, INavigationAware
     {
         public ShakerViewModel()
+        {
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext) => true;
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
         {
         }
     }
