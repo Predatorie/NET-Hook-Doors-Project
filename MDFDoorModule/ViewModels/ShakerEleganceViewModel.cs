@@ -8,14 +8,11 @@ namespace ModuleDoors.ViewModels
     using Models;
     using Prism.Mvvm;
     using Prism.Regions;
-    using Services;
 
     public class ShakerEleganceViewModel : BindableBase, INavigationAware
     {
         #region Fields
 
-        /// <summary>   Manager for defaults. </summary>
-        private readonly IDoorPropertyManager doorManager;
 
         #endregion
 
@@ -24,10 +21,9 @@ namespace ModuleDoors.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ShakerEleganceViewModel"/> class.   Constructor. </summary>
         /// <remarks>   Mick George, 11/4/2017. </remarks>
-        /// <param name="doorPropertyManager">  Manager for defaults. </param>
-        public ShakerEleganceViewModel(IDoorPropertyManager doorPropertyManager)
+        public ShakerEleganceViewModel()
         {
-            this.doorManager = doorPropertyManager;
+            this.Model = new ShakerElegance();
         }
 
         #endregion
@@ -40,7 +36,7 @@ namespace ModuleDoors.ViewModels
         public string DoorTypeLabel { get; set; }
 
         /// <summary>The model.</summary>
-        public ShakerElegance Model => new ShakerElegance();
+        public ShakerElegance Model { get; }
 
         /// <summary>Gets or sets the height.</summary>
         ///
@@ -162,7 +158,7 @@ namespace ModuleDoors.ViewModels
             if (navigationContext.Parameters.Any())
             {
                 // Group Header Label
-                this.DoorTypeLabel = navigationContext.Parameters["Name"].ToString();
+                this.DoorTypeLabel = navigationContext.Parameters[NavigationParamIndexer.Name].ToString();
             }
 
             // Subscribe to Model property change events

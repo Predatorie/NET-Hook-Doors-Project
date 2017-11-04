@@ -4,6 +4,7 @@
 
 namespace MDFDoors.Factories
 {
+    using Models;
     using ModuleDoors;
 
 	public interface IViewFactory
@@ -13,6 +14,6 @@ namespace MDFDoors.Factories
 		/// <param name="door"> The name of the view to resolve. </param>
 		///
 		/// <returns> A view. </returns>
-		object View(DoorStyles door);
+		ResultOfT<object> View(DoorStyles door);
 	}
 }

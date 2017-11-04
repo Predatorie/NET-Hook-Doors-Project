@@ -9,7 +9,6 @@ namespace MDFDoors
     using Factories;
     using Microsoft.Practices.Unity;
     using ModuleDoors;
-    using ModuleDoors.Services;
     using Prism.Modularity;
     using Prism.Regions;
     using Prism.Unity;
@@ -65,10 +64,6 @@ namespace MDFDoors
 			// Creates the door style
 			this.Container.RegisterType<IDoorController,
 				DoorController>(new ContainerControlledLifetimeManager());
-
-			// Manages default settings for each door style relative to level properties
-			this.Container.RegisterType<IDoorPropertyManager,
-				DoorPropertyManager>(new ContainerControlledLifetimeManager());
 		}
 
 		/// <summary>

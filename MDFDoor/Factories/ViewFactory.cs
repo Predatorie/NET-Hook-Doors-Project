@@ -4,15 +4,15 @@
 
 namespace MDFDoors.Factories
 {
-    using System;
+    using Models;
     using Microsoft.Practices.Unity;
     using ModuleDoors;
     using ModuleDoors.Views;
 
-	public class ViewFactory : IViewFactory
-	{
-		/// <summary> The container. </summary>
-		private readonly IUnityContainer container;
+    public class ViewFactory : IViewFactory
+    {
+        /// <summary> The container. </summary>
+        private readonly IUnityContainer container;
 
         /// <summary> Initializes a new instance of the MDFDoors.Factories.ViewFactory class. </summary>
         ///
@@ -24,34 +24,34 @@ namespace MDFDoors.Factories
         /// <param name="door"> The door style view to resolve. </param>
         ///
         /// <returns> A view </returns>
-        public object View(DoorStyles door)
-		{
-			switch (door)
-			{
-				case DoorStyles.ShakerElegance:
-					return this.container.Resolve<ShakerEleganceView>();
+        public ResultOfT<object> View(DoorStyles door)
+        {
+            switch (door)
+            {
+                case DoorStyles.ShakerElegance:
+                    return Result.Ok<object>(this.container.Resolve<ShakerEleganceView>());
 
-				case DoorStyles.ShakerCentury:
-					return this.container.Resolve<ShakerCenturyView>();
+                case DoorStyles.ShakerCentury:
+                    return Result.Ok<object>(this.container.Resolve<ShakerCenturyView>());
 
-				case DoorStyles.ShakerCountry:
-					return this.container.Resolve<ShakerCountryView>();
+                case DoorStyles.ShakerCountry:
+                    return Result.Ok<object>(this.container.Resolve<ShakerCountryView>());
 
-				case DoorStyles.ShakerEuro05:
-					return this.container.Resolve<ShakerEuro05View>();
+                case DoorStyles.ShakerEuro05:
+                    return Result.Ok<object>(this.container.Resolve<ShakerEuro05View>());
 
-				case DoorStyles.ShakerExotic:
-					return this.container.Resolve<ShakerExoticView>();
+                case DoorStyles.ShakerExotic:
+                    return Result.Ok<object>(this.container.Resolve<ShakerExoticView>());
 
-				case DoorStyles.ShakerFinest:
-					return this.container.Resolve<ShakerFinestView>();
+                case DoorStyles.ShakerFinest:
+                    return Result.Ok<object>(this.container.Resolve<ShakerFinestView>());
 
-				case DoorStyles.Shaker:
-					return this.container.Resolve<ShakerView>();
+                case DoorStyles.Shaker:
+                    return Result.Ok<object>(this.container.Resolve<ShakerView>());
 
-				default:
-					throw new ArgumentOutOfRangeException(nameof(door), door, null);
-			}
-		}
-	}
+                default:
+                    return Result.Fail<object>($"Uknown door type {nameof(door)}");
+            }
+        }
+    }
 }

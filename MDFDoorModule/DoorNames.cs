@@ -21,10 +21,10 @@ namespace ModuleDoors
         /// <summary>   The shaker finest. </summary>
         public const string ShakerFinest = "Shaker Finest";
 
-        /// <summary>   The shacker elegance. </summary>
-        public const string ShackerElegance = "Shacker Elegance";
-
         /// <summary>   The shacker. </summary>
-        public const string Shacker = "Shacker";
+        public const string Shaker = "Shaker";
+
+        /// <summary>The exotic.</summary>
+        public const string Exotic = "Shaker Exotic";
     }
 }

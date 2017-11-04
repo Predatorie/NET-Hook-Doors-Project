@@ -103,6 +103,7 @@
     <Compile Include="Models\BaseDoor.cs" />
     <Compile Include="Models\ShakerElegance.cs" />
     <Compile Include="ModuleDoorModule.cs" />
+    <Compile Include="NavigationParamIndexer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -117,8 +118,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Regions.cs" />
-    <Compile Include="Services\DoorPropertyManager.cs" />
-    <Compile Include="Services\IDoorPropertyManager.cs" />
     <Compile Include="ViewModels\ArchViewModel.cs" />
     <Compile Include="ViewModels\CathedralViewModel.cs" />
     <Compile Include="ViewModels\LeftCathedralViewModel.cs" />
@@ -328,6 +327,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

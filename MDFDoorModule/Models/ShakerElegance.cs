@@ -92,7 +92,7 @@ namespace ModuleDoors.Models
         /// <remarks>Mick George, 11/4/2017.</remarks>
         ///
         /// <returns>A string that represents this object.</returns>
-        public override string ToString() => DoorNames.ShackerElegance;
+        public override string ToString() => DoorNames.ShakerElegance;
 
         #endregion
     }

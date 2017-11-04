@@ -105,13 +105,13 @@ namespace MDFDoors.ViewModels
         private void AddViewsToRegion()
         {
             var contentRegion = this.regionManager.Regions[Regions.ContentRegion];
-            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerCentury), ViewNames.ShakerCentury, true);
-            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerCountry), ViewNames.ShakerCountry, true);
-            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerElegance), ViewNames.ShakerElegance, true);
-            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerEuro05), ViewNames.ShakerEuro05, true);
-            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerExotic), ViewNames.ShakerExotic, true);
-            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerFinest), ViewNames.ShakerFinest, true);
-            contentRegion.Add(this.viewFactory.View(DoorStyles.Shaker), ViewNames.Shaker, true);
+            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerCentury).Value, ViewNames.ShakerCentury, true);
+            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerCountry).Value, ViewNames.ShakerCountry, true);
+            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerElegance).Value, ViewNames.ShakerElegance, true);
+            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerEuro05).Value, ViewNames.ShakerEuro05, true);
+            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerExotic).Value, ViewNames.ShakerExotic, true);
+            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerFinest).Value, ViewNames.ShakerFinest, true);
+            contentRegion.Add(this.viewFactory.View(DoorStyles.Shaker).Value, ViewNames.Shaker, true);
         }
 
         #endregion

@@ -4,7 +4,16 @@
 
 namespace MDFDoors.Controller
 {
+    using Models;
+    using ModuleDoors;
+
     public interface IDoorController
-    {        
+    {
+        /// <summary>Creates a door.</summary>
+        ///
+        /// <param name="style">The door style.</param>
+        ///
+        /// <returns>A Result</returns>
+        Result CreateDoor(DoorStyles style);
     }
 }

@@ -15,8 +15,8 @@ namespace MDFDoors.Factories
         public NavigationParameters Create(DoorStyles style) =>
             new NavigationParameters("Door")
             {
-                { "Style", style },
-                { "Name", DoorName(style) }
+                { NavigationParamIndexer.Style, style },
+                { NavigationParamIndexer.Name, DoorName(style) }
             };
 
         /// <summary>
@@ -71,11 +71,11 @@ namespace MDFDoors.Factories
                 case DoorStyles.ShakerEuro05:
                     return DoorNames.ShakerEuro05;
                 case DoorStyles.ShakerExotic:
-                    return DoorNames.ShakerFinest;
+                    return DoorNames.Exotic;
                 case DoorStyles.ShakerFinest:
-                    return DoorNames.ShackerElegance;
+                    return DoorNames.ShakerFinest;
                 case DoorStyles.Shaker:
-                    return DoorNames.Shacker;
+                    return DoorNames.Shaker;
                 default:
                     return default(string); 
             }
