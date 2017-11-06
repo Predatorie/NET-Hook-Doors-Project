@@ -48,7 +48,7 @@ namespace MDFDoorsTests
         ///
         /// <remarks>Mick George, 11/4/2017.</remarks>
         [TestMethod]
-        public void Request_ShakerEllegance_Returns_ShakerEllegence()
+        public void Request_ShakerElegance_Returns_ShakerElegence()
         {
             var view = this.viewFactory.View(DoorStyles.ShakerElegance);
 

@@ -1,5 +1,8 @@
+// <copyright file="AssemblyInfo.cs" company="Mick George @Osoy">
+// Copyright (c) Mick George @Osoy. All rights reserved.
+// </copyright>
+
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("MDFDoorsTests")]
@@ -15,6 +18,5 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("65e3ac8b-8302-4cdb-a290-92cdef9991f9")]
 
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

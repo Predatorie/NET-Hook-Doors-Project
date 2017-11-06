@@ -25,6 +25,13 @@ namespace ModuleDoors.ViewModels
 
         #region Construction
 
+        /// <summary>Default constructor.</summary>
+        ///
+        /// <remarks>Mick George, 11/6/2017.</remarks>
+        public ShakerEleganceViewModel()
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ShakerEleganceViewModel"/> class.   Constructor. </summary>
         /// <remarks>   Mick George, 11/4/2017. </remarks>
