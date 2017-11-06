@@ -2,11 +2,11 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-namespace ModuleDoors.ViewModels
+namespace MDFDoors.Module.ViewModels
 {
     using System.Linq;
-    using Models;
     using Events;
+    using Models;
     using Prism.Events;
     using Prism.Mvvm;
     using Prism.Regions;

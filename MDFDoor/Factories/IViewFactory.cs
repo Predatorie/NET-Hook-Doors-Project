@@ -2,12 +2,13 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
+using MDFDoors.Module;
+
 namespace MDFDoors.Factories
 {
     using Models;
-    using ModuleDoors;
 
-	public interface IViewFactory
+    public interface IViewFactory
 	{
 		/// <summary> Get a View. </summary>
 		///

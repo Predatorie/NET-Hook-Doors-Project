@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDFDoors", "MDFDoor\MDFDoors.csproj", "{99C9E82C-C594-446D-AA59-8FFBC43AD226}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleDoors", "MDFDoorModule\ModuleDoors.csproj", "{AB8B448C-DD74-4D60-A041-3E5D03A32180}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDFDoors.Module", "MDFDoorModule\MDFDoors.Module.csproj", "{AB8B448C-DD74-4D60-A041-3E5D03A32180}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDFDoorsTests", "MDFDoorsTests\MDFDoorsTests.csproj", "{65E3AC8B-8302-4CDB-A290-92CDEF9991F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDFDoors.Tests", "MDFDoorsTests\MDFDoors.Tests.csproj", "{65E3AC8B-8302-4CDB-A290-92CDEF9991F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

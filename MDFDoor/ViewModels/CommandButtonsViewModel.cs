@@ -2,9 +2,10 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
+using MDFDoors.Module.Events;
+
 namespace MDFDoors.ViewModels
 {
-    using ModuleDoors.Events;
     using Prism.Commands;
     using Prism.Events;
     using Prism.Mvvm;

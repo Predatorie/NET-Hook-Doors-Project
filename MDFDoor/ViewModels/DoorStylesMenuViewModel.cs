@@ -2,10 +2,11 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
+using MDFDoors.Module;
+
 namespace MDFDoors.ViewModels
 {
     using Factories;
-    using ModuleDoors;
     using Prism.Commands;
     using Prism.Mvvm;
     using Prism.Regions;

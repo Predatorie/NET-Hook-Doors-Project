@@ -2,11 +2,12 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
+using MDFDoors.Module.Events;
+
 namespace MDFDoors.Views
 {
     using System.Windows;
     using MahApps.Metro.Controls.Dialogs;
-    using ModuleDoors.Events;
     using Prism.Events;
 
     /// <summary>

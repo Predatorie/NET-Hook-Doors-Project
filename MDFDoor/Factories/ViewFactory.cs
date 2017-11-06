@@ -4,10 +4,10 @@
 
 namespace MDFDoors.Factories
 {
-    using Models;
+    using Module;
+    using Module.Views;
     using Microsoft.Practices.Unity;
-    using ModuleDoors;
-    using ModuleDoors.Views;
+    using Models;
 
     public class ViewFactory : IViewFactory
     {

@@ -2,9 +2,10 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
+using MDFDoors.Module;
+
 namespace MDFDoors.Factories
 {
-    using ModuleDoors;
     using Prism.Regions;
 
     public interface INavigationParametersFactory

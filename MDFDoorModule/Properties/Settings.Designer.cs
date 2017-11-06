@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ModuleDoors.Properties {
+namespace MDFDoors.Module.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

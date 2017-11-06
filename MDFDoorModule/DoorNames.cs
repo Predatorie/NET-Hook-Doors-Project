@@ -2,7 +2,7 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-namespace ModuleDoors
+namespace MDFDoors.Module
 {
     public static class DoorNames
     {

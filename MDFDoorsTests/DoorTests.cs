@@ -2,14 +2,14 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-namespace MDFDoorsTests
+namespace MDFDoors.Tests
 {
     using System.Linq;
-    using MDFDoors.Factories;
+    using Factories;
+    using Module;
+    using Module.Views;
     using Microsoft.Practices.Unity;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using ModuleDoors;
-    using ModuleDoors.Views;
 
     [TestClass]
     public class DoorTests
@@ -65,7 +65,7 @@ namespace MDFDoorsTests
             var view = this.viewFactory.View(DoorStyles.ShakerExotic);
 
             Assert.IsTrue(view.IsSuccess);
-            Assert.IsInstanceOfType(view.Value, typeof(ShakerExoticView));
+            Assert.IsInstanceOfType(view.Value, typeof(Module.Views.ShakerExoticView));
         }
 
         /// <summary>(Unit Test Method) request shaker returns shaker.</summary>
@@ -77,7 +77,7 @@ namespace MDFDoorsTests
             var view = this.viewFactory.View(DoorStyles.Shaker);
 
             Assert.IsTrue(view.IsSuccess);
-            Assert.IsInstanceOfType(view.Value, typeof(ShakerView));
+            Assert.IsInstanceOfType(view.Value, typeof(Module.Views.ShakerView));
         }
 
         /// <summary>(Unit Test Method) request shaker country returns shaker country.</summary>
@@ -89,7 +89,7 @@ namespace MDFDoorsTests
             var view = this.viewFactory.View(DoorStyles.ShakerCountry);
 
             Assert.IsTrue(view.IsSuccess);
-            Assert.IsInstanceOfType(view.Value, typeof(ShakerCountryView));
+            Assert.IsInstanceOfType(view.Value, typeof(Module.Views.ShakerCountryView));
         }
 
         /// <summary>(Unit Test Method) request shaker euro 05 returns shaker euro 05.</summary>

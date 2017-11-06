@@ -2,7 +2,7 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-namespace ModuleDoors.ViewModels
+namespace MDFDoors.Module.ViewModels
 {
     using Models;
     using Prism.Regions;

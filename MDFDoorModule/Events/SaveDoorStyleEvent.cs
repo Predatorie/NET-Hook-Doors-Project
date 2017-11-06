@@ -2,7 +2,7 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-namespace ModuleDoors.Events
+namespace MDFDoors.Module.Events
 {
     using Prism.Events;
 

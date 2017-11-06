@@ -2,7 +2,7 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-namespace ModuleDoors.Models
+namespace MDFDoors.Module.Models
 {
     /// <summary>Describes the shaker elegance class</summary>
     ///

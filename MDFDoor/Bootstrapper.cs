@@ -2,13 +2,14 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
+using MDFDoors.Module;
+
 namespace MDFDoors
 {
     using System.Windows;
     using Controller;
     using Factories;
     using Microsoft.Practices.Unity;
-    using ModuleDoors;
     using Prism.Modularity;
     using Prism.Regions;
     using Prism.Unity;

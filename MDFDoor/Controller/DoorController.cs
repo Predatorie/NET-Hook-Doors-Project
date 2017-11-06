@@ -2,12 +2,13 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
+using MDFDoors.Module;
+
 namespace MDFDoors.Controller
 {
     using Models;
-    using ModuleDoors;
 
-	public class DoorController : IDoorController
+    public class DoorController : IDoorController
 	{
         /// <summary>Creates a door.</summary>
         ///

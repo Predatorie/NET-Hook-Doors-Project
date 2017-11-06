@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:mdfDoors="clr-namespace:MDFDoors"
-             xmlns:moduleDoors="clr-namespace:ModuleDoors;assembly=ModuleDoors"
+             xmlns:moduleDoors="clr-namespace:MDFDoors.Module;assembly=MDFDoors.Module"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
 

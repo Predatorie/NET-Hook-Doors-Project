@@ -2,7 +2,7 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-namespace ModuleDoors.Views
+namespace MDFDoors.Module.Views
 {
     /// <summary>
     /// Interaction logic for NotchView
