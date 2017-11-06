@@ -99,6 +99,9 @@
   <ItemGroup>
     <Compile Include="ApplicationEnums.cs" />
     <Compile Include="DoorNames.cs" />
+    <Compile Include="Events\ExitAppEvent.cs" />
+    <Compile Include="Events\LoadDoorStyleEvent.cs" />
+    <Compile Include="Events\SaveDoorStyleEvent.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\BaseDoor.cs" />
     <Compile Include="Models\ShakerElegance.cs" />

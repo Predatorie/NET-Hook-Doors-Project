@@ -54,16 +54,16 @@
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition Height="100" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        
-        <!-- TODO: Add region for this menu -->
-        <ScrollViewer HorizontalScrollBarVisibility="Visible"
+
+        <ScrollViewer x:Name="DoorTypesMenuScrollViewer"
+            HorizontalScrollBarVisibility="Visible"
                       Grid.Column="0" 
                       Grid.Row="0" 
                       Grid.RowSpan="2"  
@@ -88,19 +88,14 @@
             BorderThickness="3" />
 
         <!--TODO: Add region for this group of controls-->
-        <!--<StackPanel 
-            DockPanel.Dock="Right" 
-            Grid.Column="2" 
-            Grid.Row="0" 
-            Grid.RowSpan="2" 
-            Orientation="Vertical" 
-            HorizontalAlignment="Right" 
-            VerticalAlignment="Bottom"
-            Margin="5" >
-            <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="125" Content="TODO" Padding="2"  />
-            <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="125" Content="TODO" Padding="2"  />
-            <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="125" Content="TODO" Padding="2"  />
-        </StackPanel>-->
+        <ContentControl x:Name="CommandButtonControl" 
+                        Grid.Column="1" 
+                        Grid.Row="2" 
+                        prism:RegionManager.RegionName="CommandButtonRegion" 
+                        BorderBrush="Red" 
+                        BorderThickness="3"
+                        Margin="5" 
+                        />
 
     </Grid>
 

@@ -15,5 +15,8 @@ namespace ModuleDoors
 
 	    /// <summary> The door types menu region. </summary>
 	    public const string DoorTypesMenuRegion = "DoorTypesMenuRegion";
-	}
+
+        /// <summary>The command button region.</summary>
+        public const string CommandButtonRegion = "CommandButtonRegion";
+    }
 }

@@ -6,6 +6,8 @@ namespace ModuleDoors.ViewModels
 {
     using System.Linq;
     using Models;
+    using Events;
+    using Prism.Events;
     using Prism.Mvvm;
     using Prism.Regions;
 
@@ -13,6 +15,11 @@ namespace ModuleDoors.ViewModels
     {
         #region Fields
 
+        /// <summary>The event aggregator.</summary>
+        private readonly IEventAggregator eventAggregator;
+
+        /// <summary>The door type label.</summary>
+        private string doorTypeLabel;
 
         #endregion
 
@@ -21,8 +28,9 @@ namespace ModuleDoors.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="ShakerEleganceViewModel"/> class.   Constructor. </summary>
         /// <remarks>   Mick George, 11/4/2017. </remarks>
-        public ShakerEleganceViewModel()
+        public ShakerEleganceViewModel(IEventAggregator eventAggregator)
         {
+            this.eventAggregator = eventAggregator;
             this.Model = new ShakerElegance();
         }
 
@@ -33,7 +41,11 @@ namespace ModuleDoors.ViewModels
         /// <summary>Gets or sets the type of the door.</summary>
         ///
         /// <value>The type of the door.</value>
-        public string DoorTypeLabel { get; set; }
+        public string DoorTypeLabel
+        {
+            get => this.doorTypeLabel;
+            set => this.SetProperty(ref this.doorTypeLabel, value);
+        }
 
         /// <summary>The model.</summary>
         public ShakerElegance Model { get; }
@@ -163,6 +175,9 @@ namespace ModuleDoors.ViewModels
 
             // Subscribe to Model property change events
             this.Model.PropertyChanged += this.OnModelPropertyChanged;
+
+            this.eventAggregator.GetEvent<SaveDoorStyleEvent>().Subscribe(this.OnSaveDoorStyle);
+            this.eventAggregator.GetEvent<LoadDoorStyleEvent>().Subscribe(this.OnLoadDoorStyle);
         }
 
         /// <summary>   Query if 'navigationContext' is navigation target. </summary>
@@ -176,11 +191,29 @@ namespace ModuleDoors.ViewModels
         {
             // UnSubscribe from Model property change events
             this.Model.PropertyChanged -= this.OnModelPropertyChanged;
+
+            this.eventAggregator.GetEvent<SaveDoorStyleEvent>().Unsubscribe(this.OnSaveDoorStyle);
+            this.eventAggregator.GetEvent<LoadDoorStyleEvent>().Unsubscribe(this.OnLoadDoorStyle);
         }
 
         #endregion
 
         #region Private Methods
+
+
+        /// <summary>Executes the load door style action.</summary>
+        ///
+        /// <remarks>Mick George, 11/5/2017.</remarks>
+        private void OnLoadDoorStyle()
+        {
+        }
+
+        /// <summary>Executes the save door style action.</summary>
+        ///
+        /// <remarks>Mick George, 11/5/2017.</remarks>
+        private void OnSaveDoorStyle()
+        {
+        }
 
         /// <summary>Raises the system. component model. property changed event.</summary>
         ///

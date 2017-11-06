@@ -78,6 +78,7 @@ namespace MDFDoors
 			var regionManager = this.Container.Resolve<IRegionManager>();
 			regionManager.RegisterViewWithRegion(Regions.DoorTypesMenuRegion, typeof(DoorStylesMenuView));
 		    regionManager.RegisterViewWithRegion(Regions.SettingsRegion, typeof(SettingsView));
+		    regionManager.RegisterViewWithRegion(Regions.CommandButtonRegion, typeof(CommandButtonsView));
 
             return base.ConfigureRegionAdapterMappings();
 		}

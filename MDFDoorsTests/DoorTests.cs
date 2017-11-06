@@ -2,10 +2,9 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-using System.Linq;
-
 namespace MDFDoorsTests
 {
+    using System.Linq;
     using MDFDoors.Factories;
     using Microsoft.Practices.Unity;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
