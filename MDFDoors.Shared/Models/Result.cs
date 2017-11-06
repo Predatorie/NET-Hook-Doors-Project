@@ -2,11 +2,11 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-namespace MDFDoors.Models
+namespace MDFDoors.Shared.Models
 {
-	using System;
+    using System;
 
-	/// <summary> A result. </summary>
+    /// <summary> A result. </summary>
 	public class Result
 	{
 		/// <summary> Initializes a new instance of the MDFDoors.Models.Result class. </summary>

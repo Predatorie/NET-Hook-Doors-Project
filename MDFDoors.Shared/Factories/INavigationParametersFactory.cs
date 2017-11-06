@@ -2,9 +2,7 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-using MDFDoors.Module;
-
-namespace MDFDoors.Factories
+namespace MDFDoors.Shared.Factories
 {
     using Prism.Regions;
 

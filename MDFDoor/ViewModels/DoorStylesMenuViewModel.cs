@@ -2,14 +2,14 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-using MDFDoors.Module;
-
 namespace MDFDoors.ViewModels
 {
     using Factories;
+    using Shared.Factories;
     using Prism.Commands;
     using Prism.Mvvm;
     using Prism.Regions;
+    using Shared;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// <summary>   A ViewModel for the door styles menu. </summary>

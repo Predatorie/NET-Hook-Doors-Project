@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:mdfDoors="clr-namespace:MDFDoors"
-             xmlns:moduleDoors="clr-namespace:MDFDoors.Module;assembly=MDFDoors.Module"
+             xmlns:shared="clr-namespace:MDFDoors.Shared;assembly=MDFDoors.Shared"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
 
@@ -33,13 +33,13 @@
 
             <StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Center">
                 <!--Shake Styles-->
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static moduleDoors:DoorStyles.ShakerCentury}" Margin="5">Shaker Century</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static moduleDoors:DoorStyles.ShakerCountry}" Margin="5">Shaker Country</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static moduleDoors:DoorStyles.ShakerElegance}" Margin="5">Shaker Elegance</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static moduleDoors:DoorStyles.ShakerEuro05}" Margin="5">Shaker Euro-05</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static moduleDoors:DoorStyles.ShakerExotic}" Margin="5">Shaker Exotic</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static moduleDoors:DoorStyles.ShakerFinest}" Margin="5">Shaker Finest</Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static moduleDoors:DoorStyles.Shaker}" Margin="5">Shaker</Button>
+                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.ShakerCentury}" Margin="5">Shaker Century</Button>
+                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.ShakerCountry}" Margin="5">Shaker Country</Button>
+                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.ShakerElegance}" Margin="5">Shaker Elegance</Button>
+                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.ShakerEuro05}" Margin="5">Shaker Euro-05</Button>
+                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.ShakerExotic}" Margin="5">Shaker Exotic</Button>
+                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.ShakerFinest}" Margin="5">Shaker Finest</Button>
+                <Button Style="{DynamicResource SquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.Shaker}" Margin="5">Shaker</Button>
             </StackPanel>
 
             <!--<StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Center">

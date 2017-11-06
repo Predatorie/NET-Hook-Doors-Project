@@ -2,7 +2,7 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-using MDFDoors.Module.Events;
+using MDFDoors.Shared.Events;
 
 namespace MDFDoors.ViewModels
 {

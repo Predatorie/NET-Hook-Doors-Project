@@ -6,10 +6,11 @@ namespace MDFDoors.Tests
 {
     using System.Linq;
     using Factories;
-    using Module;
-    using Module.Views;
+    using Shared;
+    using Shared.Factories;
     using Microsoft.Practices.Unity;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Module.Views;
 
     [TestClass]
     public class DoorTests

@@ -4,6 +4,8 @@
 
 namespace MDFDoors.Module.Models
 {
+    using Shared;
+
     /// <summary>Describes the shaker elegance class</summary>
     ///
     /// <remarks>Mick George, 11/4/2017.</remarks>

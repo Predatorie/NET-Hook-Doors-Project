@@ -2,11 +2,10 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-using MDFDoors.Module;
-
 namespace MDFDoors.Controller
 {
-    using Models;
+    using Shared.Models;
+    using Shared;
 
     public interface IDoorController
     {

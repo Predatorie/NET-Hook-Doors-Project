@@ -2,7 +2,7 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-namespace MDFDoors.Module
+namespace MDFDoors.Shared
 {
     /// <summary> A regions. </summary>
     public static class Regions

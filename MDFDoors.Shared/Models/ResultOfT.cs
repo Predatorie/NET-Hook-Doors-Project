@@ -2,11 +2,11 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-namespace MDFDoors.Models
+namespace MDFDoors.Shared.Models
 {
-	using System;
+    using System;
 
-	/// <summary> A result of t. </summary>
+    /// <summary> A result of t. </summary>
 	///
 	/// <typeparam name="T"> Generic type parameter. </typeparam>
 	public class ResultOfT<T> : Result
