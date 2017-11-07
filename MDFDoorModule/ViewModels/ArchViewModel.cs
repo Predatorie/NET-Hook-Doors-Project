@@ -4,7 +4,7 @@
 
 namespace MDFDoors.Module.ViewModels
 {
-    using Models;
+    using Shared.Models;
     using Prism.Regions;
 
     public class ArchViewModel : BaseDoor, INavigationAware

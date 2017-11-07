@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MDFDoors.Localization {
+namespace MDFDoors.Shared.Localization {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace MDFDoors.Localization {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MDFDoors.Localization.ApplicationStrings", typeof(ApplicationStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MDFDoors.Shared.Localization.ApplicationStrings", typeof(ApplicationStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,16 @@ namespace MDFDoors.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MDF Doors.
+        ///   Looks up a localized string similar to Door Style Saved..
+        /// </summary>
+        public static string DoorStyleSaved {
+            get {
+                return ResourceManager.GetString("DoorStyleSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MDFDoors.
         /// </summary>
         public static string Title {
             get {

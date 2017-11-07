@@ -2,7 +2,7 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-namespace MDFDoors.Module.Models
+namespace MDFDoors.Shared.Models
 {
     using Prism.Mvvm;
 

@@ -25,7 +25,7 @@ namespace MDFDoors.Factories
         /// <param name="door"> The door style view to resolve. </param>
         ///
         /// <returns> A view </returns>
-        public ResultOfT<object> View(DoorStyles door)
+        public Result<object> View(DoorStyles door)
         {
             switch (door)
             {

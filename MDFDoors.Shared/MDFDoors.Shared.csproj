@@ -61,6 +61,9 @@
     <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
+    <Reference Include="NETHook3_0">
+      <HintPath>D:\Program Files\Mcam2018\NETHook3_0.dll</HintPath>
+    </Reference>
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
     </Reference>
@@ -82,17 +85,30 @@
   <ItemGroup>
     <Compile Include="ApplicationEnums.cs" />
     <Compile Include="DoorNames.cs" />
+    <Compile Include="Events\CreateDoorEvent.cs" />
     <Compile Include="Events\ExitAppEvent.cs" />
     <Compile Include="Events\LoadDoorStyleEvent.cs" />
     <Compile Include="Events\SaveDoorStyleEvent.cs" />
     <Compile Include="Factories\INavigationParametersFactory.cs" />
     <Compile Include="Factories\IViewFactory.cs" />
     <Compile Include="Factories\NavigationParametersFactory.cs" />
+    <Compile Include="Localization\ApplicationStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplicationStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BaseDoor.cs" />
     <Compile Include="Models\Result.cs" />
-    <Compile Include="Models\ResultOfT.cs" />
+    <Compile Include="Models\ShakerElegance.cs" />
     <Compile Include="NavigationParamIndexer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regions.cs" />
+    <Compile Include="Services\FileBrowserService.cs" />
+    <Compile Include="Services\GeometryCreationService.cs" />
+    <Compile Include="Services\IFileBrowserService.cs" />
+    <Compile Include="Services\IGeometryCreationService.cs" />
+    <Compile Include="Services\ISerializationService.cs" />
+    <Compile Include="Services\SerializationService.cs" />
     <Compile Include="ViewNames.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -103,5 +119,14 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\ApplicationStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApplicationStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(ProjectDir)$(OutDir)$(TargetName).dll" "D:\Program Files\Mcam2018\chooks\MDF"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

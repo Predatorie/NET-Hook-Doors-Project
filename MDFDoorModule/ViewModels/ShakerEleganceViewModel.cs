@@ -2,16 +2,19 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-using MDFDoors.Shared.Events;
-
 namespace MDFDoors.Module.ViewModels
 {
     using System.Linq;
-    using Shared;
-    using Models;
+    using MahApps.Metro.Controls.Dialogs;
+    using Shared.Localization;
+    using Microsoft.Practices.Unity;
     using Prism.Events;
     using Prism.Mvvm;
     using Prism.Regions;
+    using Shared;
+    using Shared.Events;
+    using Shared.Models;
+    using Shared.Services;
 
     public class ShakerEleganceViewModel : BindableBase, INavigationAware
     {
@@ -19,6 +22,15 @@ namespace MDFDoors.Module.ViewModels
 
         /// <summary>The event aggregator.</summary>
         private readonly IEventAggregator eventAggregator;
+
+        /// <summary>The geometry creation.</summary>
+        private readonly IGeometryCreationService geometryCreation;
+
+        /// <summary>The dialog coordinator.</summary>
+        private readonly IDialogCoordinator dialogCoordinator;
+
+        /// <summary>The serialization service.</summary>
+        private readonly ISerializationService serializationService;
 
         /// <summary>The door type label.</summary>
         private string doorTypeLabel;
@@ -30,17 +42,30 @@ namespace MDFDoors.Module.ViewModels
         /// <summary>Default constructor.</summary>
         ///
         /// <remarks>Mick George, 11/6/2017.</remarks>
-        public ShakerEleganceViewModel()
-        {
-        }
+        public ShakerEleganceViewModel() { }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ShakerEleganceViewModel"/> class.   Constructor. </summary>
-        /// <remarks>   Mick George, 11/4/2017. </remarks>
-        public ShakerEleganceViewModel(IEventAggregator eventAggregator)
+        ///  <summary>
+        ///  Initializes a new instance of the <see cref="ShakerEleganceViewModel"/> class.Constructor.</summary>
+        /// 
+        ///  <remarks>Mick George, 11/6/2017.</remarks>
+        /// 
+        ///  <param name="eventAggregator">The event aggregator singleton.</param>
+        ///  <param name="container">      The container singleton.</param>
+        /// <param name="geometryCreation">The Geometry Creation Service singletone </param>
+        /// <param name="dialogCoordinator">The Dialog Coordinator singleton</param>
+        /// <param name="serializationService">The Serialization Service singleton</param>
+        public ShakerEleganceViewModel(
+            IEventAggregator eventAggregator,
+            IUnityContainer container,
+            IGeometryCreationService geometryCreation,
+            IDialogCoordinator dialogCoordinator,
+            ISerializationService serializationService)
         {
             this.eventAggregator = eventAggregator;
-            this.Model = new ShakerElegance();
+            this.geometryCreation = geometryCreation;
+            this.dialogCoordinator = dialogCoordinator;
+            this.serializationService = serializationService;
+            this.Model = container.Resolve<ShakerElegance>();
         }
 
         #endregion
@@ -57,7 +82,7 @@ namespace MDFDoors.Module.ViewModels
         }
 
         /// <summary>The model.</summary>
-        public ShakerElegance Model { get; }
+        internal ShakerElegance Model { get; private set; }
 
         /// <summary>Gets or sets the height.</summary>
         ///
@@ -175,18 +200,19 @@ namespace MDFDoors.Module.ViewModels
         /// <param name="navigationContext">    Context for the navigation. </param>
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            // Read params passed
             if (navigationContext.Parameters.Any())
             {
-                // Group Header Label
+                // Group Header Label is all we are passing in
                 this.DoorTypeLabel = navigationContext.Parameters[NavigationParamIndexer.Name].ToString();
             }
 
             // Subscribe to Model property change events
             this.Model.PropertyChanged += this.OnModelPropertyChanged;
 
+            // Subscribe to our events
             this.eventAggregator.GetEvent<SaveDoorStyleEvent>().Subscribe(this.OnSaveDoorStyle);
             this.eventAggregator.GetEvent<LoadDoorStyleEvent>().Subscribe(this.OnLoadDoorStyle);
+            this.eventAggregator.GetEvent<CreateDoorEvent>().Subscribe(this.OnCreateDoor);
         }
 
         /// <summary>   Query if 'navigationContext' is navigation target. </summary>
@@ -201,33 +227,58 @@ namespace MDFDoors.Module.ViewModels
             // UnSubscribe from Model property change events
             this.Model.PropertyChanged -= this.OnModelPropertyChanged;
 
+            // Unsubscribe from our events
             this.eventAggregator.GetEvent<SaveDoorStyleEvent>().Unsubscribe(this.OnSaveDoorStyle);
             this.eventAggregator.GetEvent<LoadDoorStyleEvent>().Unsubscribe(this.OnLoadDoorStyle);
+            this.eventAggregator.GetEvent<CreateDoorEvent>().Unsubscribe(this.OnCreateDoor);
         }
 
         #endregion
 
         #region Private Methods
 
+        /// <summary>Executes the create door action.</summary>
+        ///
+        /// <remarks>Mick George, 11/6/2017.</remarks>
+        private async void OnCreateDoor()
+        {
+            var result = this.geometryCreation.CreateShakerEleganceDoor(this.Model);
+            if (result.IsFailure)
+            {
+                await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, result.Error);
+                return;
+            }
+
+            // TODO: Exit once complete..?
+            this.eventAggregator.GetEvent<ExitAppEvent>().Publish();
+        }
 
         /// <summary>Executes the load door style action.</summary>
-        ///
-        /// <remarks>Mick George, 11/5/2017.</remarks>
-        private void OnLoadDoorStyle()
+        private async void OnLoadDoorStyle()
         {
+            var result = this.serializationService.DeserializeDoorStyle(DoorStyles.ShakerElegance);
+            if (result.IsFailure)
+            {
+                await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, result.Error);
+                return;
+            }
+
+            this.Model = (ShakerElegance)result.Value;
         }
 
         /// <summary>Executes the save door style action.</summary>
-        ///
-        /// <remarks>Mick George, 11/5/2017.</remarks>
-        private void OnSaveDoorStyle()
+        private async void OnSaveDoorStyle()
         {
+            var result = this.serializationService.SerializeDoorStyle(DoorStyles.ShakerElegance);
+            if (result.IsFailure)
+            {
+                await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, result.Error);
+            }
+
+            await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, ApplicationStrings.DoorStyleSaved);
         }
 
         /// <summary>Raises the system. component model. property changed event.</summary>
-        ///
-        /// <remarks>Mick George, 11/4/2017.</remarks>
-        ///
         /// <param name="sender">Source of the event.</param>
         /// <param name="e">     Event information to send to registered event handlers.</param>
         private void OnModelPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

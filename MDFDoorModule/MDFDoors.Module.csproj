@@ -98,8 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Models\BaseDoor.cs" />
-    <Compile Include="Models\ShakerElegance.cs" />
     <Compile Include="ModuleDoorModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

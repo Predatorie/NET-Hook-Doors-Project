@@ -146,8 +146,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Controller\DoorController.cs" />
-    <Compile Include="Controller\IDoorController.cs" />
     <Compile Include="Factories\ViewFactory.cs" />
     <Compile Include="FunctionTable\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -155,11 +153,6 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Localization\ApplicationStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ApplicationStrings.resx</DependentUpon>
-    </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="ViewModels\DoorStylesMenuViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -189,10 +182,6 @@
     <EmbeddedResource Include="FunctionTable\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Localization\ApplicationStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ApplicationStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

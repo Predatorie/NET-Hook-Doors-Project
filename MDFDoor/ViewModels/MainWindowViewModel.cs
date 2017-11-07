@@ -4,12 +4,10 @@
 
 namespace MDFDoors.ViewModels
 {
-	using MahApps.Metro.Controls;
-
-	using Localization;
-
-	using Prism.Commands;
-	using Prism.Mvvm;
+    using MahApps.Metro.Controls;
+    using Shared.Localization;
+    using Prism.Commands;
+    using Prism.Mvvm;
 
 	public class MainWindowViewModel : BindableBase
     {

@@ -57,7 +57,7 @@ namespace MDFDoors.Shared.Models
 		/// <param name="message"> The message. </param>
 		///
 		/// <returns> A Result. </returns>/
-		public static ResultOfT<T> Fail<T>(string message) => new ResultOfT<T>(default(T), false, message);
+		public static Result<T> Fail<T>(string message) => new Result<T>(default(T), false, message);
 
 		/// <summary> Gets the ok. </summary>
 		///
@@ -70,6 +70,38 @@ namespace MDFDoors.Shared.Models
 		/// <param name="value"> The value. </param>
 		///
 		/// <returns> A Result. </returns>
-		public static ResultOfT<T> Ok<T>(T value) => new ResultOfT<T>(value, true, string.Empty);
+		public static Result<T> Ok<T>(T value) => new Result<T>(value, true, string.Empty);
 	}
+
+    public class Result<T> : Result
+    {
+        /// <summary> The value. </summary>
+        private readonly T result;
+
+        /// <summary> Initializes a new instance of the MDFDoors.Models.Result&lt;T&gt; class. </summary>
+        ///
+        /// <param name="value">	 The value. </param>
+        /// <param name="isSuccess"> True if this object is success. </param>
+        /// <param name="error">	 The error. </param>
+        protected internal Result(T value, bool isSuccess, string error)
+            : base(isSuccess, error) => this.result = value;
+
+        /// <summary> Gets the value. </summary>
+        ///
+        /// <exception cref="InvalidOperationException"> Thrown when the requested operation is invalid. </exception>
+        ///
+        /// <value> The value. </value>
+        public T Value
+        {
+            get
+            {
+                if (!this.IsSuccess)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                return this.result;
+            }
+        }
+    }
 }

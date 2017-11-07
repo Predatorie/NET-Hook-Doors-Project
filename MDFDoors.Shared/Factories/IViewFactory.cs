@@ -13,6 +13,6 @@ namespace MDFDoors.Shared.Factories
 		/// <param name="door"> The name of the view to resolve. </param>
 		///
 		/// <returns> A view. </returns>
-		ResultOfT<object> View(DoorStyles door);
+		Result<object> View(DoorStyles door);
 	}
 }
