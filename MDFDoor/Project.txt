@@ -1,6 +1,13 @@
 ﻿
+TODO:
+Localization (best practices)
+Add option for multiple copies
+Implement door spacing X distance and Y distance
+Implement door copy method X steps Y steps
+Implement door style serialization/de-serialization
+Implement door creation method
+
+
+NOTE:
 Excel File located  => C:\Users\Public\Documents\shared Mcam2018\router\Template
 
-Add option for multiple copies
-Spacing X distance and Y distance
-Copy method X steps Y steps
