@@ -8,8 +8,8 @@ namespace MDFDoors.Shared.Services
 
     public interface ISerializationService
     {
-        Result SerializeDoorStyle(DoorStyles style);
+        Result SerializeDoorStyle<T>();
 
-        Result<object> DeserializeDoorStyle(DoorStyles style);
+        Result<T> DeserializeDoorStyle<T>();
     }
 }

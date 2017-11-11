@@ -5,37 +5,35 @@
 namespace MDFDoors.Shared.Services
 {
     using System;
+    using System.IO;
     using Models;
+    using Newtonsoft.Json;
 
     /// <summary>A serialization service.</summary>
     ///
     /// <remarks>Mick George, 11/6/2017.</remarks>
     public partial class SerializationService : ISerializationService
     {
-
-        /// <summary>The file browser.</summary>
-        private readonly IFileBrowserService fileBrowser;
-
         /// <summary>Constructor.</summary>
         /// <param name="fileBrowser">The file browser.</param>
         public SerializationService(IFileBrowserService fileBrowser) => this.fileBrowser = fileBrowser;
 
         /// <summary>Serialize door style.</summary>
-        /// <param name="style">The style.</param>
         /// <returns>A Result.</returns>
-        public Result SerializeDoorStyle(DoorStyles style)
+        public Result SerializeDoorStyle<T>()
         {
-            var result = this.Save(style);
+            var result = this.Save<T>();
             return result.IsSuccess ? Result.Ok(result) : Result.Fail(result.Error);
         }
 
         /// <summary>Deserialize door style.</summary>
-        /// <param name="style">The style.</param>
         /// <returns>A Result.</returns>
-        public Result<object> DeserializeDoorStyle(DoorStyles style)
+        public Result<T> DeserializeDoorStyle<T>()
         {
-            var result = this.Load(style);
-            return result.IsSuccess ? Result.Ok<object>(result) : Result.Fail<object>(result.Error);
+            var result = this.Load<T>();
+            return result.IsSuccess ?
+                Result.Ok(result.Value) :
+                Result.Fail<T>(result.Error);
         }
     }
 
@@ -44,90 +42,87 @@ namespace MDFDoors.Shared.Services
     /// <remarks>Mick George, 11/6/2017.</remarks>
     public partial class SerializationService
     {
+        /// <summary>The file browser.</summary>
+        private readonly IFileBrowserService fileBrowser;
+
         /// <summary>Saves the given style.</summary>
-        /// <param name="style">The style to load.</param>
         /// <returns>A Result of true if success.</returns>
-        private Result Save(DoorStyles style)
+        private Result Save<T>()
         {
+            // Get a location from disk
+            var result = this.fileBrowser.SaveDoorStyleSettingsFile();
+            if (result.IsFailure)
+            {
+                return Result.Fail(result.Error);
+            }
+
+            var file = result.Value;
+
             try
             {
-                // TODO: Add explicit exception handlers
-                switch (style)
-                {
-                    case DoorStyles.ShakerElegance:
-                        return Result.Ok();
+                // serialize the model
+                var model = JsonConvert.SerializeObject(typeof(T), Formatting.Indented);
 
-                    case DoorStyles.ShakerCentury:
-                        return Result.Ok();
+                // Write it to disk
+                File.WriteAllText(file, model);
 
-                    case DoorStyles.ShakerCountry:
-                        return Result.Ok();
-
-                    case DoorStyles.ShakerEuro05:
-                        return Result.Ok();
-
-                    case DoorStyles.ShakerExotic:
-                        return Result.Ok();
-
-                    case DoorStyles.ShakerFinest:
-                        return Result.Ok();
-
-                    case DoorStyles.Shaker:
-                        return Result.Ok();
-
-                    default:
-                        return Result.Fail($"{nameof(style)} does not exist.");
-                }
+                return Result.Ok();
             }
-            catch (Exception e)
+            catch (DirectoryNotFoundException)
             {
-                return Result.Fail($"An error occured: {e.Message}.");
+                return Result.Fail<T>("Directory does not exist.");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Result.Fail<T>("UnauthorizedAccess");
+            }
+            catch (PathTooLongException)
+            {
+                return Result.Fail<T>("File path is too long.");
+            }
+            catch (IOException ex)
+            {
+                return Result.Fail<T>($"File disk read exception {ex.Message}");
             }
         }
 
         /// <summary>Loads the given style from disk.</summary>
         /// <param name="style">The style to load.</param>
         /// <returns>A Result that contains the door style if success.</returns>
-        private Result<object> Load(DoorStyles style)
+        private Result<T> Load<T>()
         {
-            try
-            {
-                switch (style)
-                {
-                    case DoorStyles.ShakerElegance:
-                        return Result.Ok<object>(this.LoadShakerElegance());
-
-                    default:
-                        return Result.Fail<object>($"{nameof(style)} does not exist.");
-                }
-            }
-            // TODO: Add explicit exception handlers
-            catch (Exception e)
-            {
-                return Result.Fail<object>($"An error occured: {e.Message}.");
-            }
-        }
-
-        /// <summary>Loads shaker elegance.</summary>
-        ///
-        /// <remarks>Mick George, 11/6/2017.</remarks>
-        ///
-        /// <returns>The shaker elegance.</returns>
-        private Result<ShakerElegance> LoadShakerElegance()
-        {
-            // TODO: Prompt for file off disk to de-serialize
             var result = this.fileBrowser.SelectDoorStyleSettingsFile();
             if (result.IsFailure)
             {
-                return Result.Fail<ShakerElegance>(result.Error);
+                return Result.Fail<T>(result.Error);
             }
 
-            // TODO: We have the file now de-serialize it and return
             var file = result.Value;
 
+            try
+            {
+                using (var sr = new StreamReader(file))
+                {
+                    var json = sr.ReadToEnd();
+                    var model = JsonConvert.DeserializeObject<T>(json);
 
-            var door = new ShakerElegance();
-            return Result.Ok(door);
+                    return model == null || !model.Equals(typeof(T)) ?
+                        Result.Fail<T>("Wrong door style selected.") :
+                        Result.Ok(model);
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                return Result.Fail<T>($"File not found {file}.");
+            }
+            catch (DirectoryNotFoundException)
+            {
+                return Result.Fail<T>("Directory does not exist.");
+            }
+            catch (IOException ex)
+            {
+                return Result.Fail<T>($"File disk read exception {ex.Message}");
+            }
         }
     }
 }

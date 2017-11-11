@@ -9,5 +9,7 @@ namespace MDFDoors.Shared.Services
     public interface IFileBrowserService
     {
         Result<string> SelectDoorStyleSettingsFile();
+
+        Result<string> SaveDoorStyleSettingsFile();
     }
 }

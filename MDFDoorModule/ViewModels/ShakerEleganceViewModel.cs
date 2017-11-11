@@ -256,20 +256,24 @@ namespace MDFDoors.Module.ViewModels
         /// <summary>Executes the load door style action.</summary>
         private async void OnLoadDoorStyle()
         {
-            var result = this.serializationService.DeserializeDoorStyle(DoorStyles.ShakerElegance);
+            var result = this.serializationService.DeserializeDoorStyle<ShakerElegance>();
             if (result.IsFailure)
             {
-                await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, result.Error);
-                return;
+                // string.empty means user cancelled prompt for file
+                if (!string.IsNullOrEmpty(result.Error))
+                {
+                    await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, result.Error);
+                    return;
+                }
             }
 
-            this.Model = (ShakerElegance)result.Value;
+            this.Model = result.Value;
         }
 
         /// <summary>Executes the save door style action.</summary>
         private async void OnSaveDoorStyle()
         {
-            var result = this.serializationService.SerializeDoorStyle(DoorStyles.ShakerElegance);
+            var result = this.serializationService.SerializeDoorStyle<ShakerElegance>();
             if (result.IsFailure)
             {
                 await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, result.Error);
