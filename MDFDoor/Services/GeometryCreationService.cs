@@ -40,16 +40,116 @@ namespace MDFDoors.Services
                 return this.CreateShakerCentry((ShakerCentry)model);
             }
 
+            if (model.GetType() == typeof(Shaker))
+            {
+                return this.CreateShaker((Shaker)model);
+            }
+
+            if (model.GetType() == typeof(ShakerEuro05))
+            {
+                return this.CreateShakerEuro05((ShakerEuro05)model);
+            }
+
+            if (model.GetType() == typeof(ShakerExotic))
+            {
+                return this.CreateShakerExotic((ShakerExotic)model);
+            }
+
+            if (model.GetType() == typeof(ShakerFinest))
+            {
+                return this.CreateShakerFinest((ShakerFinest)model);
+            }
+            
             return Result.Fail($"Unkown Door Style {model.ToString()}");
         }
 
-        private Result CreateShakerCentry(ShakerCentry model)
+        /// <summary>Creates shaker centry.</summary>
+        /// <param name="door">The model.</param>
+        /// <returns>The new shaker centry.</returns>
+        private Result CreateShakerCentry(ShakerCentry door)
         {
+            // Outer panel
+            var result = this.DrawRectangle(door.Width, door.Height, door.OuterLevelNumber, door.OuterLevelName);
+            if (result.IsFailure)
+            {
+                return Result.Fail(result.Error);
+            }
+
             return Result.Ok();
         }
 
-        private Result CreateShakerCountry(ShakerCountry model)
+        /// <summary>Creates shaker country.</summary>
+        /// <param name="door">The model.</param>
+        /// <returns>The new shaker country.</returns>
+        private Result CreateShakerCountry(ShakerCountry door)
         {
+            // Outer panel
+            var result = this.DrawRectangle(door.Width, door.Height, door.OuterLevelNumber, door.OuterLevelName);
+            if (result.IsFailure)
+            {
+                return Result.Fail(result.Error);
+            }
+
+            return Result.Ok();
+        }
+
+        /// <summary>Creates shaker finest.</summary>
+        /// <param name="door">The model.</param>
+        /// <returns>The new shaker finest.</returns>
+        private Result CreateShakerFinest(ShakerFinest door)
+        {
+            // Outer panel
+            var result = this.DrawRectangle(door.Width, door.Height, door.OuterLevelNumber, door.OuterLevelName);
+            if (result.IsFailure)
+            {
+                return Result.Fail(result.Error);
+            }
+
+            return Result.Ok();
+        }
+
+        /// <summary>Creates shaker exotic.</summary>
+        /// <param name="door">The model.</param>
+        /// <returns>The new shaker exotic.</returns>
+        private Result CreateShakerExotic(ShakerExotic door)
+        {
+            // Outer panel
+            var result = this.DrawRectangle(door.Width, door.Height, door.OuterLevelNumber, door.OuterLevelName);
+            if (result.IsFailure)
+            {
+                return Result.Fail(result.Error);
+            }
+
+            return Result.Ok();
+        }
+
+        /// <summary>Creates shaker euro 05.</summary>
+        /// <param name="door">The model.</param>
+        /// <returns>The new shaker euro 05.</returns>
+        private Result CreateShakerEuro05(ShakerEuro05 door)
+        {
+            // Outer panel
+            var result = this.DrawRectangle(door.Width, door.Height, door.OuterLevelNumber, door.OuterLevelName);
+            if (result.IsFailure)
+            {
+                return Result.Fail(result.Error);
+            }
+
+            return Result.Ok();
+        }
+
+        /// <summary>Creates a shaker.</summary>
+        /// <param name="door">The model.</param>
+        /// <returns>The new shaker.</returns>
+        private Result CreateShaker(Shaker door)
+        {
+            // Outer panel
+            var result = this.DrawRectangle(door.Width, door.Height, door.OuterLevelNumber, door.OuterLevelName);
+            if (result.IsFailure)
+            {
+                return Result.Fail(result.Error);
+            }
+
             return Result.Ok();
         }
 
@@ -57,20 +157,20 @@ namespace MDFDoors.Services
         ///
         /// <remarks>Mick George, 11/11/2017.</remarks>
         ///
-        /// <param name="model">The model.</param>
+        /// <param name="door">The model.</param>
         ///
         /// <returns>The new shaker elegance.</returns>
-        private Result CreateShakerElegance(ShakerElegance model)
+        private Result CreateShakerElegance(ShakerElegance door)
         {
             // Outer panel
-            var result = this.DrawRectangle(model.Width, model.Height, model.OuterLevelNumber, model.OuterLevelName);
+            var result = this.DrawRectangle(door.Width, door.Height, door.OuterLevelNumber, door.OuterLevelName);
             if (result.IsFailure)
             {
                 return Result.Fail(result.Error);
             }
 
             // Inner panel
-            result = this.DrawRectangle(model.InnerWidth, model.InnerHeight, model.InnerLevelNumber, model.InnerLevelName);
+            result = this.DrawRectangle(door.InnerWidth, door.InnerHeight, door.InnerLevelNumber, door.InnerLevelName);
             if (result.IsFailure)
             {
                 return Result.Fail(result.Error);

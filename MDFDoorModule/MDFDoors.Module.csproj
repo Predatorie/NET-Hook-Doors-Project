@@ -103,6 +103,7 @@
   <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\BaseDoor.cs" />
+    <Compile Include="Models\Shaker.cs" />
     <Compile Include="Models\ShakerCentry.cs" />
     <Compile Include="Models\ShakerCountry.cs" />
     <Compile Include="Models\ShakerElegance.cs" />
