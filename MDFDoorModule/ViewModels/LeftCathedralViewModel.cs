@@ -2,6 +2,8 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
+using MDFDoors.Module.Models;
+
 namespace MDFDoors.Module.ViewModels
 {
     using Shared.Models;

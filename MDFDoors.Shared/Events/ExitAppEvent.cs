@@ -6,7 +6,7 @@ namespace MDFDoors.Shared.Events
 {
     using Prism.Events;
 
-    public class ExitAppEvent : PubSubEvent
+    public class ExitAppEvent : PubSubEvent<bool>
     {        
     }
 }

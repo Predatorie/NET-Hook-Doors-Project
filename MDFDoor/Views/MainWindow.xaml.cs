@@ -2,12 +2,12 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-using MDFDoors.Shared.Events;
-
 namespace MDFDoors.Views
 {
     using System.Windows;
     using MahApps.Metro.Controls.Dialogs;
+    using Mastercam.IO;
+    using Shared.Events;
     using Prism.Events;
 
     /// <summary>
@@ -24,13 +24,21 @@ namespace MDFDoors.Views
         {
             this.InitializeComponent();
 
-            eventAggregator.GetEvent<ExitAppEvent>().Subscribe(this.OnExit);
+            eventAggregator.GetEvent<ExitAppEvent>().Subscribe(this.OnExitAndFitScreen);
         }
 
         /// <summary>Executes the exit action.</summary>
         ///
         /// <remarks>Mick George, 11/5/2017.</remarks>
-        private void OnExit() => this.Close();
+        private void OnExitAndFitScreen(bool fitScreen)
+        {
+            if (fitScreen)
+            {
+                GraphicsManager.FitScreen();
+            }
+
+            this.Close();
+        }
 
         /// <summary>Event handler. Called by MainWindow for on unloaded events.</summary>
         ///

@@ -4,16 +4,18 @@
 
 namespace MDFDoors.Module.ViewModels
 {
+    using System;
     using System.Linq;
     using MahApps.Metro.Controls.Dialogs;
-    using Shared.Localization;
+    using Mastercam.IO;
     using Microsoft.Practices.Unity;
+    using Models;
     using Prism.Events;
     using Prism.Mvvm;
     using Prism.Regions;
     using Shared;
     using Shared.Events;
-    using Shared.Models;
+    using Shared.Localization;
     using Shared.Services;
 
     public class ShakerEleganceViewModel : BindableBase, INavigationAware
@@ -34,6 +36,9 @@ namespace MDFDoors.Module.ViewModels
 
         /// <summary>The door type label.</summary>
         private string doorTypeLabel;
+
+        /// <summary>The model.</summary>
+        private ShakerElegance model;
 
         #endregion
 
@@ -65,12 +70,55 @@ namespace MDFDoors.Module.ViewModels
             this.geometryCreation = geometryCreation;
             this.dialogCoordinator = dialogCoordinator;
             this.serializationService = serializationService;
+
             this.Model = container.Resolve<ShakerElegance>();
+            this.InitializeToDefaults();
+        }
+
+        /// <summary>Initializes to defaults.</summary>
+        ///
+        /// <remarks>Mick George, 11/11/2017.</remarks>
+        private void InitializeToDefaults()
+        {
+            this.Model.OuterLevelName = "outer";
+            this.Model.InnerLevelName = "inner";
+            this.Model.GrooveLevelName = "grooves";
+            this.Model.OuterLevelNumber = 1;
+            this.Model.InnerLevelNumber = 2;
+            this.Model.GrooveLevelNumber = 3;
+
+            var metric = SettingsManager.Metric;
+            if (metric)
+            {
+                this.Model.Width = 406;
+                this.Model.Height = 508;
+                this.Model.TopRailWidth = 50;
+                this.Model.BottomRailWidth = 50;
+                this.Model.LeftStileWidth = 50;
+                this.Model.RightSideWidth = 50;
+                return;
+            }
+
+            this.Model.Width = 16;
+            this.Model.Height = 20;
+            this.Model.TopRailWidth = 2;
+            this.Model.BottomRailWidth = 2;
+            this.Model.LeftStileWidth = 2;
+            this.Model.RightSideWidth = 2;
         }
 
         #endregion
 
         #region Public Properties
+
+        /// <summary>Gets or sets the model.</summary>
+        ///
+        /// <value>The model.</value>
+        public ShakerElegance Model
+        {
+            get => this.model;
+            set => this.SetProperty(ref this.model, value);
+        }
 
         /// <summary>Gets or sets the type of the door.</summary>
         ///
@@ -79,117 +127,6 @@ namespace MDFDoors.Module.ViewModels
         {
             get => this.doorTypeLabel;
             set => this.SetProperty(ref this.doorTypeLabel, value);
-        }
-
-        /// <summary>The model.</summary>
-        internal ShakerElegance Model { get; private set; }
-
-        /// <summary>Gets or sets the height.</summary>
-        ///
-        /// <value>The height.</value>
-        public double Height
-        {
-            get => this.Model.Height;
-            set => this.Model.Height = value;
-        }
-
-        /// <summary>Gets or sets the width.</summary>
-        ///
-        /// <value>The width.</value>
-        public double Width
-        {
-            get => this.Model.Width;
-            set => this.Model.Width = value;
-        }
-
-        /// <summary>Gets or sets the width of the top rail.</summary>
-        ///
-        /// <value>The width of the top rail.</value>
-        public double TopRailWidth
-        {
-            get => this.Model.TopRailWidth;
-            set => this.Model.TopRailWidth = value;
-        }
-
-        /// <summary>Gets or sets the width of the bottom rail.</summary>
-        ///
-        /// <value>The width of the bottom rail.</value>
-        public double BottomRailWidth
-        {
-            get => this.Model.BottomRailWidth;
-            set => this.Model.BottomRailWidth = value;
-        }
-
-        /// <summary>Gets or sets the width of the left stile.</summary>
-        ///
-        /// <value>The width of the left stile.</value>
-        public double LeftStileWidth
-        {
-            get => this.Model.LeftStileWidth;
-            set => this.Model.LeftStileWidth = value;
-        }
-
-        /// <summary>Gets or sets the width of the right side.</summary>
-        ///
-        /// <value>The width of the right side.</value>
-        public double RightSideWidth
-        {
-            get => this.Model.RightSideWidth;
-            set => this.Model.RightSideWidth = value;
-        }
-
-        /// <summary>Gets or sets the groove level number.</summary>
-        ///
-        /// <value>The groove level number.</value>
-        public int GrooveLevelNumber
-        {
-            get => this.Model.GrooveLevelNumber;
-            set => this.Model.GrooveLevelNumber = value;
-        }
-
-        /// <summary>Gets or sets the name of the groove level.</summary>
-        ///
-        /// <value>The name of the groove level.</value>
-        public string GrooveLevelName
-        {
-            get => this.Model.GrooveLevelName;
-            set => this.Model.GrooveLevelName = value;
-        }
-
-        /// <summary>Gets or sets the outer level number.</summary>
-        ///
-        /// <value>The outer level number.</value>
-        public int OuterLevelNumber
-        {
-            get => this.Model.OuterLevelNumber;
-            set => this.Model.OuterLevelNumber = value;
-        }
-
-        /// <summary>Gets or sets the inner level number.</summary>
-        ///
-        /// <value>The inner level number.</value>
-        public int InnerLevelNumber
-        {
-            get => this.Model.InnerLevelNumber;
-            set => this.Model.InnerLevelNumber = value;
-        }
-
-        /// <summary>Gets or sets the name of the outer level.</summary>
-        ///
-        /// <value>The name of the outer level.</value>
-        public string OuterLevelName
-        {
-            get => this.Model.OuterLevelName;
-            set => this.Model.OuterLevelName = value;
-        }
-
-        /// <summary>Gets or sets the name of the inner level.</summary>
-        ///
-        /// <value>The name of the inner level.</value>
-        public string InnerLevelName
-        {
-            get => this.Model.InnerLevelName;
-            set => this.Model.InnerLevelName = value;
         }
 
         #endregion
@@ -206,9 +143,6 @@ namespace MDFDoors.Module.ViewModels
                 this.DoorTypeLabel = navigationContext.Parameters[NavigationParamIndexer.Name].ToString();
             }
 
-            // Subscribe to Model property change events
-            this.Model.PropertyChanged += this.OnModelPropertyChanged;
-
             // Subscribe to our events
             this.eventAggregator.GetEvent<SaveDoorStyleEvent>().Subscribe(this.OnSaveDoorStyle);
             this.eventAggregator.GetEvent<LoadDoorStyleEvent>().Subscribe(this.OnLoadDoorStyle);
@@ -224,9 +158,6 @@ namespace MDFDoors.Module.ViewModels
         /// <param name="navigationContext">    Context for the navigation. </param>
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            // UnSubscribe from Model property change events
-            this.Model.PropertyChanged -= this.OnModelPropertyChanged;
-
             // Unsubscribe from our events
             this.eventAggregator.GetEvent<SaveDoorStyleEvent>().Unsubscribe(this.OnSaveDoorStyle);
             this.eventAggregator.GetEvent<LoadDoorStyleEvent>().Unsubscribe(this.OnLoadDoorStyle);
@@ -242,51 +173,47 @@ namespace MDFDoors.Module.ViewModels
         /// <remarks>Mick George, 11/6/2017.</remarks>
         private async void OnCreateDoor()
         {
-            var result = this.geometryCreation.CreateShakerEleganceDoor(this.Model);
+            var result = this.geometryCreation.CreateDoor(this.Model);
             if (result.IsFailure)
             {
                 await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, result.Error);
                 return;
             }
 
-            // TODO: Exit once complete..?
-            this.eventAggregator.GetEvent<ExitAppEvent>().Publish();
+            this.eventAggregator.GetEvent<ExitAppEvent>().Publish(true);
         }
 
         /// <summary>Executes the load door style action.</summary>
         private async void OnLoadDoorStyle()
         {
             var result = this.serializationService.DeserializeDoorStyle<ShakerElegance>();
-            if (result.IsFailure)
+            if (result.IsSuccess)
             {
-                // string.empty means user cancelled prompt for file
-                if (!string.IsNullOrEmpty(result.Error))
-                {
-                    await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, result.Error);
-                    return;
-                }
+                this.Model = result.Value;
+                return;
             }
 
-            this.Model = result.Value;
+            if (!(result.Error.Equals(Enum.GetName(typeof(ApplicationState), ApplicationState.UserCancelledDialog))))
+            {
+                await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, result.Error);
+            }
         }
 
         /// <summary>Executes the save door style action.</summary>
         private async void OnSaveDoorStyle()
         {
-            var result = this.serializationService.SerializeDoorStyle<ShakerElegance>();
-            if (result.IsFailure)
+            var result = this.serializationService.SerializeDoorStyle<ShakerElegance>(this.Model);
+            if (result.IsSuccess)
+            {
+                await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, ApplicationStrings.DoorStyleSaved);
+                return;
+            }
+
+            if (!(result.Error.Equals(Enum.GetName(typeof(ApplicationState), ApplicationState.UserCancelledDialog))))
             {
                 await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, result.Error);
             }
-
-            await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, ApplicationStrings.DoorStyleSaved);
         }
-
-        /// <summary>Raises the system. component model. property changed event.</summary>
-        /// <param name="sender">Source of the event.</param>
-        /// <param name="e">     Event information to send to registered event handlers.</param>
-        private void OnModelPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-            => this.RaisePropertyChanged(nameof(e.PropertyName));
 
         #endregion
     }

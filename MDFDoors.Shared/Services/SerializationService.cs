@@ -6,6 +6,7 @@ namespace MDFDoors.Shared.Services
 {
     using System;
     using System.IO;
+    using Localization;
     using Models;
     using Newtonsoft.Json;
 
@@ -20,9 +21,9 @@ namespace MDFDoors.Shared.Services
 
         /// <summary>Serialize door style.</summary>
         /// <returns>A Result.</returns>
-        public Result SerializeDoorStyle<T>()
+        public Result SerializeDoorStyle<T>(object model)
         {
-            var result = this.Save<T>();
+            var result = this.Save<T>(model);
             return result.IsSuccess ? Result.Ok(result) : Result.Fail(result.Error);
         }
 
@@ -31,9 +32,7 @@ namespace MDFDoors.Shared.Services
         public Result<T> DeserializeDoorStyle<T>()
         {
             var result = this.Load<T>();
-            return result.IsSuccess ?
-                Result.Ok(result.Value) :
-                Result.Fail<T>(result.Error);
+            return result.IsSuccess ? Result.Ok(result.Value) : Result.Fail<T>(result.Error);
         }
     }
 
@@ -47,7 +46,7 @@ namespace MDFDoors.Shared.Services
 
         /// <summary>Saves the given style.</summary>
         /// <returns>A Result of true if success.</returns>
-        private Result Save<T>()
+        private Result Save<T>(object door)
         {
             // Get a location from disk
             var result = this.fileBrowser.SaveDoorStyleSettingsFile();
@@ -61,7 +60,7 @@ namespace MDFDoors.Shared.Services
             try
             {
                 // serialize the model
-                var model = JsonConvert.SerializeObject(typeof(T), Formatting.Indented);
+                var model = JsonConvert.SerializeObject(door, Formatting.Indented);
 
                 // Write it to disk
                 File.WriteAllText(file, model);
@@ -106,9 +105,7 @@ namespace MDFDoors.Shared.Services
                     var json = sr.ReadToEnd();
                     var model = JsonConvert.DeserializeObject<T>(json);
 
-                    return model == null || !model.Equals(typeof(T)) ?
-                        Result.Fail<T>("Wrong door style selected.") :
-                        Result.Ok(model);
+                    return model == null ? Result.Fail<T>(ApplicationStrings.WrongDoorStyleSelected) : Result.Ok(model);
                 }
             }
             catch (FileNotFoundException)
@@ -117,7 +114,7 @@ namespace MDFDoors.Shared.Services
             }
             catch (DirectoryNotFoundException)
             {
-                return Result.Fail<T>("Directory does not exist.");
+                return Result.Fail<T>(ApplicationStrings.DirDoesNotExist);
             }
             catch (IOException ex)
             {

@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+             dialogs:DialogParticipation.Register ="{Binding}" 
+             Unloaded="ShakerEleganceView_OnUnloaded"
              prism:ViewModelLocator.AutoWireViewModel="True">
 
     <UserControl.Resources>
@@ -68,9 +71,9 @@
                         <Label Margin="2" Grid.Column="0" Grid.Row="1" Content="Inner:" />
                         <Label Margin="2" Grid.Column="0" Grid.Row="2" Content="Grooves:" />
 
-                        <controls:NumericUpDown Value="{Binding OuterLevelNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Interval="1" Margin="2" Minimum="1" HasDecimals="False" Grid.Column="1" Grid.Row="0" x:Name="Outer" />
-                        <controls:NumericUpDown Value="{Binding InnerLevelNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Interval="1" Margin="2" Minimum="1" HasDecimals="False" Grid.Column="1" Grid.Row="1" x:Name="Inner" />
-                        <controls:NumericUpDown Value="{Binding GrooveLevelNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Interval="1" Margin="2" Minimum="1" HasDecimals="False" Grid.Column="1" Grid.Row="2" x:Name="Groove" />
+                        <controls:NumericUpDown Value="{Binding Model.OuterLevelNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Interval="1" Margin="2" Minimum="1" HasDecimals="False" Grid.Column="1" Grid.Row="0" x:Name="Outer" />
+                        <controls:NumericUpDown Value="{Binding Model.InnerLevelNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Interval="1" Margin="2" Minimum="1" HasDecimals="False" Grid.Column="1" Grid.Row="1" x:Name="Inner" />
+                        <controls:NumericUpDown Value="{Binding Model.GrooveLevelNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Interval="1" Margin="2" Minimum="1" HasDecimals="False" Grid.Column="1" Grid.Row="2" x:Name="Groove" />
 
                     </Grid>
 
@@ -90,9 +93,9 @@
                             <RowDefinition Height="35" />
                         </Grid.RowDefinitions>
 
-                        <TextBox Text="{Binding OuterLevelName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" controls:TextBoxHelper.ClearTextButton="True" controls:TextBoxHelper.Watermark="Level Name"  Margin="2" Grid.Column="0" Grid.Row="0"/>
-                        <TextBox Text="{Binding InnerLevelName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" controls:TextBoxHelper.ClearTextButton="True" controls:TextBoxHelper.Watermark="Level Name"  Margin="2" Grid.Column="0" Grid.Row="1"/>
-                        <TextBox Text="{Binding GrooveLevelName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" controls:TextBoxHelper.ClearTextButton="True" controls:TextBoxHelper.Watermark="Level Name"  Margin="2" Grid.Column="0" Grid.Row="2" />
+                        <TextBox Text="{Binding Model.OuterLevelName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" controls:TextBoxHelper.ClearTextButton="True" controls:TextBoxHelper.Watermark="Level Name"  Margin="2" Grid.Column="0" Grid.Row="0"/>
+                        <TextBox Text="{Binding Model.InnerLevelName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" controls:TextBoxHelper.ClearTextButton="True" controls:TextBoxHelper.Watermark="Level Name"  Margin="2" Grid.Column="0" Grid.Row="1"/>
+                        <TextBox Text="{Binding Model.GrooveLevelName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" controls:TextBoxHelper.ClearTextButton="True" controls:TextBoxHelper.Watermark="Level Name"  Margin="2" Grid.Column="0" Grid.Row="2" />
 
                     </Grid>
 
@@ -133,12 +136,12 @@
                     <Label Margin="2" Grid.Column="0" Grid.Row="4" Content="E:" />
                     <Label Margin="2" Grid.Column="0" Grid.Row="5" Content="F:" />
 
-                    <controls:NumericUpDown Value="{Binding Width, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="0" x:Name="ADimension" controls:TextBoxHelper.Watermark="Door Height"  />
-                    <controls:NumericUpDown Value="{Binding Height, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="1" x:Name="BDimension" controls:TextBoxHelper.Watermark="Door Width"  />
-                    <controls:NumericUpDown Value="{Binding TopRailWidth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="2" x:Name="CDimension" controls:TextBoxHelper.Watermark="Top Rail Width"  />
-                    <controls:NumericUpDown Value="{Binding BottomRailWidth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="3" x:Name="DDimension" controls:TextBoxHelper.Watermark="Bottom Rail Width" />
-                    <controls:NumericUpDown Value="{Binding LeftStileWidth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="4" x:Name="EDimension" controls:TextBoxHelper.Watermark="Left Stile Width" />
-                    <controls:NumericUpDown Value="{Binding RightSideWidth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="5" x:Name="FDimension" controls:TextBoxHelper.Watermark="Right Stile Width" />
+                    <controls:NumericUpDown Value="{Binding Model.Width, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="0" x:Name="ADimension" controls:TextBoxHelper.Watermark="Door Height"  />
+                    <controls:NumericUpDown Value="{Binding Model.Height, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="1" x:Name="BDimension" controls:TextBoxHelper.Watermark="Door Width"  />
+                    <controls:NumericUpDown Value="{Binding Model.TopRailWidth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="2" x:Name="CDimension" controls:TextBoxHelper.Watermark="Top Rail Width"  />
+                    <controls:NumericUpDown Value="{Binding Model.BottomRailWidth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="3" x:Name="DDimension" controls:TextBoxHelper.Watermark="Bottom Rail Width" />
+                    <controls:NumericUpDown Value="{Binding Model.LeftStileWidth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="4" x:Name="EDimension" controls:TextBoxHelper.Watermark="Left Stile Width" />
+                    <controls:NumericUpDown Value="{Binding Model.RightSideWidth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HasDecimals="True" Margin="2" Grid.Column="1" Grid.Row="5" x:Name="FDimension" controls:TextBoxHelper.Watermark="Right Stile Width" />
                 </Grid>
             </GroupBox>
         </Grid>

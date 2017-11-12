@@ -101,14 +101,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ApplicationStrings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Models\BaseDoor.cs" />
     <Compile Include="Models\Result.cs" />
-    <Compile Include="Models\ShakerElegance.cs" />
     <Compile Include="NavigationParamIndexer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regions.cs" />
     <Compile Include="Services\FileBrowserService.cs" />
-    <Compile Include="Services\GeometryCreationService.cs" />
     <Compile Include="Services\IFileBrowserService.cs" />
     <Compile Include="Services\IGeometryCreationService.cs" />
     <Compile Include="Services\ISerializationService.cs" />

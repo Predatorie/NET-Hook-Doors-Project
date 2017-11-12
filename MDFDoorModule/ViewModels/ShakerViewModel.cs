@@ -4,7 +4,7 @@
 
 namespace MDFDoors.Module.ViewModels
 {
-    using Shared.Models;
+    using Models;
     using Prism.Regions;
 
     public class ShakerViewModel : BaseDoor, INavigationAware

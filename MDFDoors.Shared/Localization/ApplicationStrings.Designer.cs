@@ -61,6 +61,15 @@ namespace MDFDoors.Shared.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Directory does not exist..
+        /// </summary>
+        public static string DirDoesNotExist {
+            get {
+                return ResourceManager.GetString("DirDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Door Style Saved..
         /// </summary>
         public static string DoorStyleSaved {
@@ -70,11 +79,38 @@ namespace MDFDoors.Shared.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Door Style.
+        /// </summary>
+        public static string LoadDoorStyle {
+            get {
+                return ResourceManager.GetString("LoadDoorStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Door Style.
+        /// </summary>
+        public static string SaveDoorStyle {
+            get {
+                return ResourceManager.GetString("SaveDoorStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MDFDoors.
         /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong door style selected..
+        /// </summary>
+        public static string WrongDoorStyleSelected {
+            get {
+                return ResourceManager.GetString("WrongDoorStyleSelected", resourceCulture);
             }
         }
     }

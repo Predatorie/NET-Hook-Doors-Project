@@ -117,10 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DirDoesNotExist" xml:space="preserve">
+    <value>Directory does not exist.</value>
+  </data>
   <data name="DoorStyleSaved" xml:space="preserve">
     <value>Door Style Saved.</value>
   </data>
+  <data name="LoadDoorStyle" xml:space="preserve">
+    <value>Select Door Style</value>
+  </data>
+  <data name="SaveDoorStyle" xml:space="preserve">
+    <value>Save Door Style</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>MDFDoors</value>
+  </data>
+  <data name="WrongDoorStyleSelected" xml:space="preserve">
+    <value>Wrong door style selected.</value>
   </data>
 </root>

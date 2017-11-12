@@ -110,6 +110,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\GeometryCreationService.cs" />
     <Compile Include="ViewModels\CommandButtonsViewModel.cs" />
     <Compile Include="Views\CommandButtonsView.xaml.cs">
       <DependentUpon>CommandButtonsView.xaml</DependentUpon>
@@ -230,9 +231,7 @@
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)$(OutDir)$(TargetName).dll" "D:\Program Files\Mcam2018\chooks\MDF"</PostBuildEvent>

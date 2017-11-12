@@ -70,7 +70,7 @@ namespace MDFDoors.Shared.Factories
                 case DoorStyles.ShakerEuro05:
                     return DoorNames.ShakerEuro05;
                 case DoorStyles.ShakerExotic:
-                    return DoorNames.Exotic;
+                    return DoorNames.ShakerExotic;
                 case DoorStyles.ShakerFinest:
                     return DoorNames.ShakerFinest;
                 case DoorStyles.Shaker:

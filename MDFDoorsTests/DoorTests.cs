@@ -90,7 +90,7 @@ namespace MDFDoors.Tests
             var view = this.viewFactory.View(DoorStyles.ShakerCountry);
 
             Assert.IsTrue(view.IsSuccess);
-            Assert.IsInstanceOfType(view.Value, typeof(Module.Views.ShakerCountryView));
+            Assert.IsInstanceOfType(view.Value, typeof(ShakerCountryView));
         }
 
         /// <summary>(Unit Test Method) request shaker euro 05 returns shaker euro 05.</summary>
@@ -197,7 +197,7 @@ namespace MDFDoors.Tests
 
             Assert.IsTrue(navigationParameters.Count() == 3);
             Assert.IsInstanceOfType(navigationParameters[NavigationParamIndexer.Style], typeof(DoorStyles));
-            Assert.IsTrue(ReferenceEquals(navigationParameters[NavigationParamIndexer.Name], DoorNames.Exotic));
+            Assert.IsTrue(ReferenceEquals(navigationParameters[NavigationParamIndexer.Name], DoorNames.ShakerExotic));
         }
 
         #endregion

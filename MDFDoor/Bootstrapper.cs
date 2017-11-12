@@ -3,6 +3,7 @@
 // </copyright>
 
 using MahApps.Metro.Controls.Dialogs;
+using MDFDoors.Services;
 
 namespace MDFDoors
 {

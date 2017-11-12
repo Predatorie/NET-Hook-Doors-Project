@@ -8,6 +8,6 @@ namespace MDFDoors.Shared.Services
 
     public interface IGeometryCreationService
     {
-        Result CreateShakerEleganceDoor(ShakerElegance door);
+        Result CreateDoor(object model);
     }
 }

@@ -4,8 +4,10 @@
 
 namespace MDFDoors.Shared.Services
 {
+    using System;
     using System.Windows.Forms;
     using Mastercam.IO;
+    using Localization;
     using Models;
 
     public class FileBrowserService : IFileBrowserService
@@ -20,13 +22,14 @@ namespace MDFDoors.Shared.Services
                 dlg.Filter = @"Door Style (*.xml)|*.xml";
                 dlg.CheckFileExists = true;
                 dlg.Multiselect = false;
+                dlg.Title = ApplicationStrings.LoadDoorStyle;
 
                 switch (dlg.ShowDialog())
                 {
                     case DialogResult.OK:
                         return Result.Ok(dlg.FileName);
                     default:
-                        return Result.Fail<string>(string.Empty);
+                        return Result.Fail<string>(Enum.GetName(typeof(ApplicationState), ApplicationState.UserCancelledDialog));
                 }
             }
         }
@@ -41,13 +44,14 @@ namespace MDFDoors.Shared.Services
                 dlg.OverwritePrompt = true;
                 dlg.InitialDirectory = SettingsManager.SharedDirectory;
                 dlg.Filter = @"Door Style (*.xml)|*.xml";
+                dlg.Title = ApplicationStrings.SaveDoorStyle;
 
                 switch (dlg.ShowDialog())
                 {
                     case DialogResult.OK:
                         return Result.Ok(dlg.FileName);
                     default:
-                        return Result.Fail<string>(string.Empty);
+                        return Result.Fail<string>(Enum.GetName(typeof(ApplicationState), ApplicationState.UserCancelledDialog));
                 }
             }
         }

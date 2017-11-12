@@ -61,7 +61,7 @@ namespace MDFDoors.ViewModels
         /// <summary>Executes the exit command action.</summary>
         ///
         /// <remarks>Mick George, 11/5/2017.</remarks>
-        private void OnExitCommand() => this.eventAggregator.GetEvent<ExitAppEvent>().Publish();
+        private void OnExitCommand() => this.eventAggregator.GetEvent<ExitAppEvent>().Publish(false);
 
         /// <summary>Executes the load command action.</summary>
         ///

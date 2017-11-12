@@ -14,4 +14,9 @@ namespace MDFDoors.Shared
         ShakerFinest,
         Shaker
     }
+
+    public enum ApplicationState
+    {
+        UserCancelledDialog
+    }
 }

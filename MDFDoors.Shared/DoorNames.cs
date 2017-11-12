@@ -25,6 +25,6 @@ namespace MDFDoors.Shared
         public const string Shaker = "Shaker";
 
         /// <summary>The exotic.</summary>
-        public const string Exotic = "Shaker Exotic";
+        public const string ShakerExotic = "Shaker Exotic";
     }
 }
