@@ -2,13 +2,12 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-using MDFDoors.Shared.Events;
-
 namespace MDFDoors.ViewModels
 {
     using Prism.Commands;
     using Prism.Events;
     using Prism.Mvvm;
+    using Shared.Events;
 
     public class CommandButtonsViewModel : BindableBase
     {
@@ -33,6 +32,7 @@ namespace MDFDoors.ViewModels
             this.SaveCommand = new DelegateCommand(this.OnSaveCommand);
             this.LoadCommand = new DelegateCommand(this.OnLoadCommand);
             this.ExitCommand = new DelegateCommand(this.OnExitCommand);
+            this.DrawCommand = new DelegateCommand(this.OnDrawCommand, this.CanDrawCommand);
         }
 
         #endregion
@@ -54,9 +54,27 @@ namespace MDFDoors.ViewModels
         /// <value>The exite command.</value>
         public DelegateCommand ExitCommand { get; private set; }
 
+        /// <summary>Gets or sets the draw command.</summary>
+        ///
+        /// <value>The draw command.</value>
+        public DelegateCommand DrawCommand { get; private set; }
+
         #endregion
 
         #region Private Methods
+
+
+        /// <summary>Determine if we can draw command.</summary>
+        ///
+        /// <remarks>Assume we can for now, look to implement some verification</remarks>
+        ///
+        /// <returns>True if we can draw command, false if not.</returns>
+        private bool CanDrawCommand() => true;
+
+        /// <summary>Executes the draw command action.</summary>
+        ///
+        /// <remarks>Mick George, 11/16/2017.</remarks>
+        private void OnDrawCommand() => this.eventAggregator.GetEvent<CreateDoorEvent>().Publish();
 
         /// <summary>Executes the exit command action.</summary>
         ///

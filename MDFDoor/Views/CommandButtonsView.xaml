@@ -16,6 +16,9 @@
         <Button Style="{DynamicResource SquareButtonStyle}" Command="{Binding LoadCommand}"
                 Height="35" Width="125" Content="Load Style" Margin="4"  />
 
+        <Button Style="{DynamicResource SquareButtonStyle}" Command="{Binding DrawCommand}"
+                Height="35" Width="125" Content="Draw" Margin="4"  />
+        
         <Button Style="{DynamicResource SquareButtonStyle}" Command="{Binding ExitCommand}"
                 Height="35" Width="125" Content="Exit" Margin="4"  />
     </StackPanel>
