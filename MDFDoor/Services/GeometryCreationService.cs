@@ -26,43 +26,49 @@ namespace MDFDoors.Services
         public Result CreateDoor(object model)
         {
             // TODO: Re-factor
-
-            if (model.GetType() == typeof(ShakerElegance))
+            
+            // File New
+            if (FileManager.New(true))
             {
-                return this.CreateShakerElegance((ShakerElegance)model);
+                if (model.GetType() == typeof(ShakerElegance))
+                {
+                    return this.CreateShakerElegance((ShakerElegance)model);
+                }
+
+                if (model.GetType() == typeof(ShakerCountry))
+                {
+                    return this.CreateShakerCountry((ShakerCountry)model);
+                }
+
+                if (model.GetType() == typeof(ShakerCentry))
+                {
+                    return this.CreateShakerCentry((ShakerCentry)model);
+                }
+
+                if (model.GetType() == typeof(Shaker))
+                {
+                    return this.CreateShaker((Shaker)model);
+                }
+
+                if (model.GetType() == typeof(ShakerEuro05))
+                {
+                    return this.CreateShakerEuro05((ShakerEuro05)model);
+                }
+
+                if (model.GetType() == typeof(ShakerExotic))
+                {
+                    return this.CreateShakerExotic((ShakerExotic)model);
+                }
+
+                if (model.GetType() == typeof(ShakerFinest))
+                {
+                    return this.CreateShakerFinest((ShakerFinest)model);
+                }
+
+                return Result.Fail($"Unkown Door Style {model.ToString()}");
             }
 
-            if (model.GetType() == typeof(ShakerCountry))
-            {
-                return this.CreateShakerCountry((ShakerCountry)model);
-            }
-
-            if (model.GetType() == typeof(ShakerCentry))
-            {
-                return this.CreateShakerCentry((ShakerCentry)model);
-            }
-
-            if (model.GetType() == typeof(Shaker))
-            {
-                return this.CreateShaker((Shaker)model);
-            }
-
-            if (model.GetType() == typeof(ShakerEuro05))
-            {
-                return this.CreateShakerEuro05((ShakerEuro05)model);
-            }
-
-            if (model.GetType() == typeof(ShakerExotic))
-            {
-                return this.CreateShakerExotic((ShakerExotic)model);
-            }
-
-            if (model.GetType() == typeof(ShakerFinest))
-            {
-                return this.CreateShakerFinest((ShakerFinest)model);
-            }
-
-            return Result.Fail($"Unkown Door Style {model.ToString()}");
+            return Result.Fail("User cancelled");
         }
 
         /// <summary>Creates shaker centry.</summary>
