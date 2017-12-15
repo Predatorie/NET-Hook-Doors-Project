@@ -13,8 +13,8 @@
         RightWindowCommandsOverlayBehavior="HiddenTitleBar"
         Unloaded="MainWindow_OnUnloaded"                      
         Title="{Binding Title}" 
-        MinHeight="900" 
-        MinWidth="1250">
+        Height="800" 
+        Width="1100">
 
     <!--Set the Application ResourceDictionary-->
     <controls:MetroWindow.Resources>
