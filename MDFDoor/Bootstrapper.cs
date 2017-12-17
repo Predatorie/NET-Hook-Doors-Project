@@ -4,6 +4,7 @@
 
 using MahApps.Metro.Controls.Dialogs;
 using MDFDoors.Services;
+using MDFDoors.ViewModels;
 
 namespace MDFDoors
 {
@@ -77,6 +78,8 @@ namespace MDFDoors
 
             this.Container.RegisterType<IGeometryCreationService,
                 GeometryCreationService>(new ContainerControlledLifetimeManager());
+
+            this.Container.RegisterType(typeof(MultipleCopiesView), new TransientLifetimeManager());
         }
 
         /// <summary>

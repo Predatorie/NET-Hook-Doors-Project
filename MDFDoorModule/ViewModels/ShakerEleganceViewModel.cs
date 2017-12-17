@@ -2,6 +2,9 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
+using MahApps.Metro.SimpleChildWindow;
+using MDFDoors.Shared.Models;
+
 namespace MDFDoors.Module.ViewModels
 {
     using System;
@@ -34,11 +37,20 @@ namespace MDFDoors.Module.ViewModels
         /// <summary>The serialization service.</summary>
         private readonly ISerializationService serializationService;
 
+        /// <summary>The unity container.</summary>
+        private readonly IUnityContainer unityContainer;
+
         /// <summary>The door type label.</summary>
         private string doorTypeLabel;
 
         /// <summary>The model.</summary>
         private ShakerElegance model;
+
+        /// <summary>True to create multiple copies.</summary>
+        private bool createMultipleCopies;
+
+        /// <summary>Information describing the multiple copies.</summary>
+        private MultipleCopiesData multipleCopiesData;
 
         #endregion
 
@@ -70,43 +82,12 @@ namespace MDFDoors.Module.ViewModels
             this.geometryCreation = geometryCreation;
             this.dialogCoordinator = dialogCoordinator;
             this.serializationService = serializationService;
+            this.unityContainer = container;
 
-            this.Model = container.Resolve<ShakerElegance>();
+            this.Model = this.unityContainer.Resolve<ShakerElegance>();
             this.InitializeToDefaults();
         }
-
-        /// <summary>Initializes to defaults.</summary>
-        ///
-        /// <remarks>Mick George, 11/11/2017.</remarks>
-        private void InitializeToDefaults()
-        {
-            this.Model.OuterLevelName = "outer";
-            this.Model.InnerLevelName = "inner";
-            this.Model.GrooveLevelName = "grooves";
-            this.Model.OuterLevelNumber = 1;
-            this.Model.InnerLevelNumber = 2;
-            this.Model.GrooveLevelNumber = 3;
-
-            var metric = SettingsManager.Metric;
-            if (metric)
-            {
-                this.Model.Width = 406;
-                this.Model.Height = 508;
-                this.Model.TopRailWidth = 50;
-                this.Model.BottomRailWidth = 50;
-                this.Model.LeftStileWidth = 50;
-                this.Model.RightSideWidth = 50;
-                return;
-            }
-
-            this.Model.Width = 16;
-            this.Model.Height = 20;
-            this.Model.TopRailWidth = 2;
-            this.Model.BottomRailWidth = 2;
-            this.Model.LeftStileWidth = 2;
-            this.Model.RightSideWidth = 2;
-        }
-
+      
         #endregion
 
         #region Public Properties
@@ -147,6 +128,7 @@ namespace MDFDoors.Module.ViewModels
             this.eventAggregator.GetEvent<SaveDoorStyleEvent>().Subscribe(this.OnSaveDoorStyle);
             this.eventAggregator.GetEvent<LoadDoorStyleEvent>().Subscribe(this.OnLoadDoorStyle);
             this.eventAggregator.GetEvent<CreateDoorEvent>().Subscribe(this.OnCreateDoor);
+            this.eventAggregator.GetEvent<DrawMultipleCopiesEvent>().Subscribe(this.DrawMultipleCopies);
         }
 
         /// <summary>   Query if 'navigationContext' is navigation target. </summary>
@@ -162,11 +144,49 @@ namespace MDFDoors.Module.ViewModels
             this.eventAggregator.GetEvent<SaveDoorStyleEvent>().Unsubscribe(this.OnSaveDoorStyle);
             this.eventAggregator.GetEvent<LoadDoorStyleEvent>().Unsubscribe(this.OnLoadDoorStyle);
             this.eventAggregator.GetEvent<CreateDoorEvent>().Unsubscribe(this.OnCreateDoor);
+            this.eventAggregator.GetEvent<DrawMultipleCopiesEvent>().Unsubscribe(this.DrawMultipleCopies);
         }
 
         #endregion
 
         #region Private Methods
+
+        /// <summary>Draw multiple copies.</summary>
+        /// <param name="data">The data.</param>
+        private void DrawMultipleCopies(MultipleCopiesData data) => this.multipleCopiesData = data;
+
+        /// <summary>Initializes to defaults.</summary>
+        private void InitializeToDefaults()
+        {
+            this.Model.OuterLevelName = "outer";
+            this.Model.InnerLevelName = "inner";
+            this.Model.GrooveLevelName = "grooves";
+            this.Model.OuterLevelNumber = 1;
+            this.Model.InnerLevelNumber = 2;
+            this.Model.GrooveLevelNumber = 3;
+
+            this.createMultipleCopies = false;
+            this.multipleCopiesData = null;
+
+            var metric = SettingsManager.Metric;
+            if (metric)
+            {
+                this.Model.Width = 406;
+                this.Model.Height = 508;
+                this.Model.TopRailWidth = 50;
+                this.Model.BottomRailWidth = 50;
+                this.Model.LeftStileWidth = 50;
+                this.Model.RightSideWidth = 50;
+                return;
+            }
+
+            this.Model.Width = 16;
+            this.Model.Height = 20;
+            this.Model.TopRailWidth = 2;
+            this.Model.BottomRailWidth = 2;
+            this.Model.LeftStileWidth = 2;
+            this.Model.RightSideWidth = 2;
+        }
 
         /// <summary>Executes the create door action.</summary>
         ///

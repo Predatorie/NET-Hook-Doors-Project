@@ -4,11 +4,11 @@
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:mdfDoors="clr-namespace:MDFDoors"
         xmlns:dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+        xmlns:views="clr-namespace:MDFDoors.Views"
         dialogs:DialogParticipation.Register ="{Binding}"                      
         WindowState="Normal"   
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip"     
         RightWindowCommandsOverlayBehavior="HiddenTitleBar"
         Unloaded="MainWindow_OnUnloaded"                      
@@ -16,9 +16,10 @@
         Height="800" 
         Width="1100">
 
+    
     <!--Set the Application ResourceDictionary-->
     <controls:MetroWindow.Resources>
-        <ResourceDictionary Source="../MDFDoorsResource.xaml" />
+            <ResourceDictionary Source="../MDFDoorsResource.xaml" />
     </controls:MetroWindow.Resources>
 
     <controls:MetroWindow.RightWindowCommands>

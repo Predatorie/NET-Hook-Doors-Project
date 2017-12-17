@@ -9,5 +9,9 @@ namespace MDFDoors.Shared.Services
     public interface IGeometryCreationService
     {
         Result CreateDoor(object model);
+
+        Result CreateDoorMultipleCopies(object model, MultipleCopiesData data);
+
+        Result CreateDoorMultipleCopiesExcel(object model, ExcelData data);
     }
 }

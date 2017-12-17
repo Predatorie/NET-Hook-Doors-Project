@@ -28,16 +28,18 @@ namespace MDFDoors.ViewModels
 	    {
 		    this.Title = ApplicationStrings.Title;
 		    this.SettingsCommand = new DelegateCommand<Flyout>(ToggleSettingsDisplay);
-	    } 
 
-		#endregion
+            //var dialog = (BaseMetroDialog)this.Resources["MultipleCopies"];
+        }
 
-		#region Public Commands
+        #endregion
 
-		/// <summary>
-		/// The Settings Command
-		/// </summary>
-		public DelegateCommand<Flyout> SettingsCommand { get; private set; }
+        #region Public Commands
+
+        /// <summary>
+        /// The Settings Command
+        /// </summary>
+        public DelegateCommand<Flyout> SettingsCommand { get; private set; }
 
         #endregion
 

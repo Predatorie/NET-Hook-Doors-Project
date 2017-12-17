@@ -4,6 +4,9 @@
 
 namespace MDFDoors.ViewModels
 {
+    using MahApps.Metro.Controls.Dialogs;
+    using Views;
+    using Microsoft.Practices.Unity;
     using Prism.Commands;
     using Prism.Events;
     using Prism.Mvvm;
@@ -16,23 +19,36 @@ namespace MDFDoors.ViewModels
         /// <summary>The event aggregator.</summary>
         private readonly IEventAggregator eventAggregator;
 
+        /// <summary>The dialog coordinator.</summary>
+        private readonly IDialogCoordinator dialogCoordinator;
+
+        /// <summary>The unity container.</summary>
+        private readonly IUnityContainer unityContainer;
+
+        /// <summary>The custom dialog.</summary>
+        private CustomDialog customDialog;
+
         #endregion
 
         #region Construction
 
         /// <summary>Constructor.</summary>
-        ///
-        /// <remarks>Mick George, 11/5/2017.</remarks>
-        ///
-        /// <param name="eventAggregator">The event aggregator.</param>
-        public CommandButtonsViewModel(IEventAggregator eventAggregator)
+        /// <param name="eventAggregator">  The event aggregator.</param>
+        /// <param name="dialogCoordinator">The dialog coordinator.</param>
+        /// <param name="unityContainer">   The unity container.</param>
+        public CommandButtonsViewModel(IEventAggregator eventAggregator, IDialogCoordinator dialogCoordinator, IUnityContainer unityContainer)
         {
             this.eventAggregator = eventAggregator;
+            this.dialogCoordinator = dialogCoordinator;
+            this.unityContainer = unityContainer;
+
+            this.eventAggregator.GetEvent<CloseMultipleCopiesViewEvent>().Subscribe(this.CloseMultipleCopiesView);
 
             this.SaveCommand = new DelegateCommand(this.OnSaveCommand);
             this.LoadCommand = new DelegateCommand(this.OnLoadCommand);
             this.ExitCommand = new DelegateCommand(this.OnExitCommand);
             this.DrawCommand = new DelegateCommand(this.OnDrawCommand, this.CanDrawCommand);
+            this.MultipleCopiesCommand = new DelegateCommand(this.ShowMultipleCopiesView);
         }
 
         #endregion
@@ -59,10 +75,36 @@ namespace MDFDoors.ViewModels
         /// <value>The draw command.</value>
         public DelegateCommand DrawCommand { get; private set; }
 
+        /// <summary>Gets or sets the multiple copies command.</summary>
+        ///
+        /// <value>The multiple copies command.</value>
+        public DelegateCommand MultipleCopiesCommand { get; private set; }
+
         #endregion
 
         #region Private Methods
 
+        /// <summary>Executes the multiple copies command action.</summary>
+        private async void ShowMultipleCopiesView()
+        {
+            this.customDialog = new CustomDialog();
+            var multiDialog = this.unityContainer.Resolve(typeof(MultipleCopiesView));
+
+            this.customDialog.Content = multiDialog;
+            await this.dialogCoordinator.ShowMetroDialogAsync(this, this.customDialog);
+        }
+
+        /// <summary>Closes multiple copies dialog.</summary>
+        private async void CloseMultipleCopiesView()
+        {
+            if (this.customDialog != null)
+            {
+                await this.dialogCoordinator.HideMetroDialogAsync(this, this.customDialog);
+            }
+
+            // Reset
+            this.customDialog = null;
+        }
 
         /// <summary>Determine if we can draw command.</summary>
         ///

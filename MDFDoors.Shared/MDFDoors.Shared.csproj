@@ -89,9 +89,12 @@
   <ItemGroup>
     <Compile Include="ApplicationEnums.cs" />
     <Compile Include="DoorNames.cs" />
+    <Compile Include="Events\CloseMultipleCopiesViewEvent.cs" />
     <Compile Include="Events\CreateDoorEvent.cs" />
+    <Compile Include="Events\DrawMultipleCopiesEvent.cs" />
     <Compile Include="Events\ExitAppEvent.cs" />
     <Compile Include="Events\LoadDoorStyleEvent.cs" />
+    <Compile Include="Events\ShowMultipleCopiesViewEvent.cs" />
     <Compile Include="Events\SaveDoorStyleEvent.cs" />
     <Compile Include="Factories\INavigationParametersFactory.cs" />
     <Compile Include="Factories\IViewFactory.cs" />
@@ -101,6 +104,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ApplicationStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CopiesData.cs" />
+    <Compile Include="Models\ExcelData.cs" />
+    <Compile Include="Models\MultipleCopiesData.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="NavigationParamIndexer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

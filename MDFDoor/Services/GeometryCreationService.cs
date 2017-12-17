@@ -26,7 +26,7 @@ namespace MDFDoors.Services
         public Result CreateDoor(object model)
         {
             // TODO: Re-factor
-            
+
             // File New
             if (FileManager.New(true))
             {
@@ -69,6 +69,36 @@ namespace MDFDoors.Services
             }
 
             return Result.Fail("User cancelled");
+        }
+
+        /// <summary>Creates door multiple copies.</summary>
+        /// <param name="model">The model.</param>
+        /// <param name="data"> The data.</param>
+        /// <returns>The new door multiple copies.</returns>
+        public Result CreateDoorMultipleCopies(object model, MultipleCopiesData data)
+        {
+            // File New
+            if (FileManager.New(true))
+            {
+
+            }
+
+            return Result.Ok();
+        }
+
+        /// <summary>Creates door multiple copies excel.</summary>
+        /// <param name="model">The model.</param>
+        /// <param name="data"> The data.</param>
+        /// <returns>The new door multiple copies excel.</returns>
+        public Result CreateDoorMultipleCopiesExcel(object model, ExcelData data)
+        {
+            // File New
+            if (FileManager.New(true))
+            {
+
+            }
+
+            return Result.Ok();
         }
 
         /// <summary>Creates shaker centry.</summary>
@@ -200,12 +230,7 @@ namespace MDFDoors.Services
 
             // Grooves
             result = this.DrawShakerEleganceGrooves(door);
-            if (result.IsFailure)
-            {
-                return Result.Fail(result.Error);
-            }
-
-            return Result.Ok();
+            return result.IsFailure ? Result.Fail(result.Error) : Result.Ok();
         }
 
         /// <summary>Draw shaker elegance grooves.</summary>
