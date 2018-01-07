@@ -66,7 +66,7 @@ namespace MDFDoors.Tests
             var view = this.viewFactory.View(DoorStyles.ShakerExotic);
 
             Assert.IsTrue(view.IsSuccess);
-            Assert.IsInstanceOfType(view.Value, typeof(Module.Views.ShakerExoticView));
+            Assert.IsInstanceOfType(view.Value, typeof(ShakerExoticView));
         }
 
         /// <summary>(Unit Test Method) request shaker returns shaker.</summary>
@@ -78,7 +78,7 @@ namespace MDFDoors.Tests
             var view = this.viewFactory.View(DoorStyles.Shaker);
 
             Assert.IsTrue(view.IsSuccess);
-            Assert.IsInstanceOfType(view.Value, typeof(Module.Views.ShakerView));
+            Assert.IsInstanceOfType(view.Value, typeof(ShakerView));
         }
 
         /// <summary>(Unit Test Method) request shaker country returns shaker country.</summary>

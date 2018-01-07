@@ -213,7 +213,7 @@ namespace MDFDoors.Module.ViewModels
                 return;
             }
 
-            if (!(result.Error.Equals(Enum.GetName(typeof(ApplicationState), ApplicationState.UserCancelledDialog))))
+            if (!result.Error.Equals(Enum.GetName(typeof(ApplicationState), ApplicationState.UserCancelledDialog)))
             {
                 await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, result.Error);
             }
@@ -229,7 +229,7 @@ namespace MDFDoors.Module.ViewModels
                 return;
             }
 
-            if (!(result.Error.Equals(Enum.GetName(typeof(ApplicationState), ApplicationState.UserCancelledDialog))))
+            if (!result.Error.Equals(Enum.GetName(typeof(ApplicationState), ApplicationState.UserCancelledDialog)))
             {
                 await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, result.Error);
             }

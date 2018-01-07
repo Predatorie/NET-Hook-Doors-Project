@@ -15,7 +15,8 @@ namespace MDFDoors.Shared.Services
     /// <remarks>Mick George, 11/6/2017.</remarks>
     public partial class SerializationService : ISerializationService
     {
-        /// <summary>Constructor.</summary>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SerializationService"/> class.Constructor.</summary>
         /// <param name="fileBrowser">The file browser.</param>
         public SerializationService(IFileBrowserService fileBrowser) => this.fileBrowser = fileBrowser;
 

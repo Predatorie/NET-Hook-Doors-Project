@@ -43,13 +43,13 @@ namespace MDFDoors.Module.Models
         /// <value>The width of the right side.</value>
         public double RightSideWidth { get; set; }
 
-        /// <summary>Width of the inner.</summary>
+        /// <summary>Gets width of the inner.</summary>
         public double InnerWidth => this.Width - (this.LeftStileWidth + this.RightSideWidth);
 
-        /// <summary>Height of the inner.</summary>
+        /// <summary>Gets height of the inner.</summary>
         public double InnerHeight => this.Height - (this.TopRailWidth + this.BottomRailWidth);
 
-        /// <summary>The style.</summary>
+        /// <summary>Gets the style.</summary>
         public DoorStyles Style => DoorStyles.ShakerElegance;
 
         /// <summary>Convert this object into a string representation.</summary>

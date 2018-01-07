@@ -2,22 +2,20 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-using MahApps.Metro.Controls.Dialogs;
-using MDFDoors.Services;
-using MDFDoors.ViewModels;
-
 namespace MDFDoors
 {
     using System.Windows;
     using Factories;
-    using Shared.Services;
+    using MahApps.Metro.Controls.Dialogs;
     using Microsoft.Practices.Unity;
     using Module;
     using Prism.Modularity;
     using Prism.Regions;
     using Prism.Unity;
+    using Services;
     using Shared;
     using Shared.Factories;
+    using Shared.Services;
     using Views;
 
     internal class Bootstrapper : UnityBootstrapper
@@ -78,6 +76,9 @@ namespace MDFDoors
 
             this.Container.RegisterType<IGeometryCreationService,
                 GeometryCreationService>(new ContainerControlledLifetimeManager());
+
+            this.Container.RegisterType<IExcelService,
+                ExcelService>(new ContainerControlledLifetimeManager());
 
             this.Container.RegisterType(typeof(MultipleCopiesView), new TransientLifetimeManager());
         }

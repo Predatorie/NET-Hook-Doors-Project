@@ -99,6 +99,7 @@
     <Compile Include="Factories\INavigationParametersFactory.cs" />
     <Compile Include="Factories\IViewFactory.cs" />
     <Compile Include="Factories\NavigationParametersFactory.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Localization\ApplicationStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -111,7 +112,9 @@
     <Compile Include="NavigationParamIndexer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regions.cs" />
+    <Compile Include="Services\ExcelService.cs" />
     <Compile Include="Services\FileBrowserService.cs" />
+    <Compile Include="Services\IExcelService.cs" />
     <Compile Include="Services\IFileBrowserService.cs" />
     <Compile Include="Services\IGeometryCreationService.cs" />
     <Compile Include="Services\ISerializationService.cs" />
