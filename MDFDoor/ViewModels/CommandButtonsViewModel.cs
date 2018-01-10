@@ -5,12 +5,12 @@
 namespace MDFDoors.ViewModels
 {
     using MahApps.Metro.Controls.Dialogs;
-    using Views;
     using Microsoft.Practices.Unity;
     using Prism.Commands;
     using Prism.Events;
     using Prism.Mvvm;
     using Shared.Events;
+    using Views;
 
     public class CommandButtonsViewModel : BindableBase
     {
@@ -32,7 +32,8 @@ namespace MDFDoors.ViewModels
 
         #region Construction
 
-        /// <summary>Constructor.</summary>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandButtonsViewModel"/> class.Constructor.</summary>
         /// <param name="eventAggregator">  The event aggregator.</param>
         /// <param name="dialogCoordinator">The dialog coordinator.</param>
         /// <param name="unityContainer">   The unity container.</param>
@@ -49,36 +50,42 @@ namespace MDFDoors.ViewModels
             this.ExitCommand = new DelegateCommand(this.OnExitCommand);
             this.DrawCommand = new DelegateCommand(this.OnDrawCommand, this.CanDrawCommand);
             this.MultipleCopiesCommand = new DelegateCommand(this.ShowMultipleCopiesView);
+            this.SpreadSheetCommand = new DelegateCommand(this.OnSpreadSheetCommand);
         }
 
         #endregion
 
         #region Public Commands
 
-        /// <summary>Gets or sets the save command.</summary>
+        /// <summary>Gets the save command.</summary>
         ///
         /// <value>The save command.</value>
         public DelegateCommand SaveCommand { get; private set; }
 
-        /// <summary>Gets or sets the load command.</summary>
+        /// <summary>Gets the load command.</summary>
         ///
         /// <value>The load command.</value>
         public DelegateCommand LoadCommand { get; private set; }
 
-        /// <summary>Gets or sets the exite command.</summary>
+        /// <summary>Gets the exite command.</summary>
         ///
         /// <value>The exite command.</value>
         public DelegateCommand ExitCommand { get; private set; }
 
-        /// <summary>Gets or sets the draw command.</summary>
+        /// <summary>Gets the draw command.</summary>
         ///
         /// <value>The draw command.</value>
         public DelegateCommand DrawCommand { get; private set; }
 
-        /// <summary>Gets or sets the multiple copies command.</summary>
+        /// <summary>Gets the multiple copies command.</summary>
         ///
         /// <value>The multiple copies command.</value>
         public DelegateCommand MultipleCopiesCommand { get; private set; }
+
+        /// <summary>Gets the SpreadSheet command.</summary>
+        ///
+        /// <value>The SpreadSheet command.</value>
+        public DelegateCommand SpreadSheetCommand { get; private set; }
 
         #endregion
 
@@ -104,6 +111,12 @@ namespace MDFDoors.ViewModels
 
             // Reset
             this.customDialog = null;
+        }
+
+        /// <summary>Executes the SpreadSheet command action.</summary>
+        private void OnSpreadSheetCommand()
+        {
+            // TODO: Add Excel Custom Dialog
         }
 
         /// <summary>Determine if we can draw command.</summary>

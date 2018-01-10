@@ -7,5 +7,7 @@ namespace MDFDoors.Shared.Services
     public interface IExcelService
     {
         void Export<T>(T door);
+
+        T Read<T>();
     }
 }

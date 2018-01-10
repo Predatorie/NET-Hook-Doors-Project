@@ -113,6 +113,7 @@
     <Compile Include="Services\GeometryCreationService.cs" />
     <Compile Include="ViewModels\CommandButtonsViewModel.cs" />
     <Compile Include="ViewModels\MultipleCopiesViewModel.cs" />
+    <Compile Include="ViewModels\SpreadsheetViewModel.cs" />
     <Compile Include="Views\CommandButtonsView.xaml.cs">
       <DependentUpon>CommandButtonsView.xaml</DependentUpon>
     </Compile>
@@ -121,6 +122,9 @@
     </Compile>
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SpreadsheetView.xaml.cs">
+      <DependentUpon>SpreadsheetView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\CommandButtonsView.xaml">
       <SubType>Designer</SubType>
@@ -133,6 +137,10 @@
     <Page Include="Views\SettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SpreadsheetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Resource Include="MDFDoorsResource.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -242,7 +250,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)$(OutDir)$(TargetName).dll" "D:\Program Files\Mcam2018\chooks\MDF"</PostBuildEvent>
+    <PostBuildEvent>copy "$(ProjectDir)$(OutDir)$(TargetName).dll" "F:\Program Files\Mcam2018\chooks\MDF"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

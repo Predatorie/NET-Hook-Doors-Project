@@ -4,10 +4,10 @@
 
 namespace MDFDoors.Factories
 {
-    using Shared.Factories;
     using Microsoft.Practices.Unity;
     using Module.Views;
     using Shared;
+    using Shared.Factories;
     using Shared.Models;
 
     public class ViewFactory : IViewFactory
@@ -15,7 +15,8 @@ namespace MDFDoors.Factories
         /// <summary> The container. </summary>
         private readonly IUnityContainer container;
 
-        /// <summary> Initializes a new instance of the MDFDoors.Factories.ViewFactory class. </summary>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ViewFactory"/> class.</summary>
         ///
         /// <param name="container"> The container. </param>
         public ViewFactory(IUnityContainer container) => this.container = container;

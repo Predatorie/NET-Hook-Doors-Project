@@ -2,17 +2,15 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-using System.Windows.Input;
-using MahApps.Metro.Controls.Dialogs;
-using MDFDoors.Shared.Events;
-using MDFDoors.Shared.Models;
-using MDFDoors.Views;
-using Prism.Commands;
-
 namespace MDFDoors.ViewModels
 {
+    using System.Windows.Input;
+    using MahApps.Metro.Controls.Dialogs;
+    using Prism.Commands;
     using Prism.Events;
     using Prism.Mvvm;
+    using Shared.Events;
+    using Shared.Models;
 
     public class MultipleCopiesViewModel : BindableBase
     {
@@ -40,7 +38,8 @@ namespace MDFDoors.ViewModels
 
         #region Construction
 
-        /// <summary>Constructor.</summary>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultipleCopiesViewModel"/> class.Constructor.</summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="coordinator">    The coordinator.</param>
         public MultipleCopiesViewModel(IEventAggregator eventAggregator, IDialogCoordinator coordinator)
@@ -72,12 +71,12 @@ namespace MDFDoors.ViewModels
 
         #region Public Commands
 
-        /// <summary>Gets or sets the ok command.</summary>
+        /// <summary>Gets the ok command.</summary>
         ///
         /// <value>The ok command.</value>
         public ICommand OKCommand { get; private set; }
 
-        /// <summary>Gets or sets the cancel command.</summary>
+        /// <summary>Gets the cancel command.</summary>
         ///
         /// <value>The cancel command.</value>
         public ICommand CancelCommand { get; private set; }

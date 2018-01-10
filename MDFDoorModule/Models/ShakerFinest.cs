@@ -10,7 +10,7 @@ namespace MDFDoors.Module.Models
     {
         #region Public Properties
 
-        /// <summary>The style.</summary>
+        /// <summary>Gets the style.</summary>
         public DoorStyles Style => DoorStyles.ShakerFinest;
 
         /// <summary>Convert this object into a string representation.</summary>

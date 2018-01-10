@@ -81,6 +81,7 @@ namespace MDFDoors
                 ExcelService>(new ContainerControlledLifetimeManager());
 
             this.Container.RegisterType(typeof(MultipleCopiesView), new TransientLifetimeManager());
+            this.Container.RegisterType(typeof(SpreadsheetView), new TransientLifetimeManager());
         }
 
         /// <summary>
