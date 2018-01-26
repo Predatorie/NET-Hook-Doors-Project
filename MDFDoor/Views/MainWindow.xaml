@@ -35,7 +35,7 @@
             <controls:Flyout x:Name="SettingsFlyout" 
                              AreAnimationsEnabled="True " 
                              IsModal="False"
-                             CloseButtonIsCancel="True"
+                             CloseButtonIsCancel="True"                             
                              Header="Settings"
                              Position="Right"
                              IsPinned="False"
@@ -73,7 +73,6 @@
             <ContentControl x:Name="DoorTypesMenu" 
                             prism:RegionManager.RegionName="DoorTypesMenuRegion" 
                             Margin="5" 
-                            BorderBrush="Red" 
                             BorderThickness="3"                            
                             />
         </ScrollViewer>
@@ -85,7 +84,6 @@
             Grid.RowSpan="2" 
             prism:RegionManager.RegionName="ContentRegion" 
             Margin="5" 
-            BorderBrush="Red" 
             BorderThickness="3" />
 
         <!--TODO: Add region for this group of controls-->
@@ -93,7 +91,6 @@
                         Grid.Column="1" 
                         Grid.Row="2" 
                         prism:RegionManager.RegionName="CommandButtonRegion" 
-                        BorderBrush="Red" 
                         BorderThickness="3"
                         Margin="5" 
                         />

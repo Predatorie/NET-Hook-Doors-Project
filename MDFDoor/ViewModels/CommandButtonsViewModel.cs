@@ -96,9 +96,14 @@ namespace MDFDoors.ViewModels
         {
             this.customDialog = new CustomDialog();
             var multiDialog = this.unityContainer.Resolve(typeof(MultipleCopiesView));
-
             this.customDialog.Content = multiDialog;
-            await this.dialogCoordinator.ShowMetroDialogAsync(this, this.customDialog);
+
+            var metro = new MetroDialogSettings
+            {
+                ColorScheme = MetroDialogColorScheme.Theme
+            };
+
+            await this.dialogCoordinator.ShowMetroDialogAsync(this, this.customDialog, metro);
         }
 
         /// <summary>Closes multiple copies dialog.</summary>

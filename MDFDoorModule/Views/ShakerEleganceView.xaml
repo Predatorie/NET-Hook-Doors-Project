@@ -8,17 +8,9 @@
              Unloaded="ShakerEleganceView_OnUnloaded"
              prism:ViewModelLocator.AutoWireViewModel="True">
 
-    <UserControl.Resources>
+    <!--<UserControl.Resources>
         <ResourceDictionary Source="../MDFDoorsResource.xaml" />
-
-        <!--<ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Icons.xaml" />
-                <ResourceDictionary Source="../MDFDoorsResource.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>-->
-
-    </UserControl.Resources>
+    </UserControl.Resources>-->
 
     <GroupBox Header="{Binding DoorTypeLabel}" Margin="5" >
         <Grid>
