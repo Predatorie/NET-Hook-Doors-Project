@@ -126,6 +126,15 @@
   <data name="LoadDoorStyle" xml:space="preserve">
     <value>Select Door Style</value>
   </data>
+  <data name="MultiCopyDistanceHeader" xml:space="preserve">
+    <value>Distance Between</value>
+  </data>
+  <data name="MultiCopyMethodHeader" xml:space="preserve">
+    <value>Multiple Copy method</value>
+  </data>
+  <data name="MultipleCopiesTitle" xml:space="preserve">
+    <value>Multiple Copies</value>
+  </data>
   <data name="SaveDoorStyle" xml:space="preserve">
     <value>Save Door Style</value>
   </data>

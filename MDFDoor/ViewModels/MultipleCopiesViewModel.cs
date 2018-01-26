@@ -5,11 +5,11 @@
 namespace MDFDoors.ViewModels
 {
     using System.Windows.Input;
-    using MahApps.Metro.Controls.Dialogs;
     using Prism.Commands;
     using Prism.Events;
     using Prism.Mvvm;
     using Shared.Events;
+    using Shared.Localization;
     using Shared.Models;
 
     public class MultipleCopiesViewModel : BindableBase
@@ -18,9 +18,6 @@ namespace MDFDoors.ViewModels
 
         /// <summary>The event aggregator.</summary>
         private readonly IEventAggregator eventAggregator;
-
-        /// <summary>The dialog coordinator.</summary>
-        private readonly IDialogCoordinator dialogCoordinator;
 
         /// <summary>The steps.</summary>
         private int xSteps;
@@ -34,6 +31,31 @@ namespace MDFDoors.ViewModels
         /// <summary>The distance between.</summary>
         private int yDistanceBetween;
 
+        /// <summary>
+        /// Backing field for the title property
+        /// </summary>
+        private string title;
+
+        /// <summary>
+        /// Backing field for the header property
+        /// </summary>
+        private string header;
+
+        /// <summary>
+        /// Backing field for the steps property
+        /// </summary>
+        private bool steps;
+
+        /// <summary>
+        /// Backing field for the excel property
+        /// </summary>
+        private bool excel;
+
+        /// <summary>
+        /// Backing field for the distance property
+        /// </summary>
+        private string distance;
+
         #endregion
 
         #region Construction
@@ -41,11 +63,9 @@ namespace MDFDoors.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="MultipleCopiesViewModel"/> class.Constructor.</summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="coordinator">    The coordinator.</param>
-        public MultipleCopiesViewModel(IEventAggregator eventAggregator, IDialogCoordinator coordinator)
+        public MultipleCopiesViewModel(IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;
-            this.dialogCoordinator = coordinator;
 
             this.XSteps = 1;
             this.YSteps = 2;
@@ -65,6 +85,12 @@ namespace MDFDoors.ViewModels
                 .ObservesProperty(() => this.YDistanceBetween);
 
             this.CancelCommand = new DelegateCommand(this.OnCancelCommand);
+
+            this.Title = ApplicationStrings.MultipleCopiesTitle;
+            this.MultiCopyMethodHeader = ApplicationStrings.MultiCopyMethodHeader;
+            this.MultiCopyDistanceHeader = ApplicationStrings.MultiCopyDistanceHeader;
+            this.IsSteps = true;
+            this.IsExcel = false;
         }
 
         #endregion
@@ -83,36 +109,91 @@ namespace MDFDoors.ViewModels
 
         #endregion
 
-        #region Public Methods
+        #region Public Properties
 
-        /// <summary>Gets or sets the steps.</summary>
-        ///
-        /// <value>The x coordinate steps.</value>
+        /// <summary>
+        /// Gets or sets the <see cref="XSteps"/> property
+        /// </summary>
         public int XSteps
         {
             get => this.xSteps;
             set => this.SetProperty(ref this.xSteps, value);
         }
 
-        /// <summary>Gets or sets the steps.</summary>
-        ///
-        /// <value>The y coordinate steps.</value>
+        /// <summary>
+        /// Gets or sets the <see cref="YSteps"/> property
+        /// </summary>
         public int YSteps
         {
             get => this.ySteps;
             set => this.SetProperty(ref this.ySteps, value);
         }
 
+        /// <summary>
+        /// Gets or sets the <see cref="XDistanceBetween"/> property
+        /// </summary>
         public int XDistanceBetween
         {
             get => this.xDistanceBetween;
             set => this.SetProperty(ref this.xDistanceBetween, value);
         }
 
+        /// <summary>
+        /// Gets or sets the <see cref="YDistanceBetween"/> property
+        /// </summary>
         public int YDistanceBetween
         {
             get => this.yDistanceBetween;
             set => this.SetProperty(ref this.yDistanceBetween, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the <see cref="Title"/> property
+        /// </summary>
+        public string Title
+        {
+            get => this.title;
+            set => this.SetProperty(ref this.title, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the <see cref="MultiCopyMethodHeader"/> property
+        /// </summary>
+        public string MultiCopyMethodHeader
+        {
+            get => this.header;
+            set => this.SetProperty(ref this.header, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the <see cref="MultiCopyDistanceHeader"/> property
+        /// </summary>
+        public string MultiCopyDistanceHeader
+        {
+            get => this.distance;
+            set => this.SetProperty(ref this.distance, value);
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether gets or sets the <see cref="IsSteps"/> property
+        /// </summary>
+        public bool IsSteps
+        {
+            get => this.steps;
+            set
+            {
+                this.SetProperty(ref this.steps, value);
+                this.IsExcel = !this.IsSteps;
+            } 
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether gets or sets the <see cref="IsExcel"/> property
+        /// </summary>
+        public bool IsExcel
+        {
+            get => this.excel;
+            set => this.SetProperty(ref this.excel, value);
         }
 
         #endregion

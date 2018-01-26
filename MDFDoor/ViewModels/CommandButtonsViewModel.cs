@@ -4,6 +4,7 @@
 
 namespace MDFDoors.ViewModels
 {
+    using MahApps.Metro.Controls;
     using MahApps.Metro.Controls.Dialogs;
     using Microsoft.Practices.Unity;
     using Prism.Commands;
@@ -92,18 +93,10 @@ namespace MDFDoors.ViewModels
         #region Private Methods
 
         /// <summary>Executes the multiple copies command action.</summary>
-        private async void ShowMultipleCopiesView()
+        private void ShowMultipleCopiesView()
         {
-            this.customDialog = new CustomDialog();
-            var multiDialog = this.unityContainer.Resolve(typeof(MultipleCopiesView));
-            this.customDialog.Content = multiDialog;
-
-            var metro = new MetroDialogSettings
-            {
-                ColorScheme = MetroDialogColorScheme.Theme
-            };
-
-            await this.dialogCoordinator.ShowMetroDialogAsync(this, this.customDialog, metro);
+            var multiDialog = (MetroWindow)this.unityContainer.Resolve(typeof(MultipleCopiesView));
+            multiDialog.ShowDialog();
         }
 
         /// <summary>Closes multiple copies dialog.</summary>

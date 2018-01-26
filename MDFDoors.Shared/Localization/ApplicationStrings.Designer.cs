@@ -88,6 +88,33 @@ namespace MDFDoors.Shared.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Distance Between.
+        /// </summary>
+        public static string MultiCopyDistanceHeader {
+            get {
+                return ResourceManager.GetString("MultiCopyDistanceHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple Copy method.
+        /// </summary>
+        public static string MultiCopyMethodHeader {
+            get {
+                return ResourceManager.GetString("MultiCopyMethodHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple Copies.
+        /// </summary>
+        public static string MultipleCopiesTitle {
+            get {
+                return ResourceManager.GetString("MultipleCopiesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save Door Style.
         /// </summary>
         public static string SaveDoorStyle {
