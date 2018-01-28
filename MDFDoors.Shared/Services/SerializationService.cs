@@ -20,8 +20,12 @@ namespace MDFDoors.Shared.Services
         /// <param name="fileBrowser">The file browser.</param>
         public SerializationService(IFileBrowserService fileBrowser) => this.fileBrowser = fileBrowser;
 
-        /// <summary>Serialize door style.</summary>
-        /// <returns>A Result.</returns>
+        /// <summary>
+        /// Serialize Door Style
+        /// </summary>
+        /// <typeparam name="T">The door type</typeparam>
+        /// <param name="model">The door payload</param>
+        /// <returns>A result</returns>
         public Result SerializeDoorStyle<T>(object model)
         {
             var result = this.Save<T>(model);

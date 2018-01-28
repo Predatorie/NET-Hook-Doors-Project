@@ -51,7 +51,7 @@ namespace MDFDoors.Module.Models
 
         /// <summary>Gets the style.</summary>
         public DoorStyles Style => DoorStyles.ShakerElegance;
-
+        
         /// <summary>Convert this object into a string representation.</summary>
         ///
         /// <remarks>Mick George, 11/11/2017.</remarks>

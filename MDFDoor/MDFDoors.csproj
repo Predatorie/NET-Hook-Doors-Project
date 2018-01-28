@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Services\GeometryCreationService.cs" />
+    <Compile Include="Services\SettingsService.cs" />
     <Compile Include="ViewModels\CommandButtonsViewModel.cs" />
     <Compile Include="ViewModels\MultipleCopiesViewModel.cs" />
     <Compile Include="ViewModels\SpreadsheetViewModel.cs" />

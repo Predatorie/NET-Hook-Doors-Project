@@ -27,7 +27,8 @@
             ContentDirection="RightToLeft"
             OffLabel="Off"
             OnLabel="On"
-
+            CheckChangedCommand="{Binding CheckChangedCommand}"
+            IsChecked="{Binding MultiCopiesChecked, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
             />
 
         <Button 

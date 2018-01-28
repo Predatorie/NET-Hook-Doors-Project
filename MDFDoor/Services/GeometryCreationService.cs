@@ -4,101 +4,75 @@
 
 namespace MDFDoors.Services
 {
+    using System;
     using System.Linq;
     using Mastercam.Curves;
+    using Mastercam.Database.Types;
     using Mastercam.GeometryUtility;
     using Mastercam.IO;
+    using Mastercam.IO.Types;
     using Mastercam.Math;
-    using Shared;
     using Module.Models;
+    using Shared;
+    using Shared.Localization;
     using Shared.Models;
     using Shared.Services;
 
     public class GeometryCreationService : IGeometryCreationService
     {
+        private bool copies;
+
         /// <summary>Creates a door.</summary>
-        ///
         /// <remarks>Mick George, 11/11/2017.</remarks>
-        ///
         /// <param name="model">The model.</param>
-        ///
+        /// <param name="multi">True if multiple, False otherwise</param>
         /// <returns>The new door.</returns>
-        public Result CreateDoor(object model)
+        public Result CreateDoor(object model, bool multi)
         {
-            // TODO: Re-factor
-
-            // File New
-            if (FileManager.New(true))
+            if (!FileManager.New(true))
             {
-                if (model.GetType() == typeof(ShakerElegance))
-                {
-                    return this.CreateShakerElegance((ShakerElegance)model);
-                }
-
-                if (model.GetType() == typeof(ShakerCountry))
-                {
-                    return this.CreateShakerCountry((ShakerCountry)model);
-                }
-
-                if (model.GetType() == typeof(ShakerCentry))
-                {
-                    return this.CreateShakerCentry((ShakerCentry)model);
-                }
-
-                if (model.GetType() == typeof(Shaker))
-                {
-                    return this.CreateShaker((Shaker)model);
-                }
-
-                if (model.GetType() == typeof(ShakerEuro05))
-                {
-                    return this.CreateShakerEuro05((ShakerEuro05)model);
-                }
-
-                if (model.GetType() == typeof(ShakerExotic))
-                {
-                    return this.CreateShakerExotic((ShakerExotic)model);
-                }
-
-                if (model.GetType() == typeof(ShakerFinest))
-                {
-                    return this.CreateShakerFinest((ShakerFinest)model);
-                }
-
-                return Result.Fail($"Unkown Door Style {model.ToString()}");
+                return Result.Fail<string>(Enum.GetName(typeof(ApplicationState), ApplicationState.UserCancelledDialog));
             }
 
-            return Result.Fail("User cancelled");
-        }
+            this.copies = multi;
 
-        /// <summary>Creates door multiple copies.</summary>
-        /// <param name="model">The model.</param>
-        /// <param name="data"> The data.</param>
-        /// <returns>The new door multiple copies.</returns>
-        public Result CreateDoorMultipleCopies(object model, MultipleCopiesData data)
-        {
-            // File New
-            if (FileManager.New(true))
+            if (model.GetType() == typeof(ShakerElegance))
             {
-
+                return this.CreateShakerElegance((ShakerElegance)model);
             }
 
-            return Result.Ok();
-        }
-
-        /// <summary>Creates door multiple copies excel.</summary>
-        /// <param name="model">The model.</param>
-        /// <param name="data"> The data.</param>
-        /// <returns>The new door multiple copies excel.</returns>
-        public Result CreateDoorMultipleCopiesExcel(object model, ExcelData data)
-        {
-            // File New
-            if (FileManager.New(true))
+            if (model.GetType() == typeof(ShakerCountry))
             {
-
+                return this.CreateShakerCountry((ShakerCountry)model);
             }
 
-            return Result.Ok();
+            if (model.GetType() == typeof(ShakerCentry))
+            {
+                return this.CreateShakerCentry((ShakerCentry)model);
+            }
+
+            if (model.GetType() == typeof(Shaker))
+            {
+                return this.CreateShaker((Shaker)model);
+            }
+
+            if (model.GetType() == typeof(ShakerEuro05))
+            {
+                return this.CreateShakerEuro05((ShakerEuro05)model);
+            }
+
+            if (model.GetType() == typeof(ShakerExotic))
+            {
+                return this.CreateShakerExotic((ShakerExotic)model);
+            }
+
+            if (model.GetType() == typeof(ShakerFinest))
+            {
+                return this.CreateShakerFinest((ShakerFinest)model);
+            }
+
+            return Result.Fail($"Unkown Door Style {model}");
+
         }
 
         /// <summary>Creates shaker centry.</summary>
@@ -200,6 +174,99 @@ namespace MDFDoors.Services
         /// <returns>The new shaker elegance.</returns>
         private Result CreateShakerElegance(ShakerElegance door)
         {
+            // Multiple copies is enabled
+            if (this.copies)
+            {
+                // Excel?
+                if (door.MultipleCopies.UseExcel)
+                {
+                    // TODO: Read the excel file
+                }
+                else
+                {
+                    // Translate
+                    if (door.MultipleCopies.UseSteps)
+                    {
+                        var result = this.DrawShakerEleganceDoor(door);
+                        if (result.IsFailure)
+                        {
+                            return Result.Fail(result.Error);
+                        }
+
+                        // We have the original door created so translate it
+                        SelectionManager.SelectAllGeometry();
+
+                        // Copies along the X axis
+                        for (var col = 1; col < door.MultipleCopies.XSteps; col++)
+                        {
+                            var success = GeometryManipulationManager.TranslateGeometry(
+                                new Point3D(0, 0, 0),
+                                new Point3D(door.Width + door.MultipleCopies.XDistanceBetween, 0, 0),
+                                ViewManager.GraphicsView,
+                                ViewManager.GraphicsView,
+                                true);
+
+                            if (!success)
+                            {
+                                return Result.Fail(ApplicationStrings.ErrorTranslateX);
+                            }
+
+                            // Select the result
+                            SelectionManager.SelectGeometryByMask(QuickMaskType.Result);
+                        }
+
+                        // Clear all selection masks
+                        GraphicsManager.ClearColors(new GroupSelectionMask(true, true));
+
+                        // Select the entire row
+                        SelectionManager.SelectAllGeometry();
+
+                        // Copies along the Y axis
+                        for (var row = 1; row < door.MultipleCopies.YSteps; row++)
+                        {
+                            var success = GeometryManipulationManager.TranslateGeometry(
+                                new Point3D(0, 0, 0),
+                                new Point3D(0, door.Height + door.MultipleCopies.YDistanceBetween, 0),
+                                ViewManager.GraphicsView,
+                                ViewManager.GraphicsView,
+                                true);
+
+                            if (!success)
+                            {
+                                return Result.Fail(ApplicationStrings.ErrorTranslateY);
+                            }
+
+                            // Select the result
+                            SelectionManager.SelectGeometryByMask(QuickMaskType.Result);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // Single Door
+                var result = this.DrawShakerEleganceDoor(door);
+                if (result.IsFailure)
+                {
+                    return Result.Fail(result.Error);
+                }
+            }
+
+            // Clear all selection masks
+            GraphicsManager.ClearColors(new GroupSelectionMask(true, true));
+            SelectionManager.UnselectAllGeometry();
+            GraphicsManager.FitScreen();
+
+            return Result.Ok();
+        }
+
+        /// <summary>
+        /// Create ShakerElegance doors
+        /// </summary>
+        /// <param name="door">The door payload</param>
+        /// <returns>True if success, false otherwise</returns>
+        private Result DrawShakerEleganceDoor(ShakerElegance door)
+        {
             // Outer panel
             var result = this.DrawRectangle(
                 door.Width,
@@ -218,9 +285,11 @@ namespace MDFDoors.Services
             // Inner panel
             result = this.DrawRectangle(
                 door.InnerWidth + door.RightSideWidth,
-                door.BottomRailWidth, door.LeftStileWidth,
+                door.BottomRailWidth,
+                door.LeftStileWidth,
                 door.InnerHeight + door.TopRailWidth,
-                door.InnerLevelNumber, door.InnerLevelName,
+                door.InnerLevelNumber,
+                door.InnerLevelName,
                 12);
 
             if (result.IsFailure)

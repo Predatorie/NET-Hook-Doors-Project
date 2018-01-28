@@ -4,6 +4,7 @@
 
 namespace MDFDoors.ViewModels
 {
+    using System.IO;
     using System.Windows.Input;
     using Prism.Commands;
     using Prism.Events;
@@ -11,6 +12,7 @@ namespace MDFDoors.ViewModels
     using Shared.Events;
     using Shared.Localization;
     using Shared.Models;
+    using Shared.Services;
 
     public class MultipleCopiesViewModel : BindableBase
     {
@@ -18,6 +20,16 @@ namespace MDFDoors.ViewModels
 
         /// <summary>The event aggregator.</summary>
         private readonly IEventAggregator eventAggregator;
+
+        /// <summary>
+        /// Backing field for the IFileBrowserService singleton
+        /// </summary>
+        private readonly IFileBrowserService browserService;
+
+        /// <summary>
+        /// Backing field for the ISettingsService singleton
+        /// </summary>
+        private readonly ISettingsService settingsService;
 
         /// <summary>The steps.</summary>
         private int xSteps;
@@ -56,6 +68,11 @@ namespace MDFDoors.ViewModels
         /// </summary>
         private string distance;
 
+        /// <summary>
+        /// Backing field for the csv file path
+        /// </summary>
+        private string file;
+
         #endregion
 
         #region Construction
@@ -63,34 +80,40 @@ namespace MDFDoors.ViewModels
         /// <summary>
         /// Initializes a new instance of the <see cref="MultipleCopiesViewModel"/> class.Constructor.</summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public MultipleCopiesViewModel(IEventAggregator eventAggregator)
+        /// <param name="fileBrowserService">The IFileBrowserService singleton</param>
+        /// <param name="settingsService">The ISettingsService singleton</param>
+        public MultipleCopiesViewModel(
+            IEventAggregator eventAggregator,
+            IFileBrowserService fileBrowserService,
+            ISettingsService settingsService)
         {
             this.eventAggregator = eventAggregator;
+            this.browserService = fileBrowserService;
+            this.settingsService = settingsService;
 
-            this.XSteps = 1;
-            this.YSteps = 2;
-            this.xDistanceBetween = 1;
-            this.YDistanceBetween = 1;
+            this.Title = ApplicationStrings.MultipleCopiesTitle;
+            this.MultiCopyMethodHeader = ApplicationStrings.MultiCopyMethodHeader;
+            this.MultiCopyDistanceHeader = ApplicationStrings.MultiCopyDistanceHeader;
 
+            // Wire up our commands
             this.OKCommand = new DelegateCommand(
                     this.OnOKCommand,
-                    () =>
-                        this.XSteps > 0 &&
-                        this.YSteps > 0 &&
-                        this.XDistanceBetween > 0 &&
-                        this.YDistanceBetween > 0)
+                    () => ((this.IsSteps && this.XSteps > 0 && this.YSteps > 0) ||
+                           (this.IsExcel && File.Exists(this.FilePath))) &&
+                           this.XDistanceBetween > 0 && this.YDistanceBetween > 0)
                 .ObservesProperty(() => this.XSteps)
                 .ObservesProperty(() => this.YSteps)
                 .ObservesProperty(() => this.XDistanceBetween)
                 .ObservesProperty(() => this.YDistanceBetween);
 
+            this.BrowseForExcelCommand = new DelegateCommand(
+                this.OnBrowseForExcelCommand,
+                () => this.IsExcel)
+                .ObservesProperty(() => this.IsExcel);
+
             this.CancelCommand = new DelegateCommand(this.OnCancelCommand);
 
-            this.Title = ApplicationStrings.MultipleCopiesTitle;
-            this.MultiCopyMethodHeader = ApplicationStrings.MultiCopyMethodHeader;
-            this.MultiCopyDistanceHeader = ApplicationStrings.MultiCopyDistanceHeader;
-            this.IsSteps = true;
-            this.IsExcel = false;
+            this.ReadMultipleCopiesFromDefault();
         }
 
         #endregion
@@ -100,12 +123,17 @@ namespace MDFDoors.ViewModels
         /// <summary>Gets the ok command.</summary>
         ///
         /// <value>The ok command.</value>
-        public ICommand OKCommand { get; private set; }
+        public ICommand OKCommand { get; }
 
         /// <summary>Gets the cancel command.</summary>
         ///
         /// <value>The cancel command.</value>
-        public ICommand CancelCommand { get; private set; }
+        public ICommand CancelCommand { get; }
+
+        /// <summary>Gets the browse excel command.</summary>
+        ///
+        /// <value>The cancel command.</value>
+        public ICommand BrowseForExcelCommand { get; }
 
         #endregion
 
@@ -184,7 +212,7 @@ namespace MDFDoors.ViewModels
             {
                 this.SetProperty(ref this.steps, value);
                 this.IsExcel = !this.IsSteps;
-            } 
+            }
         }
 
         /// <summary>
@@ -196,9 +224,34 @@ namespace MDFDoors.ViewModels
             set => this.SetProperty(ref this.excel, value);
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether gets or sets the <see cref="FilePath"/> property
+        /// </summary>
+        public string FilePath
+        {
+            get => this.file;
+            set => this.SetProperty(ref this.file, value);
+        }
+
         #endregion
 
         #region Private Methods
+
+        /// <summary>
+        /// Initialize to default state
+        /// </summary>
+        private void ReadMultipleCopiesFromDefault()
+        {
+            var data = this.settingsService.MultipleCopiesData();
+
+            this.XSteps = data.XSteps;
+            this.YSteps = data.YSteps;
+            this.xDistanceBetween = data.XDistanceBetween;
+            this.YDistanceBetween = data.YDistanceBetween;
+            this.IsSteps = data.UseSteps;
+            this.IsExcel = data.UseExcel;
+            this.FilePath = data.Excel;
+        }
 
         /// <summary>Executes the cancel command action.</summary>
         private void OnCancelCommand() => this.eventAggregator.GetEvent<CloseMultipleCopiesViewEvent>().Publish();
@@ -211,14 +264,29 @@ namespace MDFDoors.ViewModels
                 XSteps = this.XSteps,
                 YSteps = this.YSteps,
                 XDistanceBetween = this.XDistanceBetween,
-                YDistanceBetween = this.YDistanceBetween
+                YDistanceBetween = this.YDistanceBetween,
+                UseSteps = this.IsSteps,
+                UseExcel = this.IsExcel,
+                Excel = this.FilePath
             };
 
-            // Pass the data to the applicable vm
-            this.eventAggregator.GetEvent<DrawMultipleCopiesEvent>().Publish(data);
+            // Save to defaults for others to read
+            this.settingsService.SaveMultipleCopiesData(data);
 
             // Close the dialog
             this.eventAggregator.GetEvent<CloseMultipleCopiesViewEvent>().Publish();
+        }
+
+        /// <summary>
+        /// Browse for an excel file
+        /// </summary>
+        private void OnBrowseForExcelCommand()
+        {
+            var result = this.browserService.SelectExcelFile();
+            if (result.IsSuccess)
+            {
+                this.FilePath = result.Value;
+            }
         }
 
         #endregion

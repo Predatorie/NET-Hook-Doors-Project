@@ -59,6 +59,9 @@ namespace MDFDoors
         {
             base.ConfigureContainer();
 
+            this.Container.RegisterType<ISettingsService,
+                SettingsService>(new ContainerControlledLifetimeManager());
+
             this.Container.RegisterType<IDialogCoordinator,
                 DialogCoordinator>(new ContainerControlledLifetimeManager());
 

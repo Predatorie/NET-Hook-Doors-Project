@@ -2,6 +2,8 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
+using MDFDoors.Shared.Models;
+
 namespace MDFDoors.Module.Models
 {
     /// <summary>A base door.</summary>
@@ -40,6 +42,11 @@ namespace MDFDoors.Module.Models
         ///
         /// <value>The name of the inner level.</value>
         public string InnerLevelName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the MultipleCopies property
+        /// </summary>
+        public MultipleCopiesData MultipleCopies { get; set; } = new MultipleCopiesData();
 
         #endregion
     }

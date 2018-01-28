@@ -7,13 +7,24 @@ namespace MDFDoors.Shared.Models
     public class MultipleCopiesData : CopiesData
     {
         /// <summary>Gets or sets the steps.</summary>
-        ///
-        /// <value>The x coordinate steps.</value>
         public int XSteps { get; set; }
 
         /// <summary>Gets or sets the steps.</summary>
-        ///
-        /// <value>The y coordinate steps.</value>
-        public int YSteps { get; set; }       
+        public int YSteps { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether gets or sets the UseSteps
+        /// </summary>
+        public bool UseSteps { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether gets or sets the UseExcel
+        /// </summary>
+        public bool UseExcel { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether gets or sets the Excel
+        /// </summary>
+        public string Excel { get; set; }
     }
 }

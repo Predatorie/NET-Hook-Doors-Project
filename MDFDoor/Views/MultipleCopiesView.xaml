@@ -180,12 +180,13 @@
                          Grid.Column="1"
                          Grid.Row="4"
                          VerticalAlignment="Center"
+                         Text="{Binding FilePath}"
                          Style="{DynamicResource SearchMetroTextBox}"
                          controls:TextBoxHelper.Watermark="Select an excel file"
                          controls:TextBoxHelper.ButtonContent="4"
                          controls:TextBoxHelper.ButtonCommand="{Binding BrowseForExcelCommand, Mode=OneWay}"
                          ContextMenu="{x:Null}"
-                         IsEnabled="{Binding IsExcel, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"                    
+                         IsEnabled="{Binding IsExcel, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"                          
                     />
 
                 </Grid>

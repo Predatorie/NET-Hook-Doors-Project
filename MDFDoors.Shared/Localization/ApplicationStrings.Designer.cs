@@ -79,6 +79,24 @@ namespace MDFDoors.Shared.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Translate Geometry X axis Failed.
+        /// </summary>
+        public static string ErrorTranslateX {
+            get {
+                return ResourceManager.GetString("ErrorTranslateX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Translate Geometry Y axis Failed.
+        /// </summary>
+        public static string ErrorTranslateY {
+            get {
+                return ResourceManager.GetString("ErrorTranslateY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Door Style.
         /// </summary>
         public static string LoadDoorStyle {
@@ -120,6 +138,15 @@ namespace MDFDoors.Shared.Localization {
         public static string SaveDoorStyle {
             get {
                 return ResourceManager.GetString("SaveDoorStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select CSV file.
+        /// </summary>
+        public static string SelectCSVFile {
+            get {
+                return ResourceManager.GetString("SelectCSVFile", resourceCulture);
             }
         }
         

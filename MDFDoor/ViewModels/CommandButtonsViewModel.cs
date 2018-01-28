@@ -29,6 +29,11 @@ namespace MDFDoors.ViewModels
         /// <summary>The custom dialog.</summary>
         private CustomDialog customDialog;
 
+        /// <summary>
+        /// Backing field for the switch
+        /// </summary>
+        private bool switchOn;
+
         #endregion
 
         #region Construction
@@ -51,7 +56,7 @@ namespace MDFDoors.ViewModels
             this.ExitCommand = new DelegateCommand(this.OnExitCommand);
             this.DrawCommand = new DelegateCommand(this.OnDrawCommand, this.CanDrawCommand);
             this.MultipleCopiesCommand = new DelegateCommand(this.ShowMultipleCopiesView);
-            this.SpreadSheetCommand = new DelegateCommand(this.OnSpreadSheetCommand);
+            this.CheckChangedCommand = new DelegateCommand(this.OnCheckChangedCommand);
         }
 
         #endregion
@@ -61,36 +66,55 @@ namespace MDFDoors.ViewModels
         /// <summary>Gets the save command.</summary>
         ///
         /// <value>The save command.</value>
-        public DelegateCommand SaveCommand { get; private set; }
+        public DelegateCommand SaveCommand { get; }
 
         /// <summary>Gets the load command.</summary>
         ///
         /// <value>The load command.</value>
-        public DelegateCommand LoadCommand { get; private set; }
+        public DelegateCommand LoadCommand { get; }
 
         /// <summary>Gets the exite command.</summary>
         ///
         /// <value>The exite command.</value>
-        public DelegateCommand ExitCommand { get; private set; }
+        public DelegateCommand ExitCommand { get; }
 
         /// <summary>Gets the draw command.</summary>
         ///
         /// <value>The draw command.</value>
-        public DelegateCommand DrawCommand { get; private set; }
+        public DelegateCommand DrawCommand { get; }
 
         /// <summary>Gets the multiple copies command.</summary>
         ///
         /// <value>The multiple copies command.</value>
-        public DelegateCommand MultipleCopiesCommand { get; private set; }
+        public DelegateCommand MultipleCopiesCommand { get; }
 
         /// <summary>Gets the SpreadSheet command.</summary>
         ///
         /// <value>The SpreadSheet command.</value>
-        public DelegateCommand SpreadSheetCommand { get; private set; }
+        public DelegateCommand CheckChangedCommand { get; }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the <see cref="MultiCopiesChecked"/>
+        /// </summary>
+        public bool MultiCopiesChecked
+        {
+            get => this.switchOn;
+            set => this.SetProperty(ref this.switchOn, value);
+        }
 
         #endregion
 
         #region Private Methods
+
+        /// <summary>
+        /// Let subscribers now of a change
+        /// </summary>
+        private void OnCheckChangedCommand() => 
+            this.eventAggregator.GetEvent<MultipleCopiesChangesEvent>().Publish(this.MultiCopiesChecked);
 
         /// <summary>Executes the multiple copies command action.</summary>
         private void ShowMultipleCopiesView()
@@ -109,12 +133,6 @@ namespace MDFDoors.ViewModels
 
             // Reset
             this.customDialog = null;
-        }
-
-        /// <summary>Executes the SpreadSheet command action.</summary>
-        private void OnSpreadSheetCommand()
-        {
-            // TODO: Add Excel Custom Dialog
         }
 
         /// <summary>Determine if we can draw command.</summary>

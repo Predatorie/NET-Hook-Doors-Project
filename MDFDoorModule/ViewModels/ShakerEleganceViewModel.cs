@@ -2,9 +2,6 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-using MahApps.Metro.SimpleChildWindow;
-using MDFDoors.Shared.Models;
-
 namespace MDFDoors.Module.ViewModels
 {
     using System;
@@ -37,8 +34,10 @@ namespace MDFDoors.Module.ViewModels
         /// <summary>The serialization service.</summary>
         private readonly ISerializationService serializationService;
 
-        /// <summary>The unity container.</summary>
-        private readonly IUnityContainer unityContainer;
+        /// <summary>
+        /// The ISettingsService service
+        /// </summary>
+        private readonly ISettingsService settingsService;
 
         /// <summary>The door type label.</summary>
         private string doorTypeLabel;
@@ -46,48 +45,53 @@ namespace MDFDoors.Module.ViewModels
         /// <summary>The model.</summary>
         private ShakerElegance model;
 
-        /// <summary>True to create multiple copies.</summary>
-        private bool createMultipleCopies;
-
-        /// <summary>Information describing the multiple copies.</summary>
-        private MultipleCopiesData multipleCopiesData;
+        /// <summary>
+        /// Backing field for multipleCopies
+        /// </summary>
+        private bool multipleCopies;
 
         #endregion
 
         #region Construction
 
-        /// <summary>Default constructor.</summary>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShakerEleganceViewModel"/> class.Default constructor.</summary>
         ///
         /// <remarks>Mick George, 11/6/2017.</remarks>
-        public ShakerEleganceViewModel() { }
+        public ShakerEleganceViewModel()
+        {
+        }
 
-        ///  <summary>
+        /// <summary>
         ///  Initializes a new instance of the <see cref="ShakerEleganceViewModel"/> class.Constructor.</summary>
         /// 
-        ///  <remarks>Mick George, 11/6/2017.</remarks>
+        /// <remarks>Mick George, 11/6/2017.</remarks>
         /// 
-        ///  <param name="eventAggregator">The event aggregator singleton.</param>
-        ///  <param name="container">      The container singleton.</param>
+        /// <param name="eventAggregator">The event aggregator singleton.</param>
+        /// <param name="container">      The container singleton.</param>
         /// <param name="geometryCreation">The Geometry Creation Service singletone </param>
         /// <param name="dialogCoordinator">The Dialog Coordinator singleton</param>
         /// <param name="serializationService">The Serialization Service singleton</param>
+        /// <param name="settingsService">The ISettingsService singleton</param>
         public ShakerEleganceViewModel(
             IEventAggregator eventAggregator,
             IUnityContainer container,
             IGeometryCreationService geometryCreation,
             IDialogCoordinator dialogCoordinator,
-            ISerializationService serializationService)
+            ISerializationService serializationService,
+            ISettingsService settingsService)
         {
             this.eventAggregator = eventAggregator;
             this.geometryCreation = geometryCreation;
             this.dialogCoordinator = dialogCoordinator;
             this.serializationService = serializationService;
-            this.unityContainer = container;
+            this.settingsService = settingsService;
 
-            this.Model = this.unityContainer.Resolve<ShakerElegance>();
+            this.Model = container.Resolve<ShakerElegance>();
+
             this.InitializeToDefaults();
         }
-      
+
         #endregion
 
         #region Public Properties
@@ -127,8 +131,8 @@ namespace MDFDoors.Module.ViewModels
             // Subscribe to our events
             this.eventAggregator.GetEvent<SaveDoorStyleEvent>().Subscribe(this.OnSaveDoorStyle);
             this.eventAggregator.GetEvent<LoadDoorStyleEvent>().Subscribe(this.OnLoadDoorStyle);
-            this.eventAggregator.GetEvent<CreateDoorEvent>().Subscribe(this.OnCreateDoor);
-            this.eventAggregator.GetEvent<DrawMultipleCopiesEvent>().Subscribe(this.DrawMultipleCopies);
+            this.eventAggregator.GetEvent<CreateDoorEvent>().Subscribe(this.OnCreateDoor);            
+            this.eventAggregator.GetEvent<MultipleCopiesChangesEvent>().Subscribe(this.OnMultipleCopiesChangesEvent);
         }
 
         /// <summary>   Query if 'navigationContext' is navigation target. </summary>
@@ -144,20 +148,23 @@ namespace MDFDoors.Module.ViewModels
             this.eventAggregator.GetEvent<SaveDoorStyleEvent>().Unsubscribe(this.OnSaveDoorStyle);
             this.eventAggregator.GetEvent<LoadDoorStyleEvent>().Unsubscribe(this.OnLoadDoorStyle);
             this.eventAggregator.GetEvent<CreateDoorEvent>().Unsubscribe(this.OnCreateDoor);
-            this.eventAggregator.GetEvent<DrawMultipleCopiesEvent>().Unsubscribe(this.DrawMultipleCopies);
+            this.eventAggregator.GetEvent<MultipleCopiesChangesEvent>().Unsubscribe(this.OnMultipleCopiesChangesEvent);
         }
 
         #endregion
 
         #region Private Methods
 
-        /// <summary>Draw multiple copies.</summary>
-        /// <param name="data">The data.</param>
-        private void DrawMultipleCopies(MultipleCopiesData data) => this.multipleCopiesData = data;
+        /// <summary>
+        /// Handles the event
+        /// </summary>
+        /// <param name="copies">True if using multi copies false otherwise</param>
+        private void OnMultipleCopiesChangesEvent(bool copies) => this.multipleCopies = copies;
 
         /// <summary>Initializes to defaults.</summary>
         private void InitializeToDefaults()
         {
+            // TODO: Add to settings service
             this.Model.OuterLevelName = "outer";
             this.Model.InnerLevelName = "inner";
             this.Model.GrooveLevelName = "grooves";
@@ -165,8 +172,10 @@ namespace MDFDoors.Module.ViewModels
             this.Model.InnerLevelNumber = 2;
             this.Model.GrooveLevelNumber = 3;
 
-            this.createMultipleCopies = false;
-            this.multipleCopiesData = null;
+            this.model.MultipleCopies = this.settingsService.MultipleCopiesData();
+
+            // TODO: Store this setting
+            this.multipleCopies = false;
 
             var metric = SettingsManager.Metric;
             if (metric)
@@ -193,7 +202,7 @@ namespace MDFDoors.Module.ViewModels
         /// <remarks>Mick George, 11/6/2017.</remarks>
         private async void OnCreateDoor()
         {
-            var result = this.geometryCreation.CreateDoor(this.Model);
+            var result = this.geometryCreation.CreateDoor(this.Model, this.multipleCopies);
             if (result.IsFailure)
             {
                 await this.dialogCoordinator.ShowMessageAsync(this, ApplicationStrings.Title, result.Error);

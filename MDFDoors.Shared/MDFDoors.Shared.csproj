@@ -101,6 +101,7 @@
     <Compile Include="Events\DrawMultipleCopiesEvent.cs" />
     <Compile Include="Events\ExitAppEvent.cs" />
     <Compile Include="Events\LoadDoorStyleEvent.cs" />
+    <Compile Include="Events\MultipleCopiesChangesEvent.cs" />
     <Compile Include="Events\ShowMultipleCopiesViewEvent.cs" />
     <Compile Include="Events\SaveDoorStyleEvent.cs" />
     <Compile Include="Factories\INavigationParametersFactory.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="Services\IFileBrowserService.cs" />
     <Compile Include="Services\IGeometryCreationService.cs" />
     <Compile Include="Services\ISerializationService.cs" />
+    <Compile Include="Services\ISettingsService.cs" />
     <Compile Include="Services\SerializationService.cs" />
     <Compile Include="ViewNames.cs" />
   </ItemGroup>

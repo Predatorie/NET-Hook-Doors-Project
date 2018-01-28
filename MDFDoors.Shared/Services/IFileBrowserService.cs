@@ -11,5 +11,7 @@ namespace MDFDoors.Shared.Services
         Result<string> SelectDoorStyleSettingsFile();
 
         Result<string> SaveDoorStyleSettingsFile();
+
+        Result<string> SelectExcelFile();
     }
 }

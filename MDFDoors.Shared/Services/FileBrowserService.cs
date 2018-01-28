@@ -2,6 +2,8 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
+using System.IO;
+
 namespace MDFDoors.Shared.Services
 {
     using System;
@@ -52,6 +54,31 @@ namespace MDFDoors.Shared.Services
                         return Result.Ok(dlg.FileName);
                     default:
                         return Result.Fail<string>(Enum.GetName(typeof(ApplicationState), ApplicationState.UserCancelledDialog));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Prompts for a CVS file containing list of doors to create
+        /// </summary>
+        /// <returns>The path to the file</returns>
+        public Result<string> SelectExcelFile()
+        {
+            using (var dlg = new OpenFileDialog())
+            {
+                // F:\Users\Public\Documents\shared Mcam2018\router\Template
+                dlg.InitialDirectory = Path.Combine(SettingsManager.SharedDirectory, "router\\Template");
+                dlg.Filter = @"Excel (*.csv)|*.csv";
+                dlg.CheckFileExists = true;
+                dlg.Multiselect = false;
+                dlg.Title = ApplicationStrings.SelectCSVFile;
+
+                switch (dlg.ShowDialog())
+                {
+                    case DialogResult.OK:
+                        return Result.Ok(dlg.FileName);
+                    default:
+                        return Result.Fail<string>("user cancelled");
                 }
             }
         }
