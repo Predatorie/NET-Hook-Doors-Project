@@ -7,18 +7,16 @@ namespace MDFDoors.Views
     using System.Windows;
     using MahApps.Metro.Controls.Dialogs;
     using Mastercam.IO;
-    using Shared.Events;
     using Prism.Events;
+    using Shared.Events;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow
     {
-        /// <summary>Constructor.</summary>
-        ///
-        /// <remarks>Mick George, 11/5/2017.</remarks>
-        ///
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainWindow"/> class.Constructor.</summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         public MainWindow(IEventAggregator eventAggregator)
         {
@@ -27,9 +25,10 @@ namespace MDFDoors.Views
             eventAggregator.GetEvent<ExitAppEvent>().Subscribe(this.OnExitAndFitScreen);
         }
 
-        /// <summary>Executes the exit action.</summary>
-        ///
-        /// <remarks>Mick George, 11/5/2017.</remarks>
+        /// <summary>
+        /// Fits the screen on exit
+        /// </summary>
+        /// <param name="fitScreen">True to fit screen</param>
         private void OnExitAndFitScreen(bool fitScreen)
         {
             if (fitScreen)

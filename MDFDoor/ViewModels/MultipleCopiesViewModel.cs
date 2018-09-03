@@ -98,9 +98,10 @@ namespace MDFDoors.ViewModels
             // Wire up our commands
             this.OKCommand = new DelegateCommand(
                     this.OnOKCommand,
-                    () => ((this.IsSteps && this.XSteps > 0 && this.YSteps > 0) ||
+                    () => ((this.IsSteps && this.XSteps >= 1 && this.YSteps >= 1 &&
+                           this.XDistanceBetween >= 1 && this.YDistanceBetween >= 1) ||
                            (this.IsExcel && File.Exists(this.FilePath))) &&
-                           this.XDistanceBetween > 0 && this.YDistanceBetween > 0)
+                           this.XDistanceBetween >= 1 && this.YDistanceBetween >= 1)
                 .ObservesProperty(() => this.XSteps)
                 .ObservesProperty(() => this.YSteps)
                 .ObservesProperty(() => this.XDistanceBetween)

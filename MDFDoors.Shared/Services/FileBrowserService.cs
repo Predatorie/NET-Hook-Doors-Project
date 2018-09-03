@@ -2,14 +2,13 @@
 // Copyright (c) Mick George @Osoy. All rights reserved.
 // </copyright>
 
-using System.IO;
-
 namespace MDFDoors.Shared.Services
 {
     using System;
+    using System.IO;
     using System.Windows.Forms;
-    using Mastercam.IO;
     using Localization;
+    using Mastercam.IO;
     using Models;
 
     public class FileBrowserService : IFileBrowserService

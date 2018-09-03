@@ -177,70 +177,69 @@ namespace MDFDoors.Services
             // Multiple copies is enabled
             if (this.copies)
             {
-                // Excel?
+                // Excel
                 if (door.MultipleCopies.UseExcel)
                 {
-                    // TODO: Read the excel file
+                    return Result.Fail("Excel file not implemeted");
                 }
-                else
+
+                // Translate
+                if (door.MultipleCopies.UseSteps)
                 {
-                    // Translate
-                    if (door.MultipleCopies.UseSteps)
+                    var result = this.DrawShakerEleganceDoor(door);
+                    if (result.IsFailure)
                     {
-                        var result = this.DrawShakerEleganceDoor(door);
-                        if (result.IsFailure)
+                        return Result.Fail(result.Error);
+                    }
+
+                    // We have the original door created so translate it
+                    SelectionManager.SelectAllGeometry();
+
+                    // Copies along the X axis
+                    for (var col = 1; col < door.MultipleCopies.XSteps; col++)
+                    {
+                        var success = GeometryManipulationManager.TranslateGeometry(
+                            new Point3D(0, 0, 0),
+                            new Point3D(door.Width + door.MultipleCopies.XDistanceBetween, 0, 0),
+                            ViewManager.GraphicsView,
+                            ViewManager.GraphicsView,
+                            true);
+
+                        if (!success)
                         {
-                            return Result.Fail(result.Error);
+                            return Result.Fail(ApplicationStrings.ErrorTranslateX);
                         }
 
-                        // We have the original door created so translate it
-                        SelectionManager.SelectAllGeometry();
+                        // Select the result
+                        SelectionManager.SelectGeometryByMask(QuickMaskType.Result);
+                    }
 
-                        // Copies along the X axis
-                        for (var col = 1; col < door.MultipleCopies.XSteps; col++)
+                    // Clear all selection masks
+                    GraphicsManager.ClearColors(new GroupSelectionMask(true, true));
+
+                    // Select the entire row
+                    SelectionManager.SelectAllGeometry();
+
+                    // Copies along the Y axis
+                    for (var row = 1; row < door.MultipleCopies.YSteps; row++)
+                    {
+                        var success = GeometryManipulationManager.TranslateGeometry(
+                            new Point3D(0, 0, 0),
+                            new Point3D(0, door.Height + door.MultipleCopies.YDistanceBetween, 0),
+                            ViewManager.GraphicsView,
+                            ViewManager.GraphicsView,
+                            true);
+
+                        if (!success)
                         {
-                            var success = GeometryManipulationManager.TranslateGeometry(
-                                new Point3D(0, 0, 0),
-                                new Point3D(door.Width + door.MultipleCopies.XDistanceBetween, 0, 0),
-                                ViewManager.GraphicsView,
-                                ViewManager.GraphicsView,
-                                true);
-
-                            if (!success)
-                            {
-                                return Result.Fail(ApplicationStrings.ErrorTranslateX);
-                            }
-
-                            // Select the result
-                            SelectionManager.SelectGeometryByMask(QuickMaskType.Result);
+                            return Result.Fail(ApplicationStrings.ErrorTranslateY);
                         }
 
-                        // Clear all selection masks
-                        GraphicsManager.ClearColors(new GroupSelectionMask(true, true));
-
-                        // Select the entire row
-                        SelectionManager.SelectAllGeometry();
-
-                        // Copies along the Y axis
-                        for (var row = 1; row < door.MultipleCopies.YSteps; row++)
-                        {
-                            var success = GeometryManipulationManager.TranslateGeometry(
-                                new Point3D(0, 0, 0),
-                                new Point3D(0, door.Height + door.MultipleCopies.YDistanceBetween, 0),
-                                ViewManager.GraphicsView,
-                                ViewManager.GraphicsView,
-                                true);
-
-                            if (!success)
-                            {
-                                return Result.Fail(ApplicationStrings.ErrorTranslateY);
-                            }
-
-                            // Select the result
-                            SelectionManager.SelectGeometryByMask(QuickMaskType.Result);
-                        }
+                        // Select the result
+                        SelectionManager.SelectGeometryByMask(QuickMaskType.Result);
                     }
                 }
+
             }
             else
             {
