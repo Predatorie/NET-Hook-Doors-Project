@@ -57,6 +57,16 @@ namespace MDFDoors.Module.Models
         /// <summary>Gets the style.</summary>
         public DoorStyles Style => DoorStyles.ShakerBead;
 
+        /// <summary> Gets or sets the name of the bead level. </summary>
+        ///
+        /// <value> The name of the bead level. </value>
+        public string BeadLevelName { get; set; }
+
+        /// <summary> Gets or sets the bead level number. </summary>
+        ///
+        /// <value> The bead level number. </value>
+        public int BeadLevelNumber { get; set; }
+
         /// <summary>Convert this object into a string representation.</summary>
         ///
         /// <remarks>Mick George, 11/11/2017.</remarks>

@@ -68,11 +68,13 @@
                                 <RowDefinition Height="35" />
                                 <RowDefinition Height="35" />
                                 <RowDefinition Height="35" />
+                                <RowDefinition Height="35" />
                             </Grid.RowDefinitions>
 
                             <TextBox Text="{Binding Model.OuterLevelName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" controls:TextBoxHelper.ClearTextButton="True" controls:TextBoxHelper.Watermark="Level Name"  Margin="2" Grid.Column="0" Grid.Row="0"/>
                             <TextBox Text="{Binding Model.InnerLevelName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" controls:TextBoxHelper.ClearTextButton="True" controls:TextBoxHelper.Watermark="Level Name"  Margin="2" Grid.Column="0" Grid.Row="1"/>
                             <TextBox Text="{Binding Model.GrooveLevelName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" controls:TextBoxHelper.ClearTextButton="True" controls:TextBoxHelper.Watermark="Level Name"  Margin="2" Grid.Column="0" Grid.Row="2" />
+                            <TextBox Text="{Binding Model.BeadLevelName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" controls:TextBoxHelper.ClearTextButton="True" controls:TextBoxHelper.Watermark="Level Name"  Margin="2" Grid.Column="0" Grid.Row="3" />
 
                         </Grid>
 

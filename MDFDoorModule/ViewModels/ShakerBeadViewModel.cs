@@ -172,9 +172,11 @@ namespace MDFDoors.Module.ViewModels
             this.Model.OuterLevelName = "outer";
             this.Model.InnerLevelName = "inner";
             this.Model.GrooveLevelName = "grooves";
+            this.model.BeadLevelName = "beads";
             this.Model.OuterLevelNumber = 1;
             this.Model.InnerLevelNumber = 2;
             this.Model.GrooveLevelNumber = 3;
+            this.model.BeadLevelNumber = 4;
 
             this.model.MultipleCopies = this.settingsService.MultipleCopiesData();
 
