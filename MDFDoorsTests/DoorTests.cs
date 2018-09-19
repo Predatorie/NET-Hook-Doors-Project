@@ -4,13 +4,13 @@
 
 namespace MDFDoors.Tests
 {
-    using System.Linq;
     using Factories;
     using Microsoft.Practices.Unity;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Module.Views;
     using Shared;
     using Shared.Factories;
+    using System.Linq;
 
     [TestClass]
     public class DoorTests
@@ -44,6 +44,16 @@ namespace MDFDoors.Tests
         #endregion
 
         #region Tests
+
+        /// <summary> (Unit Test Method) request shaker bead returns shaker bead. </summary>
+        [TestMethod]
+        public void Request_ShakerBead_Returns_ShakerBead()
+        {
+            var view = this.viewFactory.View(DoorStyles.ShakerBead);
+
+            Assert.IsTrue(view.IsSuccess);
+            Assert.IsInstanceOfType(view.Value, typeof(ShakerBeadView));
+        }
 
         /// <summary>(Unit Test Method) request shaker ellegance returns shaker ellegence.</summary>
         ///
@@ -115,6 +125,17 @@ namespace MDFDoors.Tests
 
             Assert.IsTrue(view.IsSuccess);
             Assert.IsInstanceOfType(view.Value, typeof(ShakerFinestView));
+        }
+
+        /// <summary> (Unit Test Method) creates shaker bead returns shaker bead navigation parameters. </summary>
+        [TestMethod]
+        public void Create_ShakerBead_Returns_ShakerBead_NavigationParams()
+        {
+            var navigationParameters = this.parametersFactory.Create(DoorStyles.ShakerBead);
+
+            Assert.IsTrue(navigationParameters.Count() == 3);
+            Assert.IsInstanceOfType(navigationParameters[NavigationParamIndexer.Style], typeof(DoorStyles));
+            Assert.IsTrue(ReferenceEquals(navigationParameters[NavigationParamIndexer.Name], DoorNames.ShakerBead));
         }
 
         /// <summary>(Unit Test Method) request shaker title returns shaker title.</summary>

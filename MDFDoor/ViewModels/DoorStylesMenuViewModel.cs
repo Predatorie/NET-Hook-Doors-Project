@@ -4,12 +4,11 @@
 
 namespace MDFDoors.ViewModels
 {
-    using Factories;
-    using Shared.Factories;
     using Prism.Commands;
     using Prism.Mvvm;
     using Prism.Regions;
     using Shared;
+    using Shared.Factories;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// <summary>   A ViewModel for the door styles menu. </summary>
@@ -106,13 +105,15 @@ namespace MDFDoors.ViewModels
         private void AddViewsToRegion()
         {
             var contentRegion = this.regionManager.Regions[Regions.ContentRegion];
-            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerCentury).Value, ViewNames.ShakerCentury, true);
-            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerCountry).Value, ViewNames.ShakerCountry, true);
             contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerElegance).Value, ViewNames.ShakerElegance, true);
-            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerEuro05).Value, ViewNames.ShakerEuro05, true);
-            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerExotic).Value, ViewNames.ShakerExotic, true);
-            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerFinest).Value, ViewNames.ShakerFinest, true);
-            contentRegion.Add(this.viewFactory.View(DoorStyles.Shaker).Value, ViewNames.Shaker, true);
+            contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerBead).Value, ViewNames.ShakerBead, true);
+
+            //contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerCentury).Value, ViewNames.ShakerCentury, true);
+            //contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerCountry).Value, ViewNames.ShakerCountry, true);
+            //contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerEuro05).Value, ViewNames.ShakerEuro05, true);
+            //contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerExotic).Value, ViewNames.ShakerExotic, true);
+            //contentRegion.Add(this.viewFactory.View(DoorStyles.ShakerFinest).Value, ViewNames.ShakerFinest, true);
+            //contentRegion.Add(this.viewFactory.View(DoorStyles.Shaker).Value, ViewNames.Shaker, true);
         }
 
         #endregion

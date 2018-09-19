@@ -12,7 +12,8 @@ namespace MDFDoors.Shared
         ShakerEuro05,
         ShakerExotic,
         ShakerFinest,
-        Shaker
+        Shaker,
+        ShakerBead
     }
 
     public enum ApplicationState

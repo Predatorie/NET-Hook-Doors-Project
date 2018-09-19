@@ -26,5 +26,8 @@ namespace MDFDoors.Shared
 
         /// <summary>   The shaker. </summary>
         public const string Shaker = "ShakerView";
+
+        /// <summary> The shaker bead. </summary>
+        public const string ShakerBead = "ShakerBeadView";
     }
 }

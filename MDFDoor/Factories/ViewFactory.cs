@@ -51,8 +51,11 @@ namespace MDFDoors.Factories
                 case DoorStyles.Shaker:
                     return Result.Ok<object>(this.container.Resolve<ShakerView>());
 
+                case DoorStyles.ShakerBead:
+                    return Result.Ok<object>(this.container.Resolve<ShakerBeadView>());
+
                 default:
-                    return Result.Fail<object>($"Uknown door type {nameof(door)}");
+                    return Result.Fail<object>($"Unknown door type {nameof(door)}");
             }
         }
     }

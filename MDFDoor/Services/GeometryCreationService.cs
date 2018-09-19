@@ -4,8 +4,6 @@
 
 namespace MDFDoors.Services
 {
-    using System;
-    using System.Linq;
     using Mastercam.Curves;
     using Mastercam.Database.Types;
     using Mastercam.GeometryUtility;
@@ -17,6 +15,8 @@ namespace MDFDoors.Services
     using Shared.Localization;
     using Shared.Models;
     using Shared.Services;
+    using System;
+    using System.Linq;
 
     public class GeometryCreationService : IGeometryCreationService
     {
@@ -71,8 +71,103 @@ namespace MDFDoors.Services
                 return this.CreateShakerFinest((ShakerFinest)model);
             }
 
-            return Result.Fail($"Unkown Door Style {model}");
+            if (model.GetType() == typeof(ShakerBead))
+            {
+                return this.CreateShakerBead((ShakerBead)model);
+            }
 
+            return Result.Fail($"Unknown Door Style {model}");
+        }
+
+        /// <summary> Creates shaker bead. </summary>
+        ///
+        /// <param name="door"> The model. </param>
+        ///
+        /// <returns> The new shaker bead. </returns>
+        private Result CreateShakerBead(ShakerBead door)
+        {
+            // Multiple copies is enabled
+            if (this.copies)
+            {
+                // Excel
+                if (door.MultipleCopies.UseExcel)
+                {
+                    return Result.Fail("Excel file not implemented");
+                }
+
+                // Translate
+                if (door.MultipleCopies.UseSteps)
+                {
+                    var result = this.DrawShakerBeadDoor(door);
+                    if (result.IsFailure)
+                    {
+                        return Result.Fail(result.Error);
+                    }
+
+                    // We have the original door created so translate it
+                    SelectionManager.SelectAllGeometry();
+
+                    // Copies along the X axis
+                    for (var col = 1; col < door.MultipleCopies.XSteps; col++)
+                    {
+                        var success = GeometryManipulationManager.TranslateGeometry(
+                            new Point3D(0, 0, 0),
+                            new Point3D(door.Width + door.MultipleCopies.XDistanceBetween, 0, 0),
+                            ViewManager.GraphicsView,
+                            ViewManager.GraphicsView,
+                            true);
+
+                        if (!success)
+                        {
+                            return Result.Fail(ApplicationStrings.ErrorTranslateX);
+                        }
+
+                        // Select the result
+                        SelectionManager.SelectGeometryByMask(QuickMaskType.Result);
+                    }
+
+                    // Clear all selection masks
+                    GraphicsManager.ClearColors(new GroupSelectionMask(true, true));
+
+                    // Select the entire row
+                    SelectionManager.SelectAllGeometry();
+
+                    // Copies along the Y axis
+                    for (var row = 1; row < door.MultipleCopies.YSteps; row++)
+                    {
+                        var success = GeometryManipulationManager.TranslateGeometry(
+                            new Point3D(0, 0, 0),
+                            new Point3D(0, door.Height + door.MultipleCopies.YDistanceBetween, 0),
+                            ViewManager.GraphicsView,
+                            ViewManager.GraphicsView,
+                            true);
+
+                        if (!success)
+                        {
+                            return Result.Fail(ApplicationStrings.ErrorTranslateY);
+                        }
+
+                        // Select the result
+                        SelectionManager.SelectGeometryByMask(QuickMaskType.Result);
+                    }
+                }
+            }
+            else
+            {
+                // Single Door
+                var result = this.DrawShakerBeadDoor(door);
+                if (result.IsFailure)
+                {
+                    return Result.Fail(result.Error);
+                }
+            }
+
+            // Clear all selection masks
+            GraphicsManager.ClearColors(new GroupSelectionMask(true, true));
+            SelectionManager.UnselectAllGeometry();
+            GraphicsManager.FitScreen();
+
+            return Result.Ok();
         }
 
         /// <summary>Creates shaker centry.</summary>
@@ -239,7 +334,6 @@ namespace MDFDoors.Services
                         SelectionManager.SelectGeometryByMask(QuickMaskType.Result);
                     }
                 }
-
             }
             else
             {
@@ -257,6 +351,55 @@ namespace MDFDoors.Services
             GraphicsManager.FitScreen();
 
             return Result.Ok();
+        }
+
+        /// <summary> Draw shaker bead door. </summary>
+        ///
+        /// <param name="door"> The model. </param>
+        ///
+        /// <returns> A Result. </returns>
+        private Result DrawShakerBeadDoor(ShakerBead door)
+        {
+            // Outer panel
+            var result = this.DrawRectangle(
+                door.Width,
+                door.Height,
+                0,
+                0,
+                door.OuterLevelNumber,
+                door.OuterLevelName,
+                10);
+
+            if (result.IsFailure)
+            {
+                return Result.Fail(result.Error);
+            }
+
+            // Inner panel
+            result = this.DrawRectangle(
+                door.InnerWidth + door.RightSideWidth,
+                door.BottomRailWidth,
+                door.LeftStileWidth,
+                door.InnerHeight + door.TopRailWidth,
+                door.InnerLevelNumber,
+                door.InnerLevelName,
+                12);
+
+            if (result.IsFailure)
+            {
+                return Result.Fail(result.Error);
+            }
+
+            // Grooves
+            result = this.DrawShakerBeadGrooves(door);
+            if (result.IsFailure)
+            {
+                return Result.Fail(result.Error);
+            }
+
+            // Beads
+            result = this.DrawShakerBeads(door);
+            return result.IsFailure ? Result.Fail(result.Error) : Result.Ok();
         }
 
         /// <summary>
@@ -299,6 +442,56 @@ namespace MDFDoors.Services
             // Grooves
             result = this.DrawShakerEleganceGrooves(door);
             return result.IsFailure ? Result.Fail(result.Error) : Result.Ok();
+        }
+
+        /// <summary> Draw shaker beads. </summary>
+        ///
+        /// <param name="door"> The model. </param>
+        ///
+        /// <returns> A Result. </returns>
+        private Result DrawShakerBeads(ShakerBead door)
+        {
+            return Result.Ok();
+        }
+
+        /// <summary> Draw shaker bead grooves. </summary>
+        ///
+        /// <param name="door"> The model. </param>
+        ///
+        /// <returns> A Result. </returns>
+        private Result DrawShakerBeadGrooves(ShakerBead door)
+        {
+            var bottomLeftStartPosition = new Point3D(door.LeftStileWidth, 0, 0);
+            var bottomLeftEndPosition = new Point3D(door.LeftStileWidth, door.BottomRailWidth, 0);
+
+            var bottomRightStartPosition = new Point3D(door.Width - door.RightSideWidth, 0, 0);
+            var bottomRightEndPosition = new Point3D(door.Width - door.RightSideWidth, door.BottomRailWidth, 0);
+
+            var topLeftStartPosition = new Point3D(door.LeftStileWidth, door.Height - door.TopRailWidth, 0);
+            var topLeftEndPosition = new Point3D(door.LeftStileWidth, door.Height, 0);
+
+            var topRightStartPosition = new Point3D(door.Width - door.RightSideWidth, door.Height - door.TopRailWidth, 0);
+            var topRightEndPosition = new Point3D(door.Width - door.RightSideWidth, door.Height, 0);
+
+            var bottomLeft = new LineGeometry(bottomLeftStartPosition, bottomLeftEndPosition) { Level = door.GrooveLevelNumber, Color = 9 };
+            var bottomRight = new LineGeometry(bottomRightStartPosition, bottomRightEndPosition) { Level = door.GrooveLevelNumber, Color = 9 };
+
+            var topLeft = new LineGeometry(topLeftStartPosition, topLeftEndPosition) { Level = door.GrooveLevelNumber, Color = 9 };
+            var topRight = new LineGeometry(topRightStartPosition, topRightEndPosition) { Level = door.GrooveLevelNumber, Color = 9 };
+
+            bottomLeft.Commit();
+            topLeft.Commit();
+            topRight.Commit();
+            bottomRight.Commit();
+
+            LevelsManager.SetLevelName(bottomLeft.Level, door.GrooveLevelName);
+            LevelsManager.SetLevelName(topLeft.Level, door.GrooveLevelName);
+            LevelsManager.SetLevelName(topRight.Level, door.GrooveLevelName);
+            LevelsManager.SetLevelName(bottomRight.Level, door.GrooveLevelName);
+
+            LevelsManager.SetLevelSetName(bottomLeft.Level, DoorNames.ShakerElegance);
+
+            return Result.Ok();
         }
 
         /// <summary>Draw shaker elegance grooves.</summary>

@@ -17,7 +17,7 @@ namespace MDFDoors.Module.Views
         private void ShakerEleganceView_OnUnloaded(object sender, RoutedEventArgs e)
         {
             // If using DialogParticipation on Windows which open / close frequently you will get a
-            // memory leak unless you unregister.  The easiest way to do this is in your Closing/ Unloaded event
+            // memory leak unless you unregistered.  The easiest way to do this is in your Closing/ Unloaded event
             DialogParticipation.SetRegister(this, null);
         }
     }

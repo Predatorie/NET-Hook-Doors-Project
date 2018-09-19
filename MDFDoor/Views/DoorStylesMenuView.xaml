@@ -38,13 +38,15 @@
 
             <StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Center">
                 <!--Shake Styles-->
-                <Button controls:ControlsHelper.ContentCharacterCasing="Upper" Style="{DynamicResource AccentedSquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.ShakerCentury}" Margin="5">Shaker Century</Button>
-                <Button controls:ControlsHelper.ContentCharacterCasing="Upper" Style="{DynamicResource AccentedSquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.ShakerCountry}" Margin="5">Shaker Country</Button>
                 <Button controls:ControlsHelper.ContentCharacterCasing="Upper" Style="{DynamicResource AccentedSquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.ShakerElegance}" Margin="5">Shaker Elegance</Button>
+                <Button controls:ControlsHelper.ContentCharacterCasing="Upper" Style="{DynamicResource AccentedSquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.ShakerBead}" Margin="5">Shaker Bead</Button>
+
+                <!--<Button controls:ControlsHelper.ContentCharacterCasing="Upper" Style="{DynamicResource AccentedSquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.ShakerCentury}" Margin="5">Shaker Century</Button>
+                <Button controls:ControlsHelper.ContentCharacterCasing="Upper" Style="{DynamicResource AccentedSquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.ShakerCountry}" Margin="5">Shaker Country</Button>
                 <Button controls:ControlsHelper.ContentCharacterCasing="Upper" Style="{DynamicResource AccentedSquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.ShakerEuro05}" Margin="5">Shaker Euro-05</Button>
                 <Button controls:ControlsHelper.ContentCharacterCasing="Upper" Style="{DynamicResource AccentedSquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.ShakerExotic}" Margin="5">Shaker Exotic</Button>
                 <Button controls:ControlsHelper.ContentCharacterCasing="Upper" Style="{DynamicResource AccentedSquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.ShakerFinest}" Margin="5">Shaker Finest</Button>
-                <Button controls:ControlsHelper.ContentCharacterCasing="Upper" Style="{DynamicResource AccentedSquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.Shaker}" Margin="5">Shaker</Button>
+                <Button controls:ControlsHelper.ContentCharacterCasing="Upper" Style="{DynamicResource AccentedSquareButtonStyle}" Height="35" Width="150" Command="{Binding NavigateCommand}" CommandParameter="{ x:Static shared:DoorStyles.Shaker}" Margin="5">Shaker</Button>-->
             </StackPanel>
 
             <!--<StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Center">

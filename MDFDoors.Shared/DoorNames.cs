@@ -21,10 +21,13 @@ namespace MDFDoors.Shared
         /// <summary>   The shaker finest. </summary>
         public const string ShakerFinest = "Shaker Finest";
 
-        /// <summary>   The shacker. </summary>
+        /// <summary>   The shaker. </summary>
         public const string Shaker = "Shaker";
 
         /// <summary>The exotic.</summary>
         public const string ShakerExotic = "Shaker Exotic";
+
+        /// <summary> The shaker bead. </summary>
+        public const string ShakerBead = "Shaker Bead";
     }
 }

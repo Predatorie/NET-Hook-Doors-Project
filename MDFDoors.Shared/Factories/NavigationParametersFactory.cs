@@ -41,6 +41,8 @@ namespace MDFDoors.Shared.Factories
                     return ViewNames.ShakerFinest;
                 case DoorStyles.Shaker:
                     return ViewNames.Shaker;
+                case DoorStyles.ShakerBead:
+                    return ViewNames.ShakerBead;
             }
 
             // TODO: Implement the Result class
@@ -75,6 +77,8 @@ namespace MDFDoors.Shared.Factories
                     return DoorNames.ShakerFinest;
                 case DoorStyles.Shaker:
                     return DoorNames.Shaker;
+                case DoorStyles.ShakerBead:
+                    return DoorNames.ShakerBead;
                 default:
                     return default(string); 
             }

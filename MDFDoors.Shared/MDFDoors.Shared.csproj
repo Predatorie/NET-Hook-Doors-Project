@@ -70,7 +70,7 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
     <Reference Include="NETHook3_0">
-      <HintPath>F:\Program Files\Mcam2018\NETHook3_0.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Mcam2018\NETHook3_0.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -150,6 +150,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)$(OutDir)$(TargetName).dll" "F:\Program Files\Mcam2018\chooks\MDF"</PostBuildEvent>
+    <PostBuildEvent>copy "$(ProjectDir)$(OutDir)$(TargetName).dll" "C:\Program Files\Mcam2018\chooks\MDF"</PostBuildEvent>
   </PropertyGroup>
 </Project>
